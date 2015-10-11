@@ -20,9 +20,10 @@ public class InventoryManagement extends ActionBarActivity
 {
     //Buttons of the inventory interface menu
     private Button addBike;
-
-
+    private Button displayBikes;
     private Button removeBike;
+    private Button updateBikes;
+
     private EditText removeSerialText;
     final Context context = this;
 
@@ -37,6 +38,8 @@ public class InventoryManagement extends ActionBarActivity
         //Linking to the XML file
         addBike = (Button) findViewById(R.id.AddBike);
         removeBike = (Button) findViewById(R.id.RemoveBike);
+        displayBikes = (Button) findViewById(R.id.ViewInventory);
+        updateBikes = (Button) findViewById(R.id.UpdateBike);
 
         removeSerialText = (EditText) findViewById(R.id.remove_bike_dialog_input);
 
@@ -50,6 +53,17 @@ public class InventoryManagement extends ActionBarActivity
 
             }
         });
+
+        //sets what happens when you press the Display Inventory button
+        displayBikes.setOnClickListener(new View.OnClickListener(){
+            @Override
+        public void onClick(View v)
+            {
+                Intent i = new Intent(InventoryManagement.this, displayInventory.class);
+                startActivity(i);
+            }
+        });
+
 
         
 

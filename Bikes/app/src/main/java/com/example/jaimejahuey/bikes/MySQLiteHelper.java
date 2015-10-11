@@ -102,7 +102,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             values.put(MySQLiteHelper.KEY_make, bike.getInventory_make());
             values.put(MySQLiteHelper.KEY_COLOR, bike.getInventory_color());
             values.put(MySQLiteHelper.KEY_CONDITION, bike.getInventory_condition());
-            values.put(MySQLiteHelper.KEY_SERIALCODE, bike.getInventory_make());
+            values.put(MySQLiteHelper.KEY_SERIALCODE, bike.getInventory_serial());
 
 
 
@@ -125,7 +125,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     //To be able to delete a bike
     public boolean deleteBike(Bike bike)
     {
-        //To be able to read from the databse
+        //To be able to read from the database
         SQLiteDatabase DB = this.getReadableDatabase();
 
 
@@ -138,6 +138,17 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
     //Other functions for the remainder of the project
 
+    //reading the inventory database
+public Cursor readEntry(){
+
+    String[] allColumns =
+            new String[]{ MySQLiteHelper.KEY_SERIALCODE, MySQLiteHelper.KEY_make, MySQLiteHelper.KEY_COLOR, MySQLiteHelper.KEY_CONDITION };
+    Cursor c = getWritableDatabase().query(MySQLiteHelper.TABLE_inventory, allColumns,null, null, null, null, null);
+    if(c!=null){
+        c.moveToFirst();
+    }
+    return c;
+}
 }
 
 

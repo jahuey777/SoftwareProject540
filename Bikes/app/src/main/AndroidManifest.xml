@@ -29,6 +29,11 @@
             android:label="Adding Bike">
         </activity>
 
+
+        <activity android:name=".displayInventory"
+            android:label="Displaying Inventory">
+        </activity>
+
     </application>
 
 </manifest>
