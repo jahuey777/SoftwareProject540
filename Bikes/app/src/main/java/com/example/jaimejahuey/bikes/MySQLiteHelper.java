@@ -22,6 +22,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
     //Names of our tables
     public static final String TABLE_inventory= "inventory";
+    public static final String TABLE_repairs = "repairs";
+    public static final String TABLE_sales = "sales";
 
 
     //Columns for for the inventory table
@@ -33,11 +35,17 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     public static final String KEY_COLOR= "color";
     public static final String KEY_CONDITION= "condition";
 
-
+    //*********** David added this*************//
     //Columns for the repairs table
+    public static final String CUST_NAME = "customer_name";
+    public static final String CUST_PHONE = "customer_phone";
+    public static final String DUE_DATE = "due_date";
 
-
-    //Column for the sales Tables
+    //Columns for the sales table
+    public static final String SERIAL_NUM = "serial";
+    public static final String SALE_DATE = "sale_date"; // Date of sale
+    public static final String SALE_PRICE = "sale_price";
+    //*********** David added this*************//
 
     public MySQLiteHelper(Context context)
     {
@@ -49,15 +57,16 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase db)
     {
-        //Creating inventory table
+        //Creating the table we need for our database
         String CREATE_INVENTORY_TABLE = "CREATE TABLE " + TABLE_inventory + " ( " + COLUMN_ID + " integer primary key,"
          + KEY_SERIALCODE+ " TEXT,"+ KEY_make + " TEXT," + KEY_COLOR + " TEXT, "
          + KEY_CONDITION + " TEXT" + ")";
 
-        //Create the other table
+        String CREATE_REPAIRS_TABLE = "CREATE TABLE " + TABLE_repairs + "( " + COLUMN_ID + "integer primary key,"
+        + CUST_NAME + " TEXT, " + CUST_PHONE + " TEXT," + DUE_DATE + " TEXT)";
 
-
-        //create other table;
+        String CREATE_SALES_TABLE = "CREATE TABLE " + TABLE_sales + "( " + COLUMN_ID + "integer primary key,"
+                + SERIAL_NUM + " TEXT, " + SALE_DATE + " TEXT," + SALE_PRICE + " TEXT)";
 
 
 

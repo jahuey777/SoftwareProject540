@@ -2,6 +2,7 @@ package com.example.jaimejahuey.bikes;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -76,7 +77,7 @@ public class addingBike extends ActionBarActivity
 
                     if(MAKE.isEmpty()|| COLOR.isEmpty() || SERIAL.isEmpty())
                     {
-                        Toast.makeText(getApplicationContext(), "Input values are missing.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Input values are missing hi.", Toast.LENGTH_LONG).show();
                     }
                     else if(check==-1)
                     {
@@ -86,12 +87,14 @@ public class addingBike extends ActionBarActivity
 
                     else
                     {
+                        Log.d("HERE", SERIAL);
 
-                            Bike addingThisBike =  new Bike(SERIAL,MAKE, COLOR, bikeCond);
+
+                        Bike addingThisBike =  new Bike(SERIAL,MAKE, COLOR, bikeCond);
                             Boolean didWeAdd =  MainActivity.DATABASE.addBike(addingThisBike);
 
                             if(didWeAdd)
-                               Toast.makeText(getApplicationContext(), "The Bike has been added", Toast.LENGTH_LONG).show();
+                               Toast.makeText(getApplicationContext(), "The Bike has been added...", Toast.LENGTH_LONG).show();
                             else
                                Toast.makeText(getApplicationContext(), "The Bike was not added since it already exists", Toast.LENGTH_LONG).show();
 

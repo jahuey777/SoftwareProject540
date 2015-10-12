@@ -3,10 +3,13 @@ package com.example.jaimejahuey.bikes;
 /**
  * Created by jaimejahuey on 9/18/15.
  */
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -53,6 +56,54 @@ public class InventoryManagement extends ActionBarActivity
 
             }
         });
+
+
+        //If the user is going to remove a bike
+
+        removeBike.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                LayoutInflater RemoveInflator = LayoutInflater.from(context);
+                View RemoveView  = RemoveInflator.inflate(R.layout.remove_bike_dialog, null);
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+                //sets remove_bike_dialog.xml to alertdialog builder
+                alertDialogBuilder.setView(RemoveView);
+
+                alertDialogBuilder
+                        .setCancelable(false)
+                        .setPositiveButton("OK",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id)
+                                    {
+                                       // String resultSerialNum = removeSerialText.getText().toString();
+                                    }
+                                })
+                        .setNegativeButton("Cancel",
+                                new DialogInterface.OnClickListener()
+                                {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id)
+                                    {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                //To actually create it
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                //show it
+                alertDialog.show();
+
+
+            }
+        });
+
+
 
         //sets what happens when you press the Display Inventory button
         displayBikes.setOnClickListener(new View.OnClickListener(){
