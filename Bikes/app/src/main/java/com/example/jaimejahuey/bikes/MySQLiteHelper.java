@@ -161,6 +161,31 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
     }
 
+    public boolean existsOrNot(String bikeSerial)
+    {
+        //To be able to read from the database
+        SQLiteDatabase DB = this.getWritableDatabase();
+
+        //Using a cursor to see if the bikeSerial exists
+        //If it does, then getCount will atleast be 1. In our case, it should be exactly 1
+        Cursor cursor= null;
+        String sql = "SELECT * FROM inventory WHERE serial = '" + bikeSerial + "'" ;
+        cursor = DB.rawQuery(sql,null);
+
+        //If the bike exits, we return true, otherwise return false
+        if(cursor.getCount()<=0)
+        {
+            cursor.close();
+            DB.close();
+            return false;
+        }
+        else
+        {
+            cursor.close();
+            DB.close();
+            return true;
+        }
+    }
     //To list the bikes and models and the quantity of bikes.
 
     //Other functions for the remainder of the project

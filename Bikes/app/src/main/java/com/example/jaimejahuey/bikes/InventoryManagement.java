@@ -33,7 +33,8 @@ public class InventoryManagement extends ActionBarActivity
     private EditText removeSerialText;
     final Context context = this;
 
-    String resultSerialNum;
+    //made it public so that the upgrade class can use it
+    public String resultSerialNum;
 
 
 
@@ -131,9 +132,6 @@ public class InventoryManagement extends ActionBarActivity
         });
 
 
-        Log.d("input" , "" + resultSerialNum);
-
-
         //sets what happens when you press the Display Inventory button
         displayBikes.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -141,6 +139,71 @@ public class InventoryManagement extends ActionBarActivity
             {
                 Intent i = new Intent(InventoryManagement.this, displayInventory.class);
                 startActivity(i);
+            }
+        });
+
+
+        //For the update bike
+        //Reusing part of the remove bike code.
+        //Get the user's
+        updateBikes.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+
+                LayoutInflater RemoveInflator = LayoutInflater.from(context);
+                View RemoveView  = RemoveInflator.inflate(R.layout.remove_bike_dialog, null);
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+                //sets remove_bike_dialog.xml to alertdialog builder
+                alertDialogBuilder.setView(RemoveView);
+
+                alertDialogBuilder
+                        .setCancelable(false)
+                        .setPositiveButton("OK",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id) {
+
+                                        //Had to add this line, otherwise it will throw an error whenever
+                                        //the user inputs anything to the pop dialog
+                                        Dialog f = (Dialog) dialog;
+
+                                        removeSerialText = (EditText) f.findViewById(R.id.remove_bike_dialog_input);
+
+                                        //Getting the text from the dialog
+                                        resultSerialNum = removeSerialText.getText().toString();
+                                        //Log.d("input" , "" + resultSerialNum);
+                                        Boolean doesItExist = MainActivity.DATABASE.existsOrNot(resultSerialNum);
+
+                                        //if it exist we will update it or let the user update it
+                                        if (doesItExist)
+                                        {
+
+                                            //Toast.makeText(getApplicationContext(), "The Bike has been deleted.", Toast.LENGTH_LONG).show();
+                                        }
+                                        else
+                                            Toast.makeText(getApplicationContext(), "Bike can't be updated since it doesn't exist.", Toast.LENGTH_LONG).show();
+
+                                    }
+                                })
+                        .setNegativeButton("Cancel",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                //To actually create it
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                //show it
+                alertDialog.show();
+
+
             }
         });
 
