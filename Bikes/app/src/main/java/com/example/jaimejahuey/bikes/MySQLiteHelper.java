@@ -42,7 +42,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     public static final String DUE_DATE = "due_date";
 
     //Columns for the sales table
-    public static final String SERIAL_NUM = "serial";
+    //public static final String SERIAL_NUM = "serial";
     public static final String SALE_DATE = "sale_date"; // Date of sale
     public static final String SALE_PRICE = "sale_price";
     //*********** David added this*************//
@@ -66,7 +66,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         + CUST_NAME + " TEXT, " + CUST_PHONE + " TEXT," + DUE_DATE + " TEXT)";
 
         String CREATE_SALES_TABLE = "CREATE TABLE " + TABLE_sales + "( " + COLUMN_ID + "integer primary key,"
-                + SERIAL_NUM + " TEXT, " + SALE_DATE + " TEXT," + SALE_PRICE + " TEXT)";
+                + KEY_SERIALCODE + " TEXT, " + SALE_DATE + " TEXT," + SALE_PRICE + " TEXT)";
 
 
 
@@ -132,18 +132,36 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
 
     //To be able to delete a bike
-    public boolean deleteBike(Bike bike)
+    public boolean deleteBike(String bikeSerial)
     {
         //To be able to read from the database
-        SQLiteDatabase DB = this.getReadableDatabase();
+        SQLiteDatabase DB = this.getWritableDatabase();
 
+        //Using a cursor to see if the bikeSerial exists
+        //If it does, then getCount will atleast be 1. In our case, it should be exactly 1
+        Cursor cursor= null;
+        String sql = "SELECT * FROM inventory WHERE serial = '" + bikeSerial + "'" ;
+        cursor = DB.rawQuery(sql,null);
 
+        if(cursor.getCount()<=0)
+        {
+            cursor.close();
+            DB.close();
+            return false;
+        }
+        else
+        {
+            //Delete is an already created function, the parameters are listed as the following:
+            //tablename, where statement and make sure you use ?, the value of what you are deleting
+            DB.delete(TABLE_inventory, KEY_SERIALCODE + "= ? ", new String[] {String.valueOf(bikeSerial)} );
+            cursor.close();
+            DB.close();
+            return true;
+        }
 
-        DB.close();
-        return false;
     }
 
-    //To list the bikes and models and the quanity of bikes.
+    //To list the bikes and models and the quantity of bikes.
 
     //Other functions for the remainder of the project
 
