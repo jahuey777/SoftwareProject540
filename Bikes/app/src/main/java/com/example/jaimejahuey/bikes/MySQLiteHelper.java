@@ -27,21 +27,23 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
 
     //Columns for for the inventory table
-    public static final String COLUMN_ID = "id";
-    //public static final String KEY_MODEL = "model";
+    public static final String COLUMN_ID_INVENTORY = "idI";
     public static final String KEY_make= "make";
-    //public static final String KEY_quantity = "quantity";
     public static final String KEY_SERIALCODE = "serial";
     public static final String KEY_COLOR= "color";
     public static final String KEY_CONDITION= "condition";
+    public static final String KEY_AVAILABLE = "available";
 
     //Columns for the repairs table
+    public static final String COLUMN_ID_REPAIRS= "idP";
+    public static final String REPAIRS_FKEY = "idINum";
     public static final String CUST_NAME = "customer_name";
     public static final String CUST_PHONE = "customer_phone";
     public static final String DUE_DATE = "due_date";
 
     //Columns for the sales table
     //public static final String SERIAL_NUM = "serial";
+    public static final String COLUMN_ID_SALES = "idS";
     public static final String SALE_DATE = "sale_date"; // Date of sale
     public static final String SALE_PRICE = "sale_price";
     
@@ -57,19 +59,21 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     public void onCreate(SQLiteDatabase db)
     {
         //Creating the table we need for our database
-        String CREATE_INVENTORY_TABLE = "CREATE TABLE " + TABLE_inventory + " ( " + COLUMN_ID + " integer primary key,"
+        String CREATE_INVENTORY_TABLE = "CREATE TABLE " + TABLE_inventory + " ( " + COLUMN_ID_INVENTORY + " integer primary key,"
          + KEY_SERIALCODE+ " TEXT,"+ KEY_make + " TEXT," + KEY_COLOR + " TEXT, "
-         + KEY_CONDITION + " TEXT" + ")";
+         + KEY_CONDITION + " TEXT," + KEY_AVAILABLE + " INTEGER)";
 
-        String CREATE_REPAIRS_TABLE = "CREATE TABLE " + TABLE_repairs + "( " + COLUMN_ID + "integer primary key,"
-        + CUST_NAME + " TEXT, " + CUST_PHONE + " TEXT," + DUE_DATE + " TEXT)";
+        String CREATE_REPAIRS_TABLE = "CREATE TABLE " + TABLE_repairs + "( " + COLUMN_ID_REPAIRS + "integer primary key,"
+        + CUST_NAME + " TEXT, " + CUST_PHONE + " TEXT," + DUE_DATE + " TEXT," + REPAIRS_FKEY + " INTEGER, "+ " FOREIGN KEY (" + REPAIRS_FKEY +") REFERENCES " + TABLE_inventory + "(" + COLUMN_ID_INVENTORY + "))";
 
-        String CREATE_SALES_TABLE = "CREATE TABLE " + TABLE_sales + "( " + COLUMN_ID + "integer primary key,"
+        String CREATE_SALES_TABLE = "CREATE TABLE " + TABLE_sales + "( " + COLUMN_ID_SALES + "integer primary key,"
                 + KEY_SERIALCODE + " TEXT, " + SALE_DATE + " TEXT," + SALE_PRICE + " TEXT)";
 
 
 
         db.execSQL(CREATE_INVENTORY_TABLE);
+        db.execSQL(CREATE_REPAIRS_TABLE);
+        db.execSQL(CREATE_SALES_TABLE);
 
     }
 
@@ -111,7 +115,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             values.put(MySQLiteHelper.KEY_COLOR, bike.getInventory_color());
             values.put(MySQLiteHelper.KEY_CONDITION, bike.getInventory_condition());
             values.put(MySQLiteHelper.KEY_SERIALCODE, bike.getInventory_serial());
-
+            values.put(MySQLiteHelper.KEY_AVAILABLE, 1);
 
 
             DB.insert(MySQLiteHelper.TABLE_inventory, null, values);
@@ -131,7 +135,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
 
     //To be able to delete a bike
-    public boolean deleteBike(String bikeSerial)
+    //We will actually not delete the bike from the database, we will have a flag that will mark the bike as false (for removed)
+    public boolean removeBike(String bikeSerial)
     {
         //To be able to read from the database
         SQLiteDatabase DB = this.getWritableDatabase();
@@ -152,7 +157,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         {
             //Delete is an already created function, the parameters are listed as the following:
             //tablename, where statement and make sure you use ?, the value of what you are deleting
-            DB.delete(TABLE_inventory, KEY_SERIALCODE + "= ? ", new String[] {String.valueOf(bikeSerial)} );
+            //DB.delete(TABLE_inventory, KEY_SERIALCODE + "= ? ", new String[] {String.valueOf(bikeSerial)} );
+
             cursor.close();
             DB.close();
             return true;
@@ -190,16 +196,29 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     //Other functions for the remainder of the project
 
     //reading the inventory database
-public Cursor readEntry(){
+    public Cursor readEntry()
+    {
 
-    String[] allColumns =
+        String[] allColumns =
             new String[]{ MySQLiteHelper.KEY_SERIALCODE, MySQLiteHelper.KEY_make, MySQLiteHelper.KEY_COLOR, MySQLiteHelper.KEY_CONDITION };
-    Cursor c = getWritableDatabase().query(MySQLiteHelper.TABLE_inventory, allColumns,null, null, null, null, null);
-    if(c!=null){
+
+        Cursor c = getWritableDatabase().query(MySQLiteHelper.TABLE_inventory, allColumns,null, null, null, null, null);
+
+        if(c!=null)
+        {
         c.moveToFirst();
+         }
+        return c;
     }
-    return c;
-}
+
+    //method for updating a bike.
+    //The integer will tell us what attribute the user is wanting to update
+    //1 means color, 2 means make, and 3 means condition
+    public void updateBike(int choice, String serial, String updateValue)
+    {
+
+
+    }
 }
 
 

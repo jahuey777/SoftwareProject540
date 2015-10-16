@@ -28,8 +28,9 @@
         <activity android:name=".addingBike"
             android:label="Adding Bike">
         </activity>
-
-
+        <activity android:name=".updateBike"
+            android:label="Updating Bike">
+        </activity>
         <activity android:name=".displayInventory"
             android:label="Displaying Inventory">
         </activity>
