@@ -35,7 +35,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     public static final String KEY_COLOR= "color";
     public static final String KEY_CONDITION= "condition";
 
-    //*********** David added this*************//
     //Columns for the repairs table
     public static final String CUST_NAME = "customer_name";
     public static final String CUST_PHONE = "customer_phone";
@@ -45,7 +44,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     //public static final String SERIAL_NUM = "serial";
     public static final String SALE_DATE = "sale_date"; // Date of sale
     public static final String SALE_PRICE = "sale_price";
-    //*********** David added this*************//
+    
 
     public MySQLiteHelper(Context context)
     {
