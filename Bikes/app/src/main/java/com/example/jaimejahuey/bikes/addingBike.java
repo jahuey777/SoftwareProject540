@@ -77,7 +77,7 @@ public class addingBike extends ActionBarActivity
 
                     if(MAKE.isEmpty()|| COLOR.isEmpty() || SERIAL.isEmpty())
                     {
-                        Toast.makeText(getApplicationContext(), "Input values are missing test1", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Input values are missing. 1", Toast.LENGTH_LONG).show();
                     }
                     else if(check==-1)
                     {
@@ -94,7 +94,7 @@ public class addingBike extends ActionBarActivity
                             Boolean didWeAdd =  MainActivity.DATABASE.addBike(addingThisBike);
 
                             if(didWeAdd)
-                               Toast.makeText(getApplicationContext(), "The Bike has been added...", Toast.LENGTH_LONG).show();
+                               Toast.makeText(getApplicationContext(), "The Bike has been added.", Toast.LENGTH_LONG).show();
                             else
                                Toast.makeText(getApplicationContext(), "The Bike was not added since it already exists", Toast.LENGTH_LONG).show();
 

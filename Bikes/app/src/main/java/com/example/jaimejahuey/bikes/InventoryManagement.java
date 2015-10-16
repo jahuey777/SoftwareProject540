@@ -37,7 +37,7 @@ public class InventoryManagement extends ActionBarActivity
     public static String resultSerialNum;
 
     //for the updatebutton, to see if we need to launch the new intent or not.
-    boolean check= true;
+    public boolean check;
 
 
 
@@ -181,11 +181,16 @@ public class InventoryManagement extends ActionBarActivity
                                         //if it exist we will update it or let the user update it
                                         if (doesItExist)
                                         {
-                                           check = true;
-                                            //Toast.makeText(getApplicationContext(), "The Bike has been deleted.", Toast.LENGTH_LONG).show();
+                                            Intent i = new Intent(InventoryManagement.this, updateBike.class);
+
+                                            startActivity(i);
+                                          check = true;
                                         }
                                         else
+                                        {
                                             Toast.makeText(getApplicationContext(), "Bike can't be updated since it doesn't exist.", Toast.LENGTH_LONG).show();
+                                            check = false;
+                                        }
 
                                     }
                                 })
@@ -205,12 +210,14 @@ public class InventoryManagement extends ActionBarActivity
 
                 if(check==true)
                 {
-                    Intent i = new Intent(InventoryManagement.this, updateBike.class);
 
-                    startActivity(i);
+
+                    check=false;
                 }
 
+
             }
+
         });
 
 
