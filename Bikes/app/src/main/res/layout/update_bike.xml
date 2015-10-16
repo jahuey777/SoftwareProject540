@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Updating Bike"
-        android:id="@+id/textView_Title_Reps"
+        android:id="@+id/textView_Title_updateBike"
         android:layout_gravity="center_horizontal"
         android:textSize="30dp"
         android:textColor="#ff2431ff"

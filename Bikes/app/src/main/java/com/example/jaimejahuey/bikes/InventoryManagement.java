@@ -33,9 +33,11 @@ public class InventoryManagement extends ActionBarActivity
     private EditText removeSerialText;
     final Context context = this;
 
-    //made it public so that the upgrade class can use it
-    public String resultSerialNum;
+    //made it public and static so that the upgrade class can use it
+    public static String resultSerialNum;
 
+    //for the updatebutton, to see if we need to launch the new intent or not.
+    boolean check= true;
 
 
 
@@ -44,8 +46,6 @@ public class InventoryManagement extends ActionBarActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inventory_layout);
-
-        Log.d("hi", "hi");
 
         //Linking to the XML file
         addBike = (Button) findViewById(R.id.AddBike);
@@ -86,7 +86,7 @@ public class InventoryManagement extends ActionBarActivity
 
                 alertDialogBuilder
                         .setCancelable(false)
-                        .setPositiveButton("OK",
+                        .setPositiveButton("Remove",
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int id)
@@ -101,7 +101,7 @@ public class InventoryManagement extends ActionBarActivity
                                         //Getting the text from the dialog
                                         resultSerialNum = removeSerialText.getText().toString();
                                         Log.d("input" , "" + resultSerialNum);
-                                        Boolean didWeDelete = MainActivity.DATABASE.deleteBike(resultSerialNum);
+                                        Boolean didWeDelete = MainActivity.DATABASE.removeBike(resultSerialNum);
 
                                         //Will tell the user if it deleted or not
                                         if(didWeDelete)
@@ -162,7 +162,7 @@ public class InventoryManagement extends ActionBarActivity
 
                 alertDialogBuilder
                         .setCancelable(false)
-                        .setPositiveButton("OK",
+                        .setPositiveButton("Update",
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int id) {
@@ -181,7 +181,7 @@ public class InventoryManagement extends ActionBarActivity
                                         //if it exist we will update it or let the user update it
                                         if (doesItExist)
                                         {
-
+                                           check = true;
                                             //Toast.makeText(getApplicationContext(), "The Bike has been deleted.", Toast.LENGTH_LONG).show();
                                         }
                                         else
@@ -203,6 +203,12 @@ public class InventoryManagement extends ActionBarActivity
                 //show it
                 alertDialog.show();
 
+                if(check==true)
+                {
+                    Intent i = new Intent(InventoryManagement.this, updateBike.class);
+
+                    startActivity(i);
+                }
 
             }
         });

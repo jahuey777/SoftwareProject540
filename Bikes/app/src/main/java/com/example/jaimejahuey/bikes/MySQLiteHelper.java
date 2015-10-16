@@ -132,7 +132,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
 
     //To be able to delete a bike
-    public boolean deleteBike(String bikeSerial)
+    //We will actually not delete the bike from the database, we will have a flag that will mark the bike as false (for removed)
+    public boolean removeBike(String bikeSerial)
     {
         //To be able to read from the database
         SQLiteDatabase DB = this.getWritableDatabase();
@@ -191,16 +192,29 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     //Other functions for the remainder of the project
 
     //reading the inventory database
-public Cursor readEntry(){
+    public Cursor readEntry()
+    {
 
-    String[] allColumns =
+        String[] allColumns =
             new String[]{ MySQLiteHelper.KEY_SERIALCODE, MySQLiteHelper.KEY_make, MySQLiteHelper.KEY_COLOR, MySQLiteHelper.KEY_CONDITION };
-    Cursor c = getWritableDatabase().query(MySQLiteHelper.TABLE_inventory, allColumns,null, null, null, null, null);
-    if(c!=null){
+
+        Cursor c = getWritableDatabase().query(MySQLiteHelper.TABLE_inventory, allColumns,null, null, null, null, null);
+
+        if(c!=null)
+        {
         c.moveToFirst();
+         }
+        return c;
     }
-    return c;
-}
+
+    //method for updating a bike.
+    //The integer will tell us what attribute the user is wanting to update
+    //1 means color, 2 means make, and 3 means condition
+    public void updateBike(int choice, String serial, String updateValue)
+    {
+
+
+    }
 }
 
 
