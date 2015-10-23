@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -96,7 +95,7 @@ public class InventoryManagement extends ActionBarActivity
                                         //the user inputs anything to the pop dialog
                                         Dialog f = (Dialog) dialog;
 
-                                        removeSerialText = (EditText) f.findViewById(R.id.remove_bike_dialog_input);
+                                        removeSerialText = (EditText) f.findViewById(R.id.inputValueDialog);
 
                                         //Getting the text from the dialog
                                         resultSerialNum = removeSerialText.getText().toString();
@@ -105,9 +104,9 @@ public class InventoryManagement extends ActionBarActivity
 
                                         //Will tell the user if it deleted or not
                                         if(didWeDelete)
-                                            Toast.makeText(getApplicationContext(), "The Bike has been deleted.", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(getApplicationContext(), "The Bike has been removed from inventory.", Toast.LENGTH_LONG).show();
                                         else
-                                            Toast.makeText(getApplicationContext(), "The Bike was not deleted since it doesn't exists", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(getApplicationContext(), "The bike can not be removed since it is not in the inventory or it has already been removed.", Toast.LENGTH_LONG).show();
 
                                     }
                                 })
@@ -171,7 +170,7 @@ public class InventoryManagement extends ActionBarActivity
                                         //the user inputs anything to the pop dialog
                                         Dialog f = (Dialog) dialog;
 
-                                        removeSerialText = (EditText) f.findViewById(R.id.remove_bike_dialog_input);
+                                        removeSerialText = (EditText) f.findViewById(R.id.inputValueDialog);
 
                                         //Getting the text from the dialog
                                         resultSerialNum = removeSerialText.getText().toString();

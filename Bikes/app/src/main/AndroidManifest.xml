@@ -36,6 +36,8 @@
         </activity>
         <activity android:name=".viewProfit"
             android:label="view profit"></activity>
+        <activity android:name=".soldBike"
+            android:label="Bike Information"></activity>
 
     </application>
 
