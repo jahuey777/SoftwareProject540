@@ -34,6 +34,8 @@
         <activity android:name=".displayInventory"
             android:label="Displaying Inventory">
         </activity>
+        <activity android:name=".viewProfit"
+            android:label="view profit"></activity>
 
     </application>
 
