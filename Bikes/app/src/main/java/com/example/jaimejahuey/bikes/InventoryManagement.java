@@ -184,7 +184,7 @@ public class InventoryManagement extends ActionBarActivity
                                             Intent i = new Intent(InventoryManagement.this, updateBike.class);
 
                                             startActivity(i);
-                                          check = true;
+                                           check = true;
                                         }
                                         else
                                         {

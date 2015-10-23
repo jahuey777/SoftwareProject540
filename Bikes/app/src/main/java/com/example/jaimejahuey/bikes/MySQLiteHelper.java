@@ -134,8 +134,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     }
 
 
-    //To be able to delete a bike
-    //We will actually not delete the bike from the database, we will have a flag that will mark the bike as false (for removed)
+    //Bike will not actually be deleted from the database, just modified to not be available.
     public boolean removeBike(String bikeSerial)
     {
         //To be able to read from the database
@@ -144,7 +143,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         //Using a cursor to see if the bikeSerial exists
         //If it does, then getCount will atleast be 1. In our case, it should be exactly 1
         Cursor cursor= null;
-        String sql = "SELECT * FROM inventory WHERE serial = '" + bikeSerial + "'" ;
+        String sql = "SELECT * FROM inventory WHERE serial = '" + bikeSerial + "' and available =" + 1;
         cursor = DB.rawQuery(sql,null);
 
         if(cursor.getCount()<=0)
@@ -155,9 +154,19 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         }
         else
         {
+            //**** IGNORE THIS COMMENT, but leave for future reference.
             //Delete is an already created function, the parameters are listed as the following:
             //tablename, where statement and make sure you use ?, the value of what you are deleting
             //DB.delete(TABLE_inventory, KEY_SERIALCODE + "= ? ", new String[] {String.valueOf(bikeSerial)} );
+
+
+            //We don't actually want to delete the bike, so we created a new column available
+            //0 means its not, and 1 means its still in inventory.
+            ContentValues newVal= new ContentValues();
+
+            newVal.put(KEY_AVAILABLE,0);
+            DB.update(TABLE_inventory, newVal, "serial = '" + bikeSerial + "'", null);
+
 
             cursor.close();
             DB.close();
@@ -216,6 +225,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     //1 means color, 2 means make, and 3 means condition
     public void updateBike(int choice, String serial, String updateValue)
     {
+
+
 
 
     }

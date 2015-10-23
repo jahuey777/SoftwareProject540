@@ -71,13 +71,12 @@ public class addingBike extends ActionBarActivity
                 String SERIAL= bikeSerial.getText().toString();
                 String COLOR = bikeColor.getText().toString();
 
+                //If any of the textboxes are blank, then it will notify the user to input values.
                 if(MAKE!=null || SERIAL!=null || COLOR!=null)
                 {
-                    //Toast.makeText(getApplicationContext(), "Input values are missing.", Toast.LENGTH_LONG).show();
-
                     if(MAKE.isEmpty()|| COLOR.isEmpty() || SERIAL.isEmpty())
                     {
-                        Toast.makeText(getApplicationContext(), "Input values are missing. 1", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Input values are missing.", Toast.LENGTH_LONG).show();
                     }
                     else if(check==-1)
                     {
@@ -90,9 +89,11 @@ public class addingBike extends ActionBarActivity
                         Log.d("HERE", SERIAL);
 
 
+                        //Create a bike object with the information gathered and call the addBike method to add it to the database.
                         Bike addingThisBike =  new Bike(SERIAL,MAKE, COLOR, bikeCond);
                             Boolean didWeAdd =  MainActivity.DATABASE.addBike(addingThisBike);
 
+                        //Will display a message to the user if the bike has been added or not
                             if(didWeAdd)
                                Toast.makeText(getApplicationContext(), "The Bike has been added.", Toast.LENGTH_LONG).show();
                             else
