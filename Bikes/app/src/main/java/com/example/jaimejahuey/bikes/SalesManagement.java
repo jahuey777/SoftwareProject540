@@ -23,7 +23,7 @@ public class SalesManagement extends ActionBarActivity
     private Button ViewProfitButton;
     private Button SoldBikeButton;
 
-    Context context;
+    Context context= this;
     EditText soldSerial;
     private static String soldSerialString;
 
