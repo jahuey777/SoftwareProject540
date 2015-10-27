@@ -40,7 +40,8 @@ public class SalesManagement extends ActionBarActivity
         //Takes us to the view profit page.
         ViewProfitButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 Intent i = new Intent(SalesManagement.this, viewProfit.class);
 
                 startActivity(i);
@@ -78,10 +79,10 @@ public class SalesManagement extends ActionBarActivity
 
                                         //Getting the text from the dialog
                                         soldSerialString = soldSerial.getText().toString();
-                                        Boolean didWeDelete = MainActivity.DATABASE.existsOrNot(soldSerialString);
+                                        Boolean saleOrNot = MainActivity.DATABASE.existsOrNot(soldSerialString);
 
                                         //Will tell the user if it deleted or not
-                                        if (didWeDelete)
+                                        if (saleOrNot)
                                         {
                                             //Toast.makeText(getApplicationContext(), "The Bike has been removed from inventory.", Toast.LENGTH_LONG).show();
                                             Intent i = new Intent(SalesManagement.this, soldBike.class);

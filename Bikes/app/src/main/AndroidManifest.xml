@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".InventoryManagement"
-            android:label="Iventory Management">
+            android:label="Inventory Management">
         </activity>
         <activity android:name=".SalesManagement"
             android:label="Sales management">

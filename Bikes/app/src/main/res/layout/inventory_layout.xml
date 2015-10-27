@@ -36,12 +36,12 @@
         android:id="@+id/RemoveBike"
         android:text="Remove Bike"/>
 
-    <Button
+   <!-- <Button
         android:layout_marginTop="25dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/UpdateBike"
-        android:text="Update Bike Inventory"/>
+        android:text="Update Bike Inventory"/> -->
 
     <Button
         android:layout_marginTop="25dp"
