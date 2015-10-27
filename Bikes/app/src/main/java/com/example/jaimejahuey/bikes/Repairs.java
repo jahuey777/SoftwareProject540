@@ -7,21 +7,34 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 /**
  * Created by jaimejahuey on 9/16/15.
  */
 public class Repairs extends ActionBarActivity
 {
+    private Button addRepair;
+    // private Button deleteRepair;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.repairs_layout);
 
+        addRepair = (Button) findViewById(R.id.AddRepair);
 
+        addRepair.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+
+            }
+        });
     }
-
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState)

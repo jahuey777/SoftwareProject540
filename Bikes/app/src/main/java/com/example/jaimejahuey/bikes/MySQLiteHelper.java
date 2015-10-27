@@ -36,14 +36,15 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
     //Columns for the repairs table
     public static final String COLUMN_ID_REPAIRS= "idP";
-    public static final String REPAIRS_FKEY = "idINum";
     public static final String CUST_NAME = "customer_name";
     public static final String CUST_PHONE = "customer_phone";
     public static final String DUE_DATE = "due_date";
+    public static final String STATUS_BIT = "status";
 
     //Columns for the sales table
     //public static final String SERIAL_NUM = "serial";
     public static final String COLUMN_ID_SALES = "idS";
+    public static final String SALES_FKEY = "idINum";
     public static final String SALE_DATE = "sale_date"; // Date of sale
     public static final String SALE_PRICE = "sale_price";
     
@@ -64,10 +65,10 @@ public class MySQLiteHelper extends SQLiteOpenHelper
          + KEY_CONDITION + " TEXT," + KEY_AVAILABLE + " INTEGER)";
 
         String CREATE_REPAIRS_TABLE = "CREATE TABLE " + TABLE_repairs + "( " + COLUMN_ID_REPAIRS + "integer primary key,"
-        + CUST_NAME + " TEXT, " + CUST_PHONE + " TEXT," + DUE_DATE + " TEXT," + REPAIRS_FKEY + " INTEGER, "+ " FOREIGN KEY (" + REPAIRS_FKEY +") REFERENCES " + TABLE_inventory + "(" + COLUMN_ID_INVENTORY + "))";
+        + CUST_NAME + " TEXT, " + CUST_PHONE + " TEXT," + DUE_DATE + " TEXT," + STATUS_BIT + " INTEGER)";
 
         String CREATE_SALES_TABLE = "CREATE TABLE " + TABLE_sales + "( " + COLUMN_ID_SALES + "integer primary key,"
-                + KEY_SERIALCODE + " TEXT, " + SALE_DATE + " TEXT," + SALE_PRICE + " TEXT)";
+                + KEY_SERIALCODE + " TEXT, " + SALE_DATE + " TEXT," + SALE_PRICE + " TEXT," + SALES_FKEY + " INTEGER, "+ " FOREIGN KEY (" + SALES_FKEY +") REFERENCES " + TABLE_inventory + "(" + COLUMN_ID_INVENTORY + "))";
 
 
 

@@ -7,6 +7,7 @@
     android:gravity="center_horizontal">
 
     <TextView
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -18,31 +19,46 @@
         android:textStyle="bold" />
 
     <TextView
+        android:layout_marginTop="10dp"
+        android:textSize="18dp"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="Please choose one of the following options.\n\n"/>
+        android:text="Please choose one of the following options."/>
 
     <Button
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/AddRepair"
-        android:text="Add repair."
+        android:text="Add repair"
         />
     <Button
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/UpdateRepair"
-        android:text="Update repair."/>
+        android:text="Update repair"/>
+
+    <Button
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/DeleteRepair"
+        android:text="Delete repair"/>
 
     <Button
         android:layout_marginTop="25dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/DeleteRepair"
-        android:text="Delete repair."/>
+        android:id="@+id/ViewActiveRepairs"
+        android:text="View Active Repairs"/>
 
+    <Button
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ViewPendingRepairs"
+        android:text="View Pending Repairs"/>
 
 
 </LinearLayout>
