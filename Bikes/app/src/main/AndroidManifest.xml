@@ -38,6 +38,8 @@
             android:label="view profit"></activity>
         <activity android:name=".soldBike"
             android:label="Bike Information"></activity>
+        <activity android:name=".AddingRepair"
+            android:label="Add a repair."></activity>
 
     </application>
 

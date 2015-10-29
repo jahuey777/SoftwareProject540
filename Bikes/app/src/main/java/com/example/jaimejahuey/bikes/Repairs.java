@@ -3,6 +3,7 @@ package com.example.jaimejahuey.bikes;
 /**
  * Created by jaimejahuey on 9/18/15.
  */
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -31,7 +32,9 @@ public class Repairs extends ActionBarActivity
             @Override
             public void onClick(View view)
             {
+                Intent i = new Intent(Repairs.this, AddingRepair.class);
 
+                startActivity(i);
             }
         });
     }

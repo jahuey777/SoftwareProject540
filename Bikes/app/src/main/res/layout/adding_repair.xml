@@ -28,10 +28,10 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:text="Please enter the make of the bike." />
+            android:text="Please enter the name of the customer." />
 
         <EditText
-            android:id="@+id/addBikeMakeInput"
+            android:id="@+id/addRepairCustomerName"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:background="#CCCCCC"
@@ -43,15 +43,16 @@
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:text="Please input the serial number or code of the bike." />
+            android:text="Please input the phone number of the customer." />
 
         <EditText
-            android:id="@+id/addBikeSerialInput"
+            android:id="@+id/addRepairCustomerPhone"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:background="#CCCCCC"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="phone"
+            />
 
     </LinearLayout>
 
