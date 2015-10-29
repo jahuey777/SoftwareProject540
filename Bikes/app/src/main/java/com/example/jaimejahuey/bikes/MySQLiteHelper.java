@@ -210,8 +210,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     {
 
         String[] allColumns =
-            new String[]{ MySQLiteHelper.KEY_SERIALCODE, MySQLiteHelper.KEY_make, MySQLiteHelper.KEY_COLOR, MySQLiteHelper.KEY_CONDITION };
-
+            new String[]{ MySQLiteHelper.KEY_AVAILABLE, MySQLiteHelper.KEY_SERIALCODE, MySQLiteHelper.KEY_make, MySQLiteHelper.KEY_COLOR, MySQLiteHelper.KEY_CONDITION,};
+//has KEY_AVAILABLE first to make sure its available before adding it to table
         Cursor c = getWritableDatabase().query(MySQLiteHelper.TABLE_inventory, allColumns,null, null, null, null, null);
 
         if(c!=null)

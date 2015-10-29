@@ -76,7 +76,16 @@ public class displayInventory extends Activity {
                 //sets what the text view says
                 textV.setText(c.getString(j));
 
+                if(textV.getText().equals("0")) { //if its unavailable, skip the row in the database
+                    textV.setText("");
+                    j = columns + 1;
+                }
+                else if(textV.getText().equals("1")){//if its available, dont print out the "1"
+                    textV.setText("");
+                }
+                else {
                 row.addView(textV); //adds the text to the column space
+                }
             }
             //end inner FOR loop
 
