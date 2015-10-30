@@ -3,7 +3,6 @@ package com.example.jaimejahuey.bikes;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -42,7 +41,7 @@ public class addingBike extends ActionBarActivity
         bikeUsed = (RadioButton)findViewById(R.id.addBikeUsed);
         bikeNew = (RadioButton)findViewById(R.id.addBikeNew);
 
-        addbikeEnter = (Button) findViewById(R.id.addEnterButton);
+        addbikeEnter = (Button) findViewById(R.id.addBikeEnterButton);
 
         //When enter button is pressed we will grab info in the textboxes
         //Check to see if the input is valid and not empty as well.

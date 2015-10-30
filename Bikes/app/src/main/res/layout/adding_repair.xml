@@ -54,6 +54,7 @@
             android:inputType="phone"
             />
 
+
     </LinearLayout>
 
 
@@ -61,7 +62,7 @@
         android:layout_marginTop="25dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/addEnterButton"
+        android:id="@+id/addRepairEnterButton"
         android:text="Enter Information"/>
 
 </LinearLayout>
