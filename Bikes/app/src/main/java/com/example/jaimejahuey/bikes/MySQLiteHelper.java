@@ -38,8 +38,11 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     public static final String COLUMN_ID_REPAIRS= "idP";
     public static final String CUST_NAME = "customer_name";
     public static final String CUST_PHONE = "customer_phone";
-    public static final String DUE_DATE = "due_date";
+    public static final String DUE_DATE = "due date";
     public static final String STATUS_BIT = "status";
+    public static final String COST_REPAIR = "cost of repair";
+    public static final String AMOUNT_CHARGED= "amount charged";
+    public static final String DATE_COMPLETED= "date completed";
 
     //Columns for the sales table
     //public static final String SERIAL_NUM = "serial";
@@ -60,17 +63,18 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     public void onCreate(SQLiteDatabase db)
     {
         //Creating the table we need for our database
-        String CREATE_INVENTORY_TABLE = "CREATE TABLE " + TABLE_inventory + " ( " + COLUMN_ID_INVENTORY + " integer primary key,"
-         + KEY_SERIALCODE+ " TEXT,"+ KEY_make + " TEXT," + KEY_COLOR + " TEXT, "
+        String CREATE_INVENTORY_TABLE = "CREATE TABLE " + TABLE_inventory + " ( " + COLUMN_ID_INVENTORY
+         + " integer primary key," + KEY_SERIALCODE+ " TEXT,"+ KEY_make + " TEXT," + KEY_COLOR + " TEXT, "
          + KEY_CONDITION + " TEXT," + KEY_AVAILABLE + " INTEGER)";
 
-        String CREATE_REPAIRS_TABLE = "CREATE TABLE " + TABLE_repairs + "( " + COLUMN_ID_REPAIRS + "integer primary key,"
-        + CUST_NAME + " TEXT, " + CUST_PHONE + " TEXT," + DUE_DATE + " TEXT," + STATUS_BIT + " INTEGER)";
+        String CREATE_REPAIRS_TABLE = "CREATE TABLE " + TABLE_repairs + "( " + COLUMN_ID_REPAIRS
+        + "integer primary key," + CUST_NAME + " TEXT, " + CUST_PHONE + " TEXT," + DUE_DATE +
+                " TEXT," + COST_REPAIR+ " TEXT," + AMOUNT_CHARGED + "TEXT," + DATE_COMPLETED
+                + "TEXT,"+ STATUS_BIT + " INTEGER)";
 
         String CREATE_SALES_TABLE = "CREATE TABLE " + TABLE_sales + "( " + COLUMN_ID_SALES + "integer primary key,"
-                + KEY_SERIALCODE + " TEXT, " + SALE_DATE + " TEXT," + SALE_PRICE + " TEXT," + SALES_FKEY + " INTEGER, "+ " FOREIGN KEY (" + SALES_FKEY +") REFERENCES " + TABLE_inventory + "(" + COLUMN_ID_INVENTORY + "))";
-
-
+        + KEY_SERIALCODE + " TEXT, " + SALE_DATE + " TEXT," + SALE_PRICE + " TEXT," + SALES_FKEY
+        + " INTEGER, "+ " FOREIGN KEY (" + SALES_FKEY +") REFERENCES " + TABLE_inventory + "(" + COLUMN_ID_INVENTORY + "))";
 
         db.execSQL(CREATE_INVENTORY_TABLE);
         db.execSQL(CREATE_REPAIRS_TABLE);

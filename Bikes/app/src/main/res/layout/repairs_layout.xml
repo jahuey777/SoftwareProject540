@@ -30,14 +30,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/AddRepair"
-        android:text="Add repair"
+        android:text="Add new repair"
         />
     <Button
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/UpdateRepair"
-        android:text="Update repair"/>
+        android:text="Completed/Update repair"/>
 
     <Button
         android:layout_marginTop="20dp"

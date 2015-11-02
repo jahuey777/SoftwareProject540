@@ -26,14 +26,16 @@ public class AddingRepair extends ActionBarActivity
 
     //Getting phone number input
     private EditText phoneNumInput;
+    private EditText custNameInput;
 
     //for getting the date
     private ImageButton ButtonCal;
-    private Calendar cal;
-    private int day;
-    private int month;
-    private int year;
+    private static int dataBaseday;
+    private static int dataBasemonth;
+    private static int dataBaseyear;
     private static EditText repairCalendar;
+
+    private Button enterRepair;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -41,18 +43,17 @@ public class AddingRepair extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.adding_repair);
 
+        int dataBaseday = -1;
+        int dataBasemonth = -1;
+        int dataBaseyear = -1;
+
         //For the phone number, this addTextChangeListener will automatically add the hyphen
         phoneNumInput = (EditText) findViewById(R.id.addRepairCustomerPhone);
         phoneNumInput.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
-        //String PhonNum= phoneNumInput.getText().toString();
 
+        //This is all for the repair date.
         ButtonCal = (ImageButton) findViewById(R.id.imageButtonCalendar);
-        cal= Calendar.getInstance();
-        day= cal.get(Calendar.DAY_OF_MONTH);
-        month = cal.get(Calendar.MONTH);
-        year = cal.get(Calendar.YEAR);
-
         repairCalendar = (EditText) findViewById(R.id.addRepairDate);
         ButtonCal.setOnClickListener(new View.OnClickListener()
         {
@@ -62,12 +63,23 @@ public class AddingRepair extends ActionBarActivity
                 DialogFragment newFragment= new DatePickerFragment();
                 newFragment.show(getFragmentManager(), "datePicker");
 
-
             }
         });
 
+        //link to xml editext for customer name input
+        custNameInput= (EditText) findViewById(R.id.addRepairCustomerName);
 
+        //link to xml enter in addingrepair
+        enterRepair= (Button) findViewById(R.id.addRepairEnterButton);
 
+        enterRepair.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+
+            }
+        });
 
     }
 
@@ -105,8 +117,11 @@ public class AddingRepair extends ActionBarActivity
             //Decided to create separate ones so that it doesn't get confusing in the code
             final Calendar c = Calendar.getInstance();
             int year = c.get(Calendar.YEAR);
+            dataBaseyear = year;
             int month = c.get(Calendar.MONTH);
+            dataBasemonth= month;
             int day = c.get(Calendar.DAY_OF_MONTH);
+            dataBaseday= day;
             return new DatePickerDialog(getActivity(), this, year, month, day);
         }
 
