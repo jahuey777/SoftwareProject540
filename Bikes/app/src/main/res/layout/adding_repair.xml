@@ -54,6 +54,42 @@
             android:inputType="phone"
             />
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="Please input the date" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:id="@+id/addRepairDate"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:background="#CCCCCC"
+            android:ems="10"
+            android:editable="true"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/imageButtonCalendar"
+            android:src="@drawable/calendar"
+            android:scaleType="fitXY"
+            android:scaleY="-1"
+            android:padding="30dp"
+
+           />
 
     </LinearLayout>
 
@@ -65,4 +101,7 @@
         android:id="@+id/addRepairEnterButton"
         android:text="Enter Information"/>
 
+
 </LinearLayout>
+
+
