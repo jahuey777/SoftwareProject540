@@ -85,8 +85,6 @@ public class addingBike extends ActionBarActivity
 
                     else
                     {
-                        Log.d("HERE", SERIAL);
-
 
                         //Create a bike object with the information gathered and call the addBike method to add it to the database.
                         Bike addingThisBike =  new Bike(SERIAL,MAKE, COLOR, bikeCond);

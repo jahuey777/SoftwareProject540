@@ -12,6 +12,8 @@ public class BikeRepair
     public String repair_due;
     public int    repair_phoneNum;
     public String custumer_name;
+    public int status;
+    public double amountCharged;
 
     BikeRepair(double cost, String serial, String dueDate, int phoneNum, String custumerName)
     {

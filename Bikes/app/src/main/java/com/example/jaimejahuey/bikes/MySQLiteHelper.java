@@ -235,6 +235,47 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
 
     }
+
+    public boolean addRepair(String serial, String phoneNum, String custName, String dueDate)
+    {
+
+        //To be able to write to database
+        SQLiteDatabase DB = this.getWritableDatabase();
+
+        //To make sure that the serial does not already exist.
+        Cursor cursor = null;
+        //String sql = "SELECT * FROM inventory WHERE serial = '" + bike.getInventory_serial() + "'" ;
+       // cursor = DB.rawQuery(sql, null);
+
+        //If the cursor is less then 0 then its not in the table yet
+        if(cursor.getCount()<=0)
+        {
+
+            ContentValues values = new ContentValues();
+            //values.put(MySQLiteHelper.KEY_make, bike.getInventory_make());
+           // values.put(MySQLiteHelper.KEY_COLOR, bike.getInventory_color());
+           // values.put(MySQLiteHelper.KEY_CONDITION, bike.getInventory_condition());
+           // values.put(MySQLiteHelper.KEY_SERIALCODE, bike.getInventory_serial());
+            //values.put(MySQLiteHelper.KEY_AVAILABLE, 1);
+
+
+            DB.insert(MySQLiteHelper.TABLE_inventory, null, values);
+
+            cursor.close();
+            DB.close();
+            return true;
+        }
+
+        else
+        {
+            cursor.close();
+            DB.close();
+            return false;
+        }
+
+
+    }
+
 }
 
 

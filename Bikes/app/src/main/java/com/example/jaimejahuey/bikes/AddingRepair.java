@@ -14,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -27,15 +28,17 @@ public class AddingRepair extends ActionBarActivity
     //Getting phone number input
     private EditText phoneNumInput;
     private EditText custNameInput;
+    private EditText SerialRepairInput;
 
     //for getting the date
     private ImageButton ButtonCal;
-    private static int dataBaseday;
-    private static int dataBasemonth;
-    private static int dataBaseyear;
+    private static String dataBaseday;
+    private static String dataBasemonth;
+    private static String dataBaseyear;
     private static EditText repairCalendar;
 
     private Button enterRepair;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -43,9 +46,9 @@ public class AddingRepair extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.adding_repair);
 
-        int dataBaseday = -1;
-        int dataBasemonth = -1;
-        int dataBaseyear = -1;
+        dataBaseday = null;
+        dataBasemonth = null;
+        dataBaseyear = null;
 
         //For the phone number, this addTextChangeListener will automatically add the hyphen
         phoneNumInput = (EditText) findViewById(R.id.addRepairCustomerPhone);
@@ -68,6 +71,7 @@ public class AddingRepair extends ActionBarActivity
 
         //link to xml editext for customer name input
         custNameInput= (EditText) findViewById(R.id.addRepairCustomerName);
+        SerialRepairInput = (EditText) findViewById(R.id.addRepairSerial);
 
         //link to xml enter in addingrepair
         enterRepair= (Button) findViewById(R.id.addRepairEnterButton);
@@ -77,6 +81,52 @@ public class AddingRepair extends ActionBarActivity
             @Override
             public void onClick(View v)
             {
+
+
+                String PHONUM= phoneNumInput.getText().toString();
+                String CUSTNAME = custNameInput.getText().toString();
+                String REPAIRSERIAL = SerialRepairInput.getText().toString();
+
+               if(PHONUM!= null || CUSTNAME!=null || REPAIRSERIAL !=null)
+               {
+                   if(PHONUM.isEmpty() || CUSTNAME.isEmpty() || REPAIRSERIAL.isEmpty())
+                   {
+                       Toast.makeText(getApplicationContext(), "Please make sure that all input has been filled.", Toast.LENGTH_LONG).show();
+
+                   }
+                   else if(dataBaseday== null || dataBasemonth== null|| dataBaseyear== null)
+                   {
+                       Toast.makeText(getApplicationContext(), "Please select a date.", Toast.LENGTH_LONG).show();
+
+                   }
+
+                   else
+                   {
+                       //Want a format of 02/01/2015
+                       //So if the day or month is year is less than 10, then append a 0 to the beginning
+                       if(Integer.parseInt(dataBaseday)<10)
+                       {
+                           dataBaseday += "0";
+                       }
+                       if(Integer.parseInt(dataBasemonth)<10)
+                       {
+                            dataBasemonth+= "0" + dataBasemonth;
+                       }
+
+                        //Formatting the date for the database
+                       String databaseDate = dataBasemonth + "/" + dataBaseday + "/" + dataBaseyear;
+
+                       //Toast.makeText(getApplicationContext(), "checking date for format " + databaseDate , Toast.LENGTH_LONG).show();
+
+                       //inserting the new repair into the database.
+
+                       
+                   }
+
+               }
+
+
+
 
             }
         });
@@ -105,6 +155,8 @@ public class AddingRepair extends ActionBarActivity
         return super.onOptionsItemSelected(item);
     }
 
+    //copy this
+
     //To create a new datePicker
     //resused this code from stack overflow http://stackoverflow.com/questions/16990151/how-to-make-simple-datepicker-dialog-with-buttons-and
     //made minor changes for our project
@@ -117,21 +169,24 @@ public class AddingRepair extends ActionBarActivity
             //Decided to create separate ones so that it doesn't get confusing in the code
             final Calendar c = Calendar.getInstance();
             int year = c.get(Calendar.YEAR);
-            dataBaseyear = year;
             int month = c.get(Calendar.MONTH);
-            dataBasemonth= month;
             int day = c.get(Calendar.DAY_OF_MONTH);
-            dataBaseday= day;
+
             return new DatePickerDialog(getActivity(), this, year, month, day);
         }
 
-        public void onDateSet(DatePicker view, int year, int month, int day) {
+        public void onDateSet(DatePicker view, int year, int month, int day)
+        {
+            //Save the days here to store in the database.
+            dataBaseday = String.valueOf(day);
+            dataBasemonth = String.valueOf(month+1);
+            dataBaseyear = String.valueOf(year);
 
             //displays in our editText in the xml Addingrepair
-            repairCalendar.setText(String.valueOf(day) + "/"
-                    + String.valueOf(month + 1) + "/" + String.valueOf(year));
+            repairCalendar.setText(String.valueOf(month + 1)+ "/" + String.valueOf(day) + "/"
+                      + String.valueOf(year));
         }
     }
 
-
-}
+   //copy
+   }
