@@ -114,12 +114,18 @@ public class AddingRepair extends ActionBarActivity
                        }
 
                         //Formatting the date for the database
-                       String databaseDate = dataBasemonth + "/" + dataBaseday + "/" + dataBaseyear;
+                       String databaseDate = dataBasemonth + "-" + dataBaseday + "-" + dataBaseyear;
 
                        //Toast.makeText(getApplicationContext(), "checking date for format " + databaseDate , Toast.LENGTH_LONG).show();
 
                        //inserting the new repair into the database.
+                        Boolean didWeAddRepair = MainActivity.DATABASE.addRepair(REPAIRSERIAL, PHONUM, CUSTNAME, databaseDate);
 
+                       //Display a message if it was added or not to the database
+                       if(didWeAddRepair)
+                           Toast.makeText(getApplicationContext(), "The repair has been added.", Toast.LENGTH_LONG).show();
+                       else
+                           Toast.makeText(getApplicationContext(), "The repair was not added since it already exists.", Toast.LENGTH_LONG).show();
 
                    }
 

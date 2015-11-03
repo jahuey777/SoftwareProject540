@@ -36,20 +36,21 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
     //Columns for the repairs table
     public static final String COLUMN_ID_REPAIRS= "idP";
-    public static final String CUST_NAME = "customer_name";
-    public static final String CUST_PHONE = "customer_phone";
-    public static final String DUE_DATE = "due date";
+    public static final String CUST_NAME = "customerName";
+    public static final String CUST_PHONE = "customerPhone";
+    public static final String REPAIR_DUE_DATE = "dueDate";
     public static final String STATUS_BIT = "status";
-    public static final String COST_REPAIR = "cost of repair";
-    public static final String AMOUNT_CHARGED= "amount charged";
-    public static final String DATE_COMPLETED= "date completed";
+    public static final String COST_REPAIR = "costOfRepair";
+    public static final String AMOUNT_CHARGED= "amountCharged";
+    public static final String DATE_COMPLETED= "dateCompleted";
+    public static final String REPAIR_SERIAL = "serial";
 
     //Columns for the sales table
     //public static final String SERIAL_NUM = "serial";
     public static final String COLUMN_ID_SALES = "idS";
     public static final String SALES_FKEY = "idINum";
-    public static final String SALE_DATE = "sale_date"; // Date of sale
-    public static final String SALE_PRICE = "sale_price";
+    public static final String SALE_DATE = "saleDate"; // Date of sale
+    public static final String SALE_PRICE = "salePrice";
     
 
     public MySQLiteHelper(Context context)
@@ -64,15 +65,15 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     {
         //Creating the table we need for our database
         String CREATE_INVENTORY_TABLE = "CREATE TABLE " + TABLE_inventory + " ( " + COLUMN_ID_INVENTORY
-         + " integer primary key," + KEY_SERIALCODE+ " TEXT,"+ KEY_make + " TEXT," + KEY_COLOR + " TEXT, "
+         + " integer primary key," + KEY_SERIALCODE+ " TEXT, "+ KEY_make + " TEXT," + KEY_COLOR + " TEXT, "
          + KEY_CONDITION + " TEXT," + KEY_AVAILABLE + " INTEGER)";
 
         String CREATE_REPAIRS_TABLE = "CREATE TABLE " + TABLE_repairs + "( " + COLUMN_ID_REPAIRS
-        + "integer primary key," + CUST_NAME + " TEXT, " + CUST_PHONE + " TEXT," + DUE_DATE +
-                " TEXT," + COST_REPAIR+ " TEXT," + AMOUNT_CHARGED + "TEXT," + DATE_COMPLETED
-                + "TEXT,"+ STATUS_BIT + " INTEGER)";
+        + " integer primary key, " + REPAIR_SERIAL + " TEXT, "+ CUST_NAME + " TEXT, " + CUST_PHONE + " TEXT," + REPAIR_DUE_DATE +
+                " TEXT," + COST_REPAIR+ " TEXT," + AMOUNT_CHARGED + " TEXT," + DATE_COMPLETED
+                + " TEXT,"+ STATUS_BIT + " INTEGER)";
 
-        String CREATE_SALES_TABLE = "CREATE TABLE " + TABLE_sales + "( " + COLUMN_ID_SALES + "integer primary key,"
+        String CREATE_SALES_TABLE = "CREATE TABLE " + TABLE_sales + "( " + COLUMN_ID_SALES + " integer primary key,"
         + KEY_SERIALCODE + " TEXT, " + SALE_DATE + " TEXT," + SALE_PRICE + " TEXT," + SALES_FKEY
         + " INTEGER, "+ " FOREIGN KEY (" + SALES_FKEY +") REFERENCES " + TABLE_inventory + "(" + COLUMN_ID_INVENTORY + "))";
 
@@ -88,6 +89,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     {
         //Drop older table if it exists
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_inventory);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_repairs);
 
 
 
@@ -180,6 +182,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
     }
 
+    //To check if bike serial already exists.
     public boolean existsOrNot(String bikeSerial)
     {
         //To be able to read from the database
@@ -187,6 +190,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
         //Using a cursor to see if the bikeSerial exists
         //If it does, then getCount will atleast be 1. In our case, it should be exactly 1
+        //also put single quotes around the string you are searching for. In this case bikeSerial
         Cursor cursor= null;
         String sql = "SELECT * FROM inventory WHERE serial = '" + bikeSerial + "'" ;
         cursor = DB.rawQuery(sql,null);
@@ -243,23 +247,30 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         SQLiteDatabase DB = this.getWritableDatabase();
 
         //To make sure that the serial does not already exist.
+        //Make sure you put quotes around the string. In this case serial
         Cursor cursor = null;
-        //String sql = "SELECT * FROM inventory WHERE serial = '" + bike.getInventory_serial() + "'" ;
-       // cursor = DB.rawQuery(sql, null);
+        String sql = "SELECT * FROM repairs WHERE serial = '" + serial + "'" ;
+
+        cursor = DB.rawQuery(sql, null);
 
         //If the cursor is less then 0 then its not in the table yet
         if(cursor.getCount()<=0)
         {
 
             ContentValues values = new ContentValues();
-            //values.put(MySQLiteHelper.KEY_make, bike.getInventory_make());
-           // values.put(MySQLiteHelper.KEY_COLOR, bike.getInventory_color());
-           // values.put(MySQLiteHelper.KEY_CONDITION, bike.getInventory_condition());
-           // values.put(MySQLiteHelper.KEY_SERIALCODE, bike.getInventory_serial());
-            //values.put(MySQLiteHelper.KEY_AVAILABLE, 1);
+
+            //Putting the values to each column.
+            values.put(MySQLiteHelper.REPAIR_SERIAL, "" + serial);
+            values.put(MySQLiteHelper.CUST_PHONE, "" + phoneNum);
+            values.put(MySQLiteHelper.CUST_NAME, "" + custName);
+            values.put(MySQLiteHelper.REPAIR_DUE_DATE,"" + dueDate);
+            values.put(MySQLiteHelper.STATUS_BIT, 1);
+            //values.put(MySQLiteHelper.COST_REPAIR,"hey");
+           // values.put(MySQLiteHelper.AMOUNT_CHARGED, "hey");
+            //values.put(MySQLiteHelper.REPAIR_DUE_DATE, "hi");
 
 
-            DB.insert(MySQLiteHelper.TABLE_inventory, null, values);
+            DB.insert(MySQLiteHelper.TABLE_repairs, null, values);
 
             cursor.close();
             DB.close();
