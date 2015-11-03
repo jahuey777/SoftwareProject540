@@ -120,7 +120,7 @@ public class AddingRepair extends ActionBarActivity
 
                        //inserting the new repair into the database.
 
-                       
+
                    }
 
                }
