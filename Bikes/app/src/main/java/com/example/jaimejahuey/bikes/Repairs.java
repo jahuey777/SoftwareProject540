@@ -28,7 +28,7 @@ public class Repairs extends ActionBarActivity
 
     final Context context = this;
     private EditText completedSerialText;
-    private static String completedSerialNum;
+    public static String completedSerialNum;
 
 
     // private Button deleteRepair;
@@ -38,6 +38,11 @@ public class Repairs extends ActionBarActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.repairs_layout);
+
+        //Since we use this variable in the completedRepair class
+        //We then reset it to be careful
+        completedSerialNum = null;
+
 
         //linking buttons to xml file buttons
         addRepair = (Button) findViewById(R.id.AddRepair);

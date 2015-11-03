@@ -1,5 +1,6 @@
 package com.example.jaimejahuey.bikes;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -33,6 +34,10 @@ public class completedRepair extends ActionBarActivity
 
     private Button enterRepair;
 
+    //Getting string from the repairs class whenever the user
+    //inputted the serail number for a compelted repair.
+    String completeSerial;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -40,6 +45,9 @@ public class completedRepair extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.completed_repair);
 
+        completeSerial= Repairs.completedSerialNum;
+
+        //reset of values
         dataBasedayCompleted = null;
         dataBasemonthCompleted = null;
         dataBaseyearCompleted = null;
@@ -106,13 +114,15 @@ public class completedRepair extends ActionBarActivity
                         //Toast.makeText(getApplicationContext(), "checking date for format " + databaseDate , Toast.LENGTH_LONG).show();
 
                         //inserting the new repair into the database.
-                        Boolean didWeAddRepair = false;
+                        Boolean didWeAddRepair = MainActivity.DATABASE.completedRepair(completeSerial, AMOUNTCOST, AMOUNTCHARGED, databaseCompletedDate);
 
                         //Display a message if it was added or not to the database
                         if(didWeAddRepair)
-                            Toast.makeText(getApplicationContext(), "The repair has been added.", Toast.LENGTH_LONG).show();
-                        else
-                            Toast.makeText(getApplicationContext(), "The repair was not added since it already exists." + AMOUNTCHARGED, Toast.LENGTH_LONG).show();
+                        {
+                            Toast.makeText(getApplicationContext(), "The repair has been updated.", Toast.LENGTH_LONG).show();
+                            //Finish the activity, otherwise the user can update as many times as he wants
+                            finish();
+                        }
 
                     }
 

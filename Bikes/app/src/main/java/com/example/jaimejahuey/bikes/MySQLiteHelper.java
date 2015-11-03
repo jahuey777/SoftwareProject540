@@ -296,7 +296,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         //If it does, then getCount will atleast be 1. In our case, it should be exactly 1
         //also put single quotes around the string you are searching for. In this case bikeSerial
         Cursor cursor= null;
-        String sql = "SELECT * FROM repairs WHERE serial = '" + serial + "'" ;
+        String sql = "SELECT * FROM repairs WHERE serial = '" + serial + "' and status = " + 1 ;
         cursor = DB.rawQuery(sql,null);
 
         //If the bike exits, we return true, otherwise return false
@@ -312,6 +312,50 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             DB.close();
             return true;
         }
+
+    }
+
+    public boolean completedRepair(String serialCompleted, String costToOwner , String chargedCustomer, String completedDate)
+    {
+        //To be able to read from the database
+        SQLiteDatabase DB = this.getWritableDatabase();
+
+        //Using a cursor to see if the bikeSerial exists
+        //If it does, then getCount will atleast be 1. In our case, it should be exactly 1
+        Cursor cursor= null;
+        String sql = "SELECT * FROM repairs WHERE serial = '" + serialCompleted + "' and status = " + 1;
+        cursor = DB.rawQuery(sql,null);
+
+        if(cursor.getCount()<=0)
+        {
+            cursor.close();
+            DB.close();
+            return false;
+        }
+        else
+        {
+            //**** IGNORE THIS COMMENT, but leave for future reference.
+            //Delete is an already created function, the parameters are listed as the following:
+            //tablename, where statement and make sure you use ?, the value of what you are deleting
+            //DB.delete(TABLE_inventory, KEY_SERIALCODE + "= ? ", new String[] {String.valueOf(bikeSerial)} );
+
+
+            //We don't actually want to delete the bike, so we created a new column available
+            //0 means its not, and 1 means its still in inventory.
+            ContentValues newVal= new ContentValues();
+
+            newVal.put(STATUS_BIT,0);
+            newVal.put(REPAIR_DUE_DATE, completedDate);
+            newVal.put(AMOUNT_CHARGED, chargedCustomer);
+            newVal.put(COST_REPAIR, costToOwner);
+            DB.update(TABLE_repairs, newVal, "serial = '" + serialCompleted + "'", null);
+
+
+            cursor.close();
+            DB.close();
+            return true;
+        }
+
 
     }
 
