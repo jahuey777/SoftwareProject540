@@ -114,7 +114,7 @@ public class AddingRepair extends ActionBarActivity
                        }
 
                         //Formatting the date for the database
-                       String databaseDate = dataBasemonth + "-" + dataBaseday + "-" + dataBaseyear;
+                       String databaseDate = dataBasemonth + "/" + dataBaseday + "/" + dataBaseyear;
 
                        //Toast.makeText(getApplicationContext(), "checking date for format " + databaseDate , Toast.LENGTH_LONG).show();
 

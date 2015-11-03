@@ -287,6 +287,34 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
     }
 
+    public boolean repairExists (String serial)
+    {
+        //To be able to read from the database
+        SQLiteDatabase DB = this.getWritableDatabase();
+
+        //Using a cursor to see if the bikeSerial exists
+        //If it does, then getCount will atleast be 1. In our case, it should be exactly 1
+        //also put single quotes around the string you are searching for. In this case bikeSerial
+        Cursor cursor= null;
+        String sql = "SELECT * FROM repairs WHERE serial = '" + serial + "'" ;
+        cursor = DB.rawQuery(sql,null);
+
+        //If the bike exits, we return true, otherwise return false
+        if(cursor.getCount()<=0)
+        {
+            cursor.close();
+            DB.close();
+            return false;
+        }
+        else
+        {
+            cursor.close();
+            DB.close();
+            return true;
+        }
+
+    }
+
 }
 
 

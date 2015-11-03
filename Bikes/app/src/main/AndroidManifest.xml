@@ -35,11 +35,19 @@
             android:label="Displaying Inventory">
         </activity>
         <activity android:name=".viewProfit"
-            android:label="view profit"></activity>
+            android:label="view profit">
+         </activity>
         <activity android:name=".soldBike"
-            android:label="Bike Information"></activity>
+            android:label="Bike Information">
+        </activity>
         <activity android:name=".AddingRepair"
-            android:label="Add a repair."></activity>
+            android:label="Add a repair.">
+         </activity>
+
+        <activity android:name=".completedRepair"
+            android:label="Completed repair.">
+         </activity>
+
 
     </application>
 
