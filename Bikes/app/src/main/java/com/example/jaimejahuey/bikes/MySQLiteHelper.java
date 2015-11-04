@@ -98,7 +98,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     }
 
 
-
     //To be able to add a bike to the database
     public boolean addBike(Bike bike)
     {
@@ -214,7 +213,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     //Other functions for the remainder of the project
 
     //reading the inventory database
-    public Cursor readEntry()
+    public Cursor readInventoryEntry()
     {
 
         String[] allColumns =
@@ -226,6 +225,35 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         {
         c.moveToFirst();
          }
+        return c;
+    }
+
+    public Cursor readActiveRepairEntry()
+    {
+
+        String[] allColumns =
+                new String[]{ MySQLiteHelper.STATUS_BIT, MySQLiteHelper.CUST_PHONE, MySQLiteHelper.REPAIR_DUE_DATE, MySQLiteHelper.REPAIR_SERIAL};
+//has KEY_AVAILABLE first to make sure its available before adding it to table
+        Cursor c = getWritableDatabase().query(MySQLiteHelper.TABLE_repairs, allColumns,null, null, null, null, null);
+
+        if(c!=null)
+        {
+            c.moveToFirst();
+        }
+        return c;
+    }
+    public Cursor readCompletedRepairEntry()
+    {
+
+        String[] allColumns =
+                new String[]{ MySQLiteHelper.STATUS_BIT, MySQLiteHelper.DATE_COMPLETED, MySQLiteHelper.COST_REPAIR, MySQLiteHelper.REPAIR_SERIAL};
+//has KEY_AVAILABLE first to make sure its available before adding it to table
+        Cursor c = getWritableDatabase().query(MySQLiteHelper.TABLE_repairs, allColumns,null, null, null, null, null);
+
+        if(c!=null)
+        {
+            c.moveToFirst();
+        }
         return c;
     }
 

@@ -25,6 +25,8 @@ public class Repairs extends ActionBarActivity
 {
     private Button addRepair;
     private Button completedRepair;
+    private Button viewActiveRepairButton;
+    private Button viewCompletedRepairButton;
 
     final Context context = this;
     private EditText completedSerialText;
@@ -47,6 +49,8 @@ public class Repairs extends ActionBarActivity
         //linking buttons to xml file buttons
         addRepair = (Button) findViewById(R.id.AddRepair);
         completedRepair = (Button) findViewById(R.id.CompletedRepair);
+        viewActiveRepairButton = (Button) findViewById(R.id.ViewActiveRepairs);
+        viewCompletedRepairButton = (Button) findViewById(R.id.ViewPendingRepairs);
 
         //WHen the user clikcs on the button. Go to addingRepair class
         addRepair.setOnClickListener(new View.OnClickListener()
@@ -123,7 +127,25 @@ public class Repairs extends ActionBarActivity
             }
         });
 
+        viewCompletedRepairButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent i = new Intent(Repairs.this, viewCompletedRepairs.class);
 
+                startActivity(i);
+            }
+        });
+
+        viewActiveRepairButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Repairs.this, viewActiveRepairs.class);
+
+                startActivity(i);
+            }
+        });
     }
 
     @Override
