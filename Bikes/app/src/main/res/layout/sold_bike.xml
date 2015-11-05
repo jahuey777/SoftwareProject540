@@ -1,6 +1,108 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:baselineAligned="true"
+    android:gravity="center_horizontal"
+    >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Please Enter the following information to sell a bike"
+        android:layout_marginRight="46dp"
+        android:layout_marginEnd="46dp"
+        android:textStyle="bold"
+        android:textColor="#ff2431ff"
+        android:layout_gravity="top" />
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_marginTop="80dp"
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="Please enter the serial number of bike." />
+
+        <EditText
+            android:id="@+id/soldBikeSerialInput"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#CCCCCC"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="Please enter the sale price of bike." />
+
+        <EditText
+            android:id="@+id/soldBikePriceInput"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#CCCCCC"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="Please select the date of sale"
+            android:layout_marginBottom="20dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:id="@+id/saleBikeDate"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:background="#CCCCCC"
+            android:ems="10"
+            android:editable="false"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/salesButtonImageCalendar"
+            android:src="@drawable/calendar"
+            android:scaleType="fitXY"
+            android:scaleY="-1"
+            android:padding="30dp"
+
+            />
+
+    </LinearLayout>
+
+
+    <Button
+        android:layout_marginTop="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addSalesEnterButton"
+        android:text="Enter Information"/>
+
 
 </LinearLayout>
+
+

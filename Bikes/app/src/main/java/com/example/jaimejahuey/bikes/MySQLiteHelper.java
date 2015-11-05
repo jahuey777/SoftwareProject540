@@ -387,6 +387,42 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
     }
 
+    public boolean addingSale(String serialNum, String saleDate, String salePrice)
+    {
+        //To be able to write to database
+        SQLiteDatabase DB = this.getWritableDatabase();
+
+        //To make sure that the serial does not already exist.
+        //Make sure you put quotes around the string. In this case serial
+        Cursor cursor = null;
+        String sql = "SELECT * FROM inventory WHERE serial = '" + serialNum + "'" ;
+
+        cursor = DB.rawQuery(sql, null);
+
+        //If the cursor is less then 0 then its not in the table yet
+        if(cursor.getCount()<=0)
+        {
+            cursor.close();
+            DB.close();
+            return false;
+        }
+        else
+        {
+            ContentValues values = new ContentValues();
+
+            //Putting the values to each column.
+            values.put(MySQLiteHelper.SALES_FKEY, "" + serialNum);
+            values.put(MySQLiteHelper.SALE_DATE, "" + saleDate);
+            values.put(MySQLiteHelper.SALE_PRICE, "" + salePrice);
+
+            DB.insert(MySQLiteHelper.TABLE_sales, null, values);
+
+            cursor.close();
+            DB.close();
+            return true;
+        }
+    }
+
 }
 
 

@@ -37,7 +37,7 @@ public class SalesManagement extends ActionBarActivity
         SoldBikeButton = (Button) findViewById(R.id.SoldBike);
         ViewProfitButton = (Button) findViewById(R.id.ViewProfit);
 
-        //Takes us to the view profit page.
+        //Takes us to the sell a bike page.
         ViewProfitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -56,6 +56,12 @@ public class SalesManagement extends ActionBarActivity
             @Override
             public void onClick(View v)
             {
+                Intent i = new Intent(SalesManagement.this , soldBike.class);
+
+                startActivity(i);
+
+                //Code Below we don't need above code is correct
+                /*
                 LayoutInflater RemoveInflator = LayoutInflater.from(context);
                 View RemoveView  = RemoveInflator.inflate(R.layout.remove_bike_dialog, null);
 
@@ -110,6 +116,7 @@ public class SalesManagement extends ActionBarActivity
 
                 //show it
                 alertDialog.show();
+                */
 
             }
         });

@@ -169,7 +169,8 @@ public class AddingRepair extends ActionBarActivity
     public static class DatePickerFragment extends DialogFragment
             implements DatePickerDialog.OnDateSetListener {
 
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
+        public Dialog onCreateDialog(Bundle savedInstanceState)
+        {
             // Use the current date as the default date in the picker
             //Will also save ints so that we can save to database
             //Decided to create separate ones so that it doesn't get confusing in the code
