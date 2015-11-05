@@ -38,7 +38,7 @@ public class soldBike extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sold_bike);
 
-        //reset of values
+        //reset values
         dataBasedayOfSale = null;
         dataBasemonthOfSale = null;
         dataBaseyearOfSale = null;
@@ -47,7 +47,7 @@ public class soldBike extends ActionBarActivity
         serialSaleInput = (EditText) findViewById(R.id.soldBikeSerialInput);
         priceSaleInput = (EditText) findViewById(R.id.soldBikePriceInput);
 
-        //ling calendar button from xml file
+        //link calendar button from xml file
         salesImageCalendarButton = (ImageButton) findViewById(R.id.salesButtonImageCalendar);
         salesDateInput = (EditText) findViewById(R.id.saleBikeDate);
         salesImageCalendarButton.setOnClickListener(new View.OnClickListener()
@@ -92,17 +92,20 @@ public class soldBike extends ActionBarActivity
 
                         //Toast.makeText(getApplicationContext(), "checking date for format " + databaseDate , Toast.LENGTH_LONG).show();
 
-                        //inserting the new repair into the database.
+                        //inserting a new sale into the database.
                         Boolean didWeAddSale = MainActivity.DATABASE.addingSale(SERIALNUM, databaseSaleDate, SALEPRICE);
 
+                        //Updating the inventory table by removing bike
+                        Boolean wasBikeRemoved = MainActivity.DATABASE.removeBike(SERIALNUM);
+
                         //Display a message if it was added or not to the database
-                        if (didWeAddSale)
+                        if (didWeAddSale && wasBikeRemoved)
                         {
-                            Toast.makeText(getApplicationContext(), "The sale has been added.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "The bike has been sold.", Toast.LENGTH_LONG).show();
                         }
                         else
                         {
-                            Toast.makeText(getApplicationContext(), "Can't add sale. This bike doesn't exist in the inventory.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Can't sell bike. This bike doesn't exist in the inventory.", Toast.LENGTH_LONG).show();
                         }
                     }
                 }

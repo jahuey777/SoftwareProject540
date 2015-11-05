@@ -406,7 +406,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             DB.close();
             return false;
         }
-
         else
         {
             ContentValues values = new ContentValues();
