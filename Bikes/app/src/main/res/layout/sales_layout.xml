@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/SoldBike"
-        android:text="Sold a bike"
+        android:text="Sell a Bike"
         android:layout_marginTop="100dp" />
 
      <!--<Button

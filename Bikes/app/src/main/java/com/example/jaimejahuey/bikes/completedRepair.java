@@ -77,34 +77,23 @@ public class completedRepair extends ActionBarActivity
             @Override
             public void onClick(View v)
             {
-
-
                 String AMOUNTCHARGED= amountChargedInput.getText().toString();
                 String AMOUNTCOST = amountCostInput.getText().toString();
 
-                if(AMOUNTCHARGED!= null || AMOUNTCOST!=null)
-                {
-                    if(AMOUNTCHARGED.isEmpty() || AMOUNTCOST.isEmpty())
-                    {
+                if(AMOUNTCHARGED!= null || AMOUNTCOST!=null) {
+                    if (AMOUNTCHARGED.isEmpty() || AMOUNTCOST.isEmpty()) {
                         Toast.makeText(getApplicationContext(), "Please make sure that all input has been filled.", Toast.LENGTH_LONG).show();
 
-                    }
-                    else if(dataBasedayCompleted == null || dataBasemonthCompleted == null|| dataBaseyearCompleted == null)
-                    {
+                    } else if (dataBasedayCompleted == null || dataBasemonthCompleted == null || dataBaseyearCompleted == null) {
                         Toast.makeText(getApplicationContext(), "Please select a date.", Toast.LENGTH_LONG).show();
 
-                    }
-
-                    else
-                    {
+                    } else {
                         //Want a format of 02/01/2015
                         //So if the day or month is year is less than 10, then append a 0 to the beginning
-                        if(Integer.parseInt(dataBasedayCompleted)<10)
-                        {
+                        if (Integer.parseInt(dataBasedayCompleted) < 10) {
                             dataBasedayCompleted += "0";
                         }
-                        if(Integer.parseInt(dataBasemonthCompleted)<10)
-                        {
+                        if (Integer.parseInt(dataBasemonthCompleted) < 10) {
                             dataBasemonthCompleted += "0" + dataBasemonthCompleted;
                         }
 
@@ -117,8 +106,7 @@ public class completedRepair extends ActionBarActivity
                         Boolean didWeAddRepair = MainActivity.DATABASE.completedRepair(completeSerial, AMOUNTCOST, AMOUNTCHARGED, databaseCompletedDate);
 
                         //Display a message if it was added or not to the database
-                        if(didWeAddRepair)
-                        {
+                        if (didWeAddRepair) {
                             Toast.makeText(getApplicationContext(), "The repair has been updated.", Toast.LENGTH_LONG).show();
                             //Finish the activity, otherwise the user can update as many times as he wants
                             finish();
@@ -127,9 +115,6 @@ public class completedRepair extends ActionBarActivity
                     }
 
                 }
-
-
-
 
             }
         });
