@@ -100,7 +100,7 @@ public class completedRepair extends ActionBarActivity
                         //Formatting the date for the database
                         String databaseCompletedDate = dataBasemonthCompleted + "/" + dataBasedayCompleted + "/" + dataBaseyearCompleted;
 
-                        //Toast.makeText(getApplicationContext(), "checking date for format " + databaseDate , Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), "checking date for format " + databaseCompletedDate , Toast.LENGTH_LONG).show();
 
                         //inserting the new repair into the database.
                         Boolean didWeAddRepair = MainActivity.DATABASE.completedRepair(completeSerial, AMOUNTCOST, AMOUNTCHARGED, databaseCompletedDate);
