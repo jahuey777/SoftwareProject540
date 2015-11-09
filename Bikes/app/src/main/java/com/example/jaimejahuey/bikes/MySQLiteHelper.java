@@ -373,7 +373,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             ContentValues newVal= new ContentValues();
 
             newVal.put(STATUS_BIT,0);
-            newVal.put(REPAIR_DUE_DATE, completedDate);
+            newVal.put(DATE_COMPLETED, completedDate);
             newVal.put(AMOUNT_CHARGED, chargedCustomer);
             newVal.put(COST_REPAIR, costToOwner);
             DB.update(TABLE_repairs, newVal, "serial = '" + serialCompleted + "'", null);
