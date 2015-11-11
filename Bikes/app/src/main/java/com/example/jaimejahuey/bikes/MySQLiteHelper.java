@@ -33,6 +33,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     public static final String KEY_COLOR= "color";
     public static final String KEY_CONDITION= "condition";
     public static final String KEY_AVAILABLE = "available";
+    public static final String DELETED_BIT = "deleted";
 
     //Columns for the repairs table
     public static final String COLUMN_ID_REPAIRS= "idP";
@@ -66,7 +67,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         //Creating the table we need for our database
         String CREATE_INVENTORY_TABLE = "CREATE TABLE " + TABLE_inventory + " ( " + COLUMN_ID_INVENTORY
          + " integer primary key," + KEY_SERIALCODE+ " TEXT, "+ KEY_make + " TEXT," + KEY_COLOR + " TEXT, "
-         + KEY_CONDITION + " TEXT," + KEY_AVAILABLE + " INTEGER)";
+         + KEY_CONDITION + " TEXT," + KEY_AVAILABLE + " INTEGER, " + DELETED_BIT + " INTEGER )";
 
         String CREATE_REPAIRS_TABLE = "CREATE TABLE " + TABLE_repairs + "( " + COLUMN_ID_REPAIRS
         + " integer primary key, " + REPAIR_SERIAL + " TEXT, "+ CUST_NAME + " TEXT, " + CUST_PHONE + " TEXT," + REPAIR_DUE_DATE +
@@ -109,11 +110,16 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         //Cursor cursor = DB.rawQuery(Query, null);
 
         Cursor cursor = null;
+        Cursor cursor2 = null;
+        //Use first query to see if that serial even exists.
         String sql = "SELECT * FROM inventory WHERE serial = '" + bike.getInventory_serial() + "'" ;
+        //Second query, if the serial exists, but if the deleted bit is 1, then we can still add it.
+        String sql2 = "SELECT * FROM inventory WHERE serial = '" + bike.getInventory_serial() + "' and deleted = " + 1;
         cursor = DB.rawQuery(sql, null);
+        cursor2 = DB.rawQuery(sql2,null);
 
         //If the cursor is less then 0 then its not in the table yet
-        if(cursor.getCount()<=0)
+        if(cursor.getCount()<=0 || cursor2.getCount()>0)
         {
 
             ContentValues values = new ContentValues();
@@ -122,6 +128,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             values.put(MySQLiteHelper.KEY_CONDITION, bike.getInventory_condition());
             values.put(MySQLiteHelper.KEY_SERIALCODE, bike.getInventory_serial());
             values.put(MySQLiteHelper.KEY_AVAILABLE, 1);
+            values.put(MySQLiteHelper.DELETED_BIT,0);
 
 
             DB.insert(MySQLiteHelper.TABLE_inventory, null, values);
@@ -170,7 +177,11 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             //0 means its not, and 1 means its still in inventory.
             ContentValues newVal= new ContentValues();
 
+            //set available to 0 since we don't want it to show in the show inventory list
+            //set deleted to 1, that means we can add this serial again in the future. It's deleted,
+            //but still exists in the database
             newVal.put(KEY_AVAILABLE,0);
+            newVal.put(DELETED_BIT,1);
             DB.update(TABLE_inventory, newVal, "serial = '" + bikeSerial + "'", null);
 
 
