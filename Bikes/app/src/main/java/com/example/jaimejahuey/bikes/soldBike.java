@@ -70,20 +70,28 @@ public class soldBike extends ActionBarActivity
                 String SERIALNUM = serialSaleInput.getText().toString();
                 String SALEPRICE = priceSaleInput.getText().toString();
 
-                if(SERIALNUM!= null || SALEPRICE!=null) {
-                    if (SERIALNUM.isEmpty() || SALEPRICE.isEmpty()) {
+                if(SERIALNUM!= null || SALEPRICE!=null)
+                {
+                    if (SERIALNUM.isEmpty() || SALEPRICE.isEmpty())
+                    {
                         Toast.makeText(getApplicationContext(), "Please make sure that all input has been filled.", Toast.LENGTH_LONG).show();
 
-                    } else if (dataBasedayOfSale == null || dataBasemonthOfSale == null || dataBaseyearOfSale == null) {
+                    }
+                    else if (dataBasedayOfSale == null || dataBasemonthOfSale == null || dataBaseyearOfSale == null)
+                    {
                         Toast.makeText(getApplicationContext(), "Please select a date.", Toast.LENGTH_LONG).show();
 
-                    } else {
+                    }
+                    else
+                    {
                         //Want a format of 02/01/2015
                         //So if the day or month is year is less than 10, then append a 0 to the beginning
-                        if (Integer.parseInt(dataBasedayOfSale) < 10) {
+                        if (Integer.parseInt(dataBasedayOfSale) < 10)
+                        {
                             dataBasedayOfSale += "0";
                         }
-                        if (Integer.parseInt(dataBasemonthOfSale) < 10) {
+                        if (Integer.parseInt(dataBasemonthOfSale) < 10)
+                        {
                             dataBasemonthOfSale += "0" + dataBasemonthOfSale;
                         }
 
@@ -137,9 +145,11 @@ public class soldBike extends ActionBarActivity
     }
 
     public static class DatePickerFragment extends DialogFragment
-            implements DatePickerDialog.OnDateSetListener {
+            implements DatePickerDialog.OnDateSetListener
+    {
 
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
+        public Dialog onCreateDialog(Bundle savedInstanceState)
+        {
             // Use the current date as the default date in the picker
             //Will also save ints so that we can save to database
             //Decided to create separate ones so that it doesn't get confusing in the code
