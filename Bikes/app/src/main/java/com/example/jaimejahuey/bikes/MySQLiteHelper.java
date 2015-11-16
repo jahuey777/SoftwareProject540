@@ -45,6 +45,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     public static final String AMOUNT_CHARGED= "amountCharged";
     public static final String DATE_COMPLETED= "dateCompleted";
     public static final String REPAIR_SERIAL = "serial";
+    public static final String DELETEDREPAIR_BIT= "deleted";
 
     //Columns for the sales table
     //public static final String SERIAL_NUM = "serial";
@@ -72,7 +73,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         String CREATE_REPAIRS_TABLE = "CREATE TABLE " + TABLE_repairs + "( " + COLUMN_ID_REPAIRS
         + " integer primary key, " + REPAIR_SERIAL + " TEXT, "+ CUST_NAME + " TEXT, " + CUST_PHONE + " TEXT," + REPAIR_DUE_DATE +
                 " TEXT," + COST_REPAIR+ " TEXT," + AMOUNT_CHARGED + " TEXT," + DATE_COMPLETED
-                + " TEXT,"+ STATUS_BIT + " INTEGER)";
+                + " TEXT,"+ STATUS_BIT + " INTEGER," + DELETEDREPAIR_BIT +" INTEGER)";
 
         String CREATE_SALES_TABLE = "CREATE TABLE " + TABLE_sales + "( " + COLUMN_ID_SALES + " integer primary key,"
         + KEY_SERIALCODE + " TEXT, " + SALE_DATE + " TEXT," + SALE_PRICE + " TEXT," + SALES_FKEY
@@ -119,6 +120,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         cursor2 = DB.rawQuery(sql2,null);
 
         //If the cursor is less then 0 then its not in the table yet
+        //If the deleted bit is has a 1 or more, then we can re-add the serial number
         if(cursor.getCount()<=0 || cursor2.getCount()>0)
         {
 
@@ -172,9 +174,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             //tablename, where statement and make sure you use ?, the value of what you are deleting
             //DB.delete(TABLE_inventory, KEY_SERIALCODE + "= ? ", new String[] {String.valueOf(bikeSerial)} );
 
-
-            //We don't actually want to delete the bike, so we created a new column available
-            //0 means its not, and 1 means its still in inventory.
             ContentValues newVal= new ContentValues();
 
             //set available to 0 since we don't want it to show in the show inventory list
@@ -182,6 +181,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             //but still exists in the database
             newVal.put(KEY_AVAILABLE,0);
             newVal.put(DELETED_BIT,1);
+
             DB.update(TABLE_inventory, newVal, "serial = '" + bikeSerial + "'", null);
 
 
@@ -288,12 +288,14 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         //To make sure that the serial does not already exist.
         //Make sure you put quotes around the string. In this case serial
         Cursor cursor = null;
+        Cursor cursor2= null;
         String sql = "SELECT * FROM repairs WHERE serial = '" + serial + "'" ;
-
+        String sql2 = "SELECT * FROM repairs WHERE serial = '" + serial + "' and deleted=" + 1;
         cursor = DB.rawQuery(sql, null);
+        cursor2= DB.rawQuery(sql2,null);
 
         //If the cursor is less then 0 then its not in the table yet
-        if(cursor.getCount()<=0)
+        if(cursor.getCount()<=0 || cursor2.getCount()>0)
         {
 
             ContentValues values = new ContentValues();
@@ -304,9 +306,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             values.put(MySQLiteHelper.CUST_NAME, "" + custName);
             values.put(MySQLiteHelper.REPAIR_DUE_DATE,"" + dueDate);
             values.put(MySQLiteHelper.STATUS_BIT, 1);
-            //values.put(MySQLiteHelper.COST_REPAIR,"hey");
-           // values.put(MySQLiteHelper.AMOUNT_CHARGED, "hey");
-            //values.put(MySQLiteHelper.REPAIR_DUE_DATE, "hi");
+            values.put(MySQLiteHelper.DELETEDREPAIR_BIT, 0);
 
 
             DB.insert(MySQLiteHelper.TABLE_repairs, null, values);
@@ -322,9 +322,49 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             DB.close();
             return false;
         }
+    }
 
+    //repair will not actually be deleted from the database, a bit is just set to 1 which means its deleted.
+    public boolean removeRepair(String bikeSerial)
+    {
+        //To be able to read from the database
+        SQLiteDatabase DB = this.getWritableDatabase();
+
+        //Using a cursor to see if the bikeSerial exists
+        Cursor cursor= null;
+        String sql = "SELECT * FROM repairs WHERE serial = '" + bikeSerial +"'";
+        cursor = DB.rawQuery(sql,null);
+
+        if(cursor.getCount()<=0)
+        {
+            cursor.close();
+            DB.close();
+            return false;
+        }
+        else
+        {
+            //We don't actually want to delete the repair, so we created a new column deleted
+            //0 means its not, and 1 means it is deleted.
+            ContentValues newVal= new ContentValues();
+
+            //set available to 0 since we don't want it to show in the show inventory list
+            //set deleted to 1, that means we can add this serial again in the future. It's deleted,
+            //but still exists in the database
+            //also set status to -1, this means that it won't show on completed or active repairs.
+            newVal.put(DELETEDREPAIR_BIT,1);
+            newVal.put(STATUS_BIT,-1);
+
+            DB.update(TABLE_repairs, newVal, "serial = '" + bikeSerial + "'", null);
+
+
+            cursor.close();
+            DB.close();
+            return true;
+        }
 
     }
+
+
 
     public boolean repairExists (String serial)
     {

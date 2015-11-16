@@ -27,13 +27,15 @@ public class Repairs extends ActionBarActivity
     private Button completedRepair;
     private Button viewActiveRepairButton;
     private Button viewCompletedRepairButton;
+    private Button deleteRepairButton;
 
     final Context context = this;
     private EditText completedSerialText;
     public static String completedSerialNum;
 
-
-    // private Button deleteRepair;
+    //Use for the removing a bike to link with the pop up dialog serial text box
+    private EditText removeRepairSerialText;
+    private String repairSerial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -51,6 +53,7 @@ public class Repairs extends ActionBarActivity
         completedRepair = (Button) findViewById(R.id.CompletedRepair);
         viewActiveRepairButton = (Button) findViewById(R.id.ViewActiveRepairs);
         viewCompletedRepairButton = (Button) findViewById(R.id.ViewPendingRepairs);
+        deleteRepairButton = (Button) findViewById(R.id.DeleteRepair);
 
         //WHen the user clikcs on the button. Go to addingRepair class
         addRepair.setOnClickListener(new View.OnClickListener()
@@ -126,6 +129,65 @@ public class Repairs extends ActionBarActivity
 
             }
         });
+
+        deleteRepairButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                LayoutInflater RemoveInflator = LayoutInflater.from(context);
+                View RemoveView  = RemoveInflator.inflate(R.layout.remove_bike_dialog, null);
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+                //sets remove_bike_dialog.xml to alertdialog builder
+                alertDialogBuilder.setView(RemoveView);
+
+                alertDialogBuilder
+                        .setCancelable(false)
+                        .setPositiveButton("Remove",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id)
+                                    {
+
+                                        //Had to add this line, otherwise it will throw an error whenever
+                                        //the user inputs anything to the pop dialog
+                                        Dialog f = (Dialog) dialog;
+
+                                        removeRepairSerialText = (EditText) f.findViewById(R.id.inputValueDialog);
+
+                                        //Getting the text from the dialog
+                                        repairSerial = removeRepairSerialText.getText().toString();
+                                        Boolean didWeDelete = MainActivity.DATABASE.removeRepair(repairSerial);
+
+                                        //Will tell the user if it deleted or not
+                                        if(didWeDelete)
+                                            Toast.makeText(getApplicationContext(), "The Bike has been removed from inventory.", Toast.LENGTH_LONG).show();
+                                        else
+                                            Toast.makeText(getApplicationContext(), "The bike can not be removed since it is not in the inventory or it has already been removed.", Toast.LENGTH_LONG).show();
+
+                                    }
+                                })
+                        .setNegativeButton("Cancel",
+                                new DialogInterface.OnClickListener()
+                                {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id)
+                                    {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                //To actually create it
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                //show it
+                alertDialog.show();
+
+            }
+        });
+
 
         viewCompletedRepairButton.setOnClickListener(new View.OnClickListener()
         {
