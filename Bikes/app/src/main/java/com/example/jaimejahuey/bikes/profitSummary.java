@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 /**
  * Created by jaimejahuey on 11/16/15.
@@ -19,6 +20,12 @@ public class profitSummary extends ActionBarActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.display_profit_summary);
+
+        String startDate = getIntent().getExtras().getString("First Date");
+        String endDate = getIntent().getExtras().getString("End Date");
+
+        calculateSummary(startDate,endDate);
+        
     }
 
     @Override
@@ -41,6 +48,12 @@ public class profitSummary extends ActionBarActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private String calculateSummary (String start, String end)
+    {
+
+        return null;
     }
 
 }

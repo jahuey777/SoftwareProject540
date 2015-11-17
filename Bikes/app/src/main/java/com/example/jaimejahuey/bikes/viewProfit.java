@@ -129,8 +129,29 @@ public class viewProfit extends ActionBarActivity
                     {
                        dataBaseEndMonthProfit += "0";
                     }
+                    if(Integer.parseInt(dataBaseEndMonthProfit)<10)
+                    {
+                        dataBaseEndMonthProfit += "0";
+                    }
+                    if(Integer.parseInt(dataBaseBeginningMonthProfit)<10)
+                    {
+                        dataBaseBeginningMonthProfit += "0";
+                    }
+
+
+                    String startDate = dataBaseBeginningMonthProfit + " " + dataBaseBeginningDayProfit
+                            + " " + dataBaseBeginningYearProfit;
+
+                    //creating endDate to pass through
+                    String endDate = dataBaseEndMonthProfit + " " + dataBaseEndDayProfit +
+                            " " + dataBaseEndYearProfit;
+
                      Intent i = new Intent(viewProfit.this, profitSummary.class);
+                     i.putExtra("First Date",startDate );
+                     i.putExtra("End Date", endDate);
+
                      startActivity(i);
+
                 }
 
             }
