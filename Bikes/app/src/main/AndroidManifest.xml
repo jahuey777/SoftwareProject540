@@ -47,8 +47,12 @@
         <activity android:name=".completedRepair"
             android:label="Completed repair.">
          </activity>
+        <activity android:name=".profitSummary"
+            android:label="Completed repair.">
+        </activity>
 
-<activity android:name=".viewActiveRepairs"
+
+        <activity android:name=".viewActiveRepairs"
     android:label="View Active Repairs">
 
 </activity>

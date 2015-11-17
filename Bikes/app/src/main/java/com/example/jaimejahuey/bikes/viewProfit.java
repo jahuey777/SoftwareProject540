@@ -3,6 +3,7 @@ package com.example.jaimejahuey.bikes;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -80,7 +82,59 @@ public class viewProfit extends ActionBarActivity
             }
         });
 
-        
+        enterProfitDates = (Button) findViewById((R.id.enterProfitButton));
+        enterProfitDates.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                //first checking to make sure that none of them are null
+                if(dataBaseBeginningDayProfit == null || dataBaseBeginningMonthProfit ==null
+                    || dataBaseBeginningYearProfit==null || dataBaseEndDayProfit==null ||
+                        dataBaseEndMonthProfit ==null || dataBaseEndYearProfit==null)
+                {
+                    Toast.makeText(getApplicationContext(), "Please select 2 dates.", Toast.LENGTH_LONG).show();
+
+                }
+
+                //if the beginning date is bigger then the ending date,then display toast for new input
+                else if(Integer.parseInt(dataBaseBeginningYearProfit)>Integer.parseInt(dataBaseEndYearProfit))
+                {
+                    Toast.makeText(getApplicationContext(), "Please select proper dates.", Toast.LENGTH_LONG).show();
+
+                }
+
+                //If same year and month but the beginning day is bigger than the end day then display toast
+                else if(Integer.parseInt(dataBaseBeginningYearProfit)==Integer.parseInt(dataBaseEndYearProfit) &&
+                        Integer.parseInt(dataBaseBeginningMonthProfit)==Integer.parseInt(dataBaseEndMonthProfit) &&
+                        Integer.parseInt(dataBaseBeginningDayProfit)>Integer.parseInt(dataBaseEndDayProfit))
+                {
+                    Toast.makeText(getApplicationContext(), "Please select proper dates.", Toast.LENGTH_LONG).show();
+
+                }
+
+                else if (Integer.parseInt(dataBaseBeginningYearProfit)==Integer.parseInt(dataBaseEndYearProfit) &&
+                        Integer.parseInt(dataBaseBeginningMonthProfit)>Integer.parseInt(dataBaseEndMonthProfit))
+                {
+                    Toast.makeText(getApplicationContext(), "Please select proper dates.", Toast.LENGTH_LONG).show();
+
+                }
+                else
+                {
+                    if (Integer.parseInt(dataBaseBeginningDayProfit) < 10 )
+                    {
+                        dataBaseBeginningDayProfit += "0";
+                    }
+                    if (Integer.parseInt(dataBaseEndDayProfit) < 10)
+                    {
+                       dataBaseEndMonthProfit += "0";
+                    }
+                     Intent i = new Intent(viewProfit.this, profitSummary.class);
+                     startActivity(i);
+                }
+
+            }
+        });
 
 
     }
@@ -132,7 +186,7 @@ public class viewProfit extends ActionBarActivity
             {
                 dataBaseBeginningDayProfit = String.valueOf(day);
                 dataBaseBeginningMonthProfit = String.valueOf(month+1);
-                dataBaseEndYearProfit = String.valueOf(year);
+                dataBaseBeginningYearProfit = String.valueOf(year);
 
                 //displays in our editText in the xml Addingrepair
                 profitBeginningDate.setText(String.valueOf(month + 1) + "/" + String.valueOf(day) + "/"

@@ -92,13 +92,13 @@ public class soldBike extends ActionBarActivity
                         }
                         if (Integer.parseInt(dataBasemonthOfSale) < 10)
                         {
-                            dataBasemonthOfSale += "0" + dataBasemonthOfSale;
+                            dataBasemonthOfSale = "0" + dataBasemonthOfSale;
                         }
 
                         //Formatting the date for the database
                         String databaseSaleDate = dataBasemonthOfSale + "/" + dataBasedayOfSale + "/" + dataBaseyearOfSale;
 
-                        //Toast.makeText(getApplicationContext(), "checking date for format " + databaseDate , Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "checking date for format " + databaseSaleDate , Toast.LENGTH_LONG).show();
 
                         //inserting a new sale into the database.
                         Boolean didWeAddSale = MainActivity.DATABASE.addingSale(SERIALNUM, databaseSaleDate, SALEPRICE);
