@@ -41,20 +41,6 @@ public class displayInventory extends Activity {
         int columns = c.getColumnCount();   //gets the number of columns in the table
 
 
-        /* Do this to add a table header, though
-        **** Would need a way to read each column type (its serial, make, etc.) before making a dynamic table
-        Could hardcode it, but would need changing each time we change the table layout or add new colums****
-
-        //adds table Header
-        TextView header = new TextView(this);
-        header.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-        header.setGravity(Gravity.CENTER);
-        header.setTextSize(20);
-        header.setPadding(0, 5, 0, 5);
-        header.setText(c.getString(0));
-        table_layout.addView(header);
-*/
-
         c.moveToFirst();    //move the pointer to the first in the table
 
         //outer FOR loop
@@ -66,13 +52,39 @@ public class displayInventory extends Activity {
             //inner FOR loop
             for(int j = 0; j<columns;j++){
                 TextView textV = new TextView(this); //creates a text view for each of the columns
-
                 // the following lines set the layout parameters for each text view
-                textV.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-                textV.setGravity(Gravity.CENTER);
-                textV.setTextSize(18);
-                textV.setPadding(0, 5, 0, 5);
 
+
+                if (i==0 && j==0)
+                {   formatEntry(textV,15);
+                    textV.setText("Serial");
+                    row.addView(textV);
+
+                    textV = new TextView(this);
+                    formatEntry(textV,15);
+                    textV.setText("Make");
+                    row.addView(textV);
+
+                    textV = new TextView(this);
+                    formatEntry(textV,15);
+                    textV.setText("Colour");
+                    row.addView(textV);
+
+                    textV = new TextView(this);
+                    formatEntry(textV,15);
+                    textV.setText("Condition");
+                    row.addView(textV);
+
+                    textV = new TextView(this); //THis is a workaround to make the table show all needed headers, it shouldn't show up as the table doesnt like showing the last of the headers.
+                    textV.setText("");
+                    row.addView(textV);
+
+                    table_layout.addView(row);
+                    textV.setText("");
+                    row = new TableRow(this);
+                }
+
+                formatEntry(textV,18);
                 //sets what the text view says
                 textV.setText(c.getString(j));
 
@@ -126,6 +138,11 @@ public class displayInventory extends Activity {
         }
     }//End MyAsyn class
 
-
+private void formatEntry ( TextView textV, int textSize){ //method to format the entries
+    textV.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+    textV.setGravity(Gravity.CENTER);
+    textV.setTextSize(textSize);
+    textV.setPadding(0, 5, 0, 5);
+}
 
 }//End display Inventory class

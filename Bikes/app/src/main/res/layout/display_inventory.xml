@@ -13,17 +13,24 @@
         android:id="@+id/textView4"
         android:layout_gravity="center_horizontal"
         android:textColor="#ff2431ff" />
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/horizontalScrollView" >
 
-    <ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TableLayout
-        android:id="@+id/displayInventoryTable"
+        <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="10dp"
-        android:shrinkColumns="*"
-        android:stretchColumns="*">
-    </TableLayout>
-</ScrollView>
+        android:layout_height="match_parent">
+        <TableLayout
+            android:id="@+id/displayInventoryTable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+            'android:shrinkColumns="*"
+            android:stretchColumns="*">
+        </TableLayout>
+    </ScrollView>
+    </HorizontalScrollView>
+
+
 </LinearLayout>

@@ -48,20 +48,25 @@ public class viewActiveRepairs extends Activity {
             //inner FOR loop
             for(int j = 0; j<columns;j++) {
                 TextView textV = new TextView(this); //creates a text view for each of the columns
+
                 if (i==0 && j==0)
-                {
+                {   //formatEntry(textV,20);
                     textV.setText("Customer Phone #");
                     row.addView(textV);
 
                     textV = new TextView(this);
+                    //formatEntry(textV,20);
                     textV.setText("Repair Due Date");
                     row.addView(textV);
 
                     textV = new TextView(this);
+                   // formatEntry(textV,20);
                     textV.setText("Repair Serial");
                     row.addView(textV);
 
-
+                    textV = new TextView(this);
+                    textV.setText("");
+                    row.addView(textV);
 
                     table_layout.addView(row);
                     row = new TableRow(this);
@@ -125,6 +130,11 @@ public class viewActiveRepairs extends Activity {
         }
     }//End MyAsyn class
 
-
+    private void formatEntry ( TextView textV, int textSize){ //method to format the entries
+        textV.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+        textV.setGravity(Gravity.CENTER);
+        textV.setTextSize(18);
+        textV.setPadding(0, 5, 0, 5);
+    }
 
 }//End display Active Repair class

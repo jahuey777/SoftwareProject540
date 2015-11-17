@@ -51,26 +51,30 @@ public class viewCompletedRepairs extends Activity {
 
                 if (i==0 && j==0)
                 { textV.setText("Date Added");
+                    formatEntry(textV, 20,10);
                     row.addView(textV);
 
                     textV = new TextView(this);
-                    textV.setText("Repair Cost");
+                    textV.setText("Cost");
+                    formatEntry(textV, 20,10);
                     row.addView(textV);
 
                     textV = new TextView(this);
                     textV.setText("Repair Serial");
+                    formatEntry(textV, 20,10);
                     row.addView(textV);
 
+                    textV = new TextView(this);
+                    textV.setText("");//throwaway entry, its a workaround for now.
+                    row.addView(textV);
 
                     table_layout.addView(row);
                     textV.setText("");
                     row = new TableRow(this);
                 }
+
                 // the following lines set the layout parameters for each text view
-                textV.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-                textV.setGravity(Gravity.CENTER);
-                textV.setTextSize(18);
-                textV.setPadding(0, 5, 0, 5);
+                formatEntry(textV,18,5);
 
                 //sets what the text view says
                 textV.setText(c.getString(j));
@@ -126,6 +130,12 @@ public class viewCompletedRepairs extends Activity {
     }//End MyAsyn class
 
 
+    private void formatEntry ( TextView textV, int textSize, int paddingSize){ //method to format the entries
+        textV.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+        textV.setGravity(Gravity.CENTER);
+        textV.setTextSize(textSize);
+        textV.setPadding(0, 0, 0, paddingSize);
+    }
 
 }//End display completed repair class
 
