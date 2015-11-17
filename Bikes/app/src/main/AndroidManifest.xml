@@ -43,21 +43,16 @@
         <activity android:name=".AddingRepair"
             android:label="Add a repair.">
          </activity>
-
         <activity android:name=".completedRepair"
             android:label="Completed repair.">
          </activity>
         <activity android:name=".profitSummary"
             android:label="Completed repair.">
         </activity>
-
-
         <activity android:name=".viewActiveRepairs"
-    android:label="View Active Repairs">
-
-</activity>
-
-        <activity android:name=".viewCompletedRepairs"
+        android:label="View Active Repairs">
+        </activity>
+         <activity android:name=".viewCompletedRepairs"
             android:label="View Completed Repairs">
         </activity>
     </application>
