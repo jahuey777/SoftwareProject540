@@ -233,7 +233,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
         String[] allColumns =
             new String[]{ MySQLiteHelper.KEY_AVAILABLE, MySQLiteHelper.KEY_SERIALCODE, MySQLiteHelper.KEY_make, MySQLiteHelper.KEY_COLOR, MySQLiteHelper.KEY_CONDITION,};
-//has KEY_AVAILABLE first to make sure its available before adding it to table
+        //has KEY_AVAILABLE first to make sure its available before adding it to table
         Cursor c = getWritableDatabase().query(MySQLiteHelper.TABLE_inventory, allColumns,null, null, null, null, null);
 
         if(c!=null)
@@ -248,7 +248,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
         String[] allColumns =
                 new String[]{ MySQLiteHelper.STATUS_BIT, MySQLiteHelper.CUST_PHONE, MySQLiteHelper.REPAIR_DUE_DATE, MySQLiteHelper.REPAIR_SERIAL};
-//has KEY_AVAILABLE first to make sure its available before adding it to table
+        //has KEY_AVAILABLE first to make sure its available before adding it to table
         Cursor c = getWritableDatabase().query(MySQLiteHelper.TABLE_repairs, allColumns,null, null, null, null, null);
 
         if(c!=null)
@@ -532,9 +532,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
                 //Check the date, if it falls between the previous 2 dates then we grab the sale price as well
                 String date = cursor.getString(1);
-
-                Log.w("In here", date);
-
 
                 //profitAmount = Double.parseDouble(date);
                 int day = Integer.parseInt(date.substring(0, 2));

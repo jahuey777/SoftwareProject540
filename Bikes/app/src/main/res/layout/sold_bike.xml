@@ -28,7 +28,9 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:text="Please enter the serial number of bike." />
+            android:text="Please enter the serial number of bike."
+            android:layout_marginLeft="25dp"
+            />
 
         <EditText
             android:id="@+id/soldBikeSerialInput"
@@ -36,14 +38,19 @@
             android:layout_height="fill_parent"
             android:background="#CCCCCC"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="text"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            />
 
         <TextView
             android:layout_marginTop="20dp"
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:text="Please enter the sale price of bike." />
+            android:text="Please enter the sale price of bike."
+            android:layout_marginLeft="25dp"
+            />
 
         <EditText
             android:id="@+id/soldBikePriceInput"
@@ -51,7 +58,10 @@
             android:layout_height="fill_parent"
             android:background="#CCCCCC"
             android:ems="10"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            />
 
 
         <TextView
@@ -60,7 +70,10 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:text="Please select the date of sale"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="25dp"
+            />
 
     </LinearLayout>
 

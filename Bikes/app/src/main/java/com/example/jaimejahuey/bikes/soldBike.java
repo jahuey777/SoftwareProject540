@@ -110,6 +110,7 @@ public class soldBike extends ActionBarActivity
                         if (didWeAddSale)
                         {
                             Toast.makeText(getApplicationContext(), "The bike has been sold.", Toast.LENGTH_LONG).show();
+                            finish();
                         }
                         else
                         {

@@ -5,6 +5,8 @@
     android:orientation="vertical"
     android:baselineAligned="true"
     android:gravity="center_horizontal"
+    android:paddingBottom="180dp"
+    android:background="@color/material_blue_grey_800"
     >
 
     <TextView
@@ -21,14 +23,17 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <TextView
             android:layout_marginTop="80dp"
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:text="Please enter the serial of the bike." />
+            android:text="Please enter the serial of the bike."
+            android:layout_marginLeft="25dp"
+            android:textColor="#ffcaa1" />
 
         <EditText
             android:id="@+id/addRepairSerial"
@@ -36,14 +41,19 @@
             android:layout_height="fill_parent"
             android:background="#CCCCCC"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="text"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            />
 
         <TextView
             android:layout_marginTop="20dp"
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:text="Please enter the name of the customer." />
+            android:text="Please enter the name of the customer."
+            android:layout_marginLeft="25dp"
+            />
 
         <EditText
             android:id="@+id/addRepairCustomerName"
@@ -51,14 +61,19 @@
             android:layout_height="fill_parent"
             android:background="#CCCCCC"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="text"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            />
 
         <TextView
             android:id="@+id/textView1"
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:text="Please input the phone number of the customer." />
+            android:text="Please input the phone number of the customer."
+            android:layout_marginLeft="25dp"
+            />
 
         <EditText
             android:id="@+id/addRepairCustomerPhone"
@@ -67,6 +82,8 @@
             android:background="#CCCCCC"
             android:ems="10"
             android:inputType="phone"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
             />
 
         <TextView
@@ -75,6 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:text="Please select the due date for the repair"
+            android:layout_marginLeft="25dp"
             android:layout_marginBottom="20dp"/>
 
     </LinearLayout>
@@ -83,7 +101,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
 
 
         <EditText

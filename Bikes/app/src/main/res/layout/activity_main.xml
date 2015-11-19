@@ -4,8 +4,9 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:baselineAligned="false"
-    android:paddingBottom="100dp"
-    android:gravity="center_horizontal">
+    android:paddingBottom="180dp"
+    android:gravity="center_horizontal"
+    android:background="@color/material_blue_grey_800">
 
     <TextView
         android:layout_width="match_parent"

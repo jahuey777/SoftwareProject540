@@ -80,33 +80,33 @@ public class addingBike extends ActionBarActivity
                     else if(check==-1)
                     {
                         Toast.makeText(getApplicationContext(), "Please select a condition for the bike", Toast.LENGTH_LONG).show();
-
                     }
 
                     else
                     {
-
                         //Create a bike object with the information gathered and call the addBike method to add it to the database.
                         Bike addingThisBike =  new Bike(SERIAL,MAKE, COLOR, bikeCond);
                             Boolean didWeAdd =  MainActivity.DATABASE.addBike(addingThisBike);
 
                         //Will display a message to the user if the bike has been added or not
                             if(didWeAdd)
-                               Toast.makeText(getApplicationContext(), "The Bike has been added.", Toast.LENGTH_LONG).show();
+                            {
+                                Toast.makeText(getApplicationContext(), "The Bike has been added.", Toast.LENGTH_LONG).show();
+                                finish();
+                            }
                             else
-                               Toast.makeText(getApplicationContext(), "The Bike was not added since it already exists", Toast.LENGTH_LONG).show();
-
+                            {
+                                Toast.makeText(getApplicationContext(), "The Bike was not added since it already exists", Toast.LENGTH_LONG).show();
+                            }
 
                     }
                 }
+
             }
 
         });
 
-
     }
-
-
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState)

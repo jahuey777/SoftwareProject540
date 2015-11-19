@@ -3,6 +3,7 @@ package com.example.jaimejahuey.bikes;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -56,7 +57,11 @@ public class profitSummary extends ActionBarActivity
     private String calculateSummary (String start, String end)
     {
         //calculate the bike profit from the sales table.
+      //  Log.w("start", start);
+        // Log.w("end", end);
+
         double profit = MainActivity.DATABASE.bikeProfit(start, end);
+
 
         String PROFIT = "" + profit;
 

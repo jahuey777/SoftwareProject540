@@ -17,8 +17,9 @@
             android:layout_marginTop="80dp"
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:text="Please select 2 dates to view your profit and summary between those 2 dates." />
+            android:layout_height="wrap_content"
+            android:text="Please select 2 dates to view your profit and summary between those 2 dates."
+            android:layout_gravity="center_horizontal" />
 
 
         <TextView
@@ -27,7 +28,8 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:text="Please select the starting date."
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="12dp" />
 
     </LinearLayout>
 
@@ -64,7 +66,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Please select the ending date."
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="12dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
