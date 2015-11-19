@@ -104,10 +104,10 @@ public class soldBike extends ActionBarActivity
                         Boolean didWeAddSale = MainActivity.DATABASE.addingSale(SERIALNUM, databaseSaleDate, SALEPRICE);
 
                         //Updating the inventory table by removing bike
-                        Boolean wasBikeRemoved = MainActivity.DATABASE.removeBike(SERIALNUM);
+                        //Boolean wasBikeRemoved = MainActivity.DATABASE.removeBike(SERIALNUM);
 
                         //Display a message if it was added or not to the database
-                        if (didWeAddSale && wasBikeRemoved)
+                        if (didWeAddSale)
                         {
                             Toast.makeText(getApplicationContext(), "The bike has been sold.", Toast.LENGTH_LONG).show();
                         }

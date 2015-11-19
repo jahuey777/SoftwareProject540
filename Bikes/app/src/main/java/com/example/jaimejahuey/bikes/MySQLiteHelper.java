@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by jaimejahuey on 9/30/15.
@@ -113,15 +114,16 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         Cursor cursor = null;
         Cursor cursor2 = null;
         //Use first query to see if that serial even exists.
-        String sql = "SELECT * FROM inventory WHERE serial = '" + bike.getInventory_serial() + "'" ;
+        String sql = "SELECT * FROM inventory WHERE serial = '" + bike.getInventory_serial() + "' and deleted = " + 0 ;
         //Second query, if the serial exists, but if the deleted bit is 1, then we can still add it.
-        String sql2 = "SELECT * FROM inventory WHERE serial = '" + bike.getInventory_serial() + "' and deleted = " + 1;
+        String sql2 = "SELECT * FROM inventory WHERE serial = '" + bike.getInventory_serial() + "' and deleted = " + 1
+               + " and available = " + 0;
         cursor = DB.rawQuery(sql, null);
         cursor2 = DB.rawQuery(sql2,null);
 
         //If the cursor is less then 0 then its not in the table yet
         //If the deleted bit is has a 1 or more, then we can re-add the serial number
-        if(cursor.getCount()<=0 || cursor2.getCount()>0)
+        if(cursor.getCount()<=0 && cursor2.getCount() >=0)
         {
 
             ContentValues values = new ContentValues();
@@ -136,6 +138,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             DB.insert(MySQLiteHelper.TABLE_inventory, null, values);
 
             cursor.close();
+            cursor2.close();
             DB.close();
             return true;
         }
@@ -143,6 +146,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         else
         {
             cursor.close();
+            cursor2.close();
             DB.close();
             return false;
         }
@@ -258,13 +262,15 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
         String[] allColumns =
                 new String[]{ MySQLiteHelper.STATUS_BIT, MySQLiteHelper.DATE_COMPLETED, MySQLiteHelper.COST_REPAIR, MySQLiteHelper.REPAIR_SERIAL};
-//has KEY_AVAILABLE first to make sure its available before adding it to table
+        //has KEY_AVAILABLE first to make sure its available before adding it to table
+
         Cursor c = getWritableDatabase().query(MySQLiteHelper.TABLE_repairs, allColumns,null, null, null, null, null);
 
         if(c!=null)
         {
             c.moveToFirst();
         }
+
         return c;
     }
 
@@ -289,13 +295,13 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         //Make sure you put quotes around the string. In this case serial
         Cursor cursor = null;
         Cursor cursor2= null;
-        String sql = "SELECT * FROM repairs WHERE serial = '" + serial + "'" ;
+        String sql = "SELECT * FROM repairs WHERE serial = '" + serial + "' and deleted = " + 0 ;
         String sql2 = "SELECT * FROM repairs WHERE serial = '" + serial + "' and deleted=" + 1;
         cursor = DB.rawQuery(sql, null);
         cursor2= DB.rawQuery(sql2,null);
 
         //If the cursor is less then 0 then its not in the table yet
-        if(cursor.getCount()<=0 || cursor2.getCount()>0)
+        if(cursor.getCount()<=0 && cursor2.getCount()>=0)
         {
 
             ContentValues values = new ContentValues();
@@ -312,6 +318,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             DB.insert(MySQLiteHelper.TABLE_repairs, null, values);
 
             cursor.close();
+            cursor2.close();
             DB.close();
             return true;
         }
@@ -319,6 +326,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         else
         {
             cursor.close();
+            cursor2.close();
             DB.close();
             return false;
         }
@@ -446,7 +454,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         //To make sure that the serial does not already exist.
         //Make sure you put quotes around the string. In this case serial
         Cursor cursor = null;
-        String sql = "SELECT * FROM inventory WHERE serial = '" + serialNum + "'" ;
+        String sql = "SELECT * FROM inventory WHERE serial = '" + serialNum + "' and available = " + 1 +
+                " and deleted = " + 0;
 
         cursor = DB.rawQuery(sql, null);
 
@@ -468,10 +477,123 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
             DB.insert(MySQLiteHelper.TABLE_sales, null, values);
 
+            //Updating the availability bit to 0 in the inventory table.
+            ContentValues newVal= new ContentValues();
+            newVal.put(KEY_AVAILABLE,0);
+
+            DB.update(TABLE_inventory, newVal, "serial = '" + serialNum + "'", null);
+
             cursor.close();
             DB.close();
             return true;
         }
+    }
+
+    public double bikeProfit(String start, String end)
+    {
+        Log.d("in here", "here");
+
+        double profitAmount=0;
+
+        //To be able to write to database
+        SQLiteDatabase DB = this.getWritableDatabase();
+
+        //To make sure that the serial does not already exist.
+        //Make sure you put quotes around the string. In this case serial
+        Cursor cursor = null;
+        String sql = "SELECT salePrice FROM sales";
+
+        cursor = DB.rawQuery(sql, null);
+
+        //If the cursor is less then 0 then its not in the table yet
+        if(cursor.getCount()<=0)
+        {
+            profitAmount = 0;
+            cursor.close();
+            DB.close();
+        }
+        else
+        {
+            Log.d("in here1", "here1");
+
+
+            //Breaking the dates into the day, month, and year.
+            int startDay = Integer.parseInt(start.substring(0,2));
+            int startMonth = Integer.parseInt(start.substring(3,5));
+            int startYear = Integer.parseInt(start.substring(6,10));
+
+            int endDay= Integer.parseInt(end.substring(0,2));
+            int endMonth = Integer.parseInt(end.substring(3,5));
+            int endYear = Integer.parseInt(end.substring(6,10));
+
+            //This moves the cursor to the first one, so get this one and then into the while loop.
+            cursor.moveToFirst();
+
+            //Check the date, if it falls between the previous 2 dates then we grab the sale price as well
+            String date = cursor.getString(cursor.getColumnIndex(SALE_PRICE));
+
+            profitAmount = Double.parseDouble(date);
+            /*int day= Integer.parseInt(date.substring(0,2));
+            int month = Integer.parseInt(date.substring(3,5));
+            int year = Integer.parseInt(date.substring(6,10));
+
+            //Decide if we need to add it to the profits
+            if(startYear<year && year<endYear)
+            {
+                //add to profit
+            }
+            //if a date falls in the same year.
+            else if(startYear==year && endYear==year && startMonth < month && month < endMonth)
+            {
+                double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                profitAmount+=bikePrice*.2;
+            }
+
+            //if date falls only in the same year as the startyear
+            else if(startYear==year && startMonth < month)
+            {
+
+            }
+            //same year and same month as startyear and startmonth
+            else if (startYear==year && endYear!=year && startMonth== month && startDay<=day)
+            {
+
+            }
+            else if(endYear == year && startYear!=year && endMonth>month)
+            {
+
+            }
+
+            else if (endYear== year && startYear != year && endMonth== month && day<=endDay)
+            {
+
+
+            }
+            //if a date falls in the same year and month.
+            else if(startYear==year && endYear==year && startMonth== month && month== endMonth && startDay<=day && day<=endDay)
+            {
+                //day
+                double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                profitAmount+=bikePrice*.2;
+            }
+
+            while(cursor.moveToNext())
+            {
+                date = cursor.getString(cursor.getColumnIndex(SALE_DATE));
+                day= Integer.parseInt(date.substring(0,2));
+                month = Integer.parseInt(date.substring(3,5));
+                year = Integer.parseInt(date.substring(6,10));
+            }
+
+            */
+
+            cursor.close();
+            DB.close();
+        }
+
+
+
+        return profitAmount;
     }
 
 }

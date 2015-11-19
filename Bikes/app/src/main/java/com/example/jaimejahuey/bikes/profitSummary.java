@@ -24,8 +24,10 @@ public class profitSummary extends ActionBarActivity
         String startDate = getIntent().getExtras().getString("First Date");
         String endDate = getIntent().getExtras().getString("End Date");
 
-        calculateSummary(startDate,endDate);
-        
+        String profit = calculateSummary(startDate,endDate);
+
+        Toast.makeText(getApplicationContext(), "Profit is " + profit, Toast.LENGTH_LONG).show();
+
     }
 
     @Override
@@ -50,10 +52,16 @@ public class profitSummary extends ActionBarActivity
         return super.onOptionsItemSelected(item);
     }
 
+    //Where we calculate the profit.
     private String calculateSummary (String start, String end)
     {
+        //calculate the bike profit from the sales table.
+        double profit = MainActivity.DATABASE.bikeProfit(start, end);
 
-        return null;
+        String PROFIT = "" + profit;
+
+
+        return PROFIT;
     }
 
 }

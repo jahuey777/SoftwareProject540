@@ -104,9 +104,9 @@ public class InventoryManagement extends ActionBarActivity
 
                                         //Will tell the user if it deleted or not
                                         if(didWeDelete)
-                                            Toast.makeText(getApplicationContext(), "The repair has been deleted.", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(getApplicationContext(), "The bike has been deleted.", Toast.LENGTH_LONG).show();
                                         else
-                                            Toast.makeText(getApplicationContext(), "The repair can't be deleted since it doesn't exist.", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(getApplicationContext(), "The bike can't be deleted since it doesn't exist.", Toast.LENGTH_LONG).show();
 
                                     }
                                 })
