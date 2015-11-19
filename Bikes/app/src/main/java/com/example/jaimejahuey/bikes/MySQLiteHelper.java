@@ -479,7 +479,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
             //Updating the availability bit to 0 in the inventory table.
             ContentValues newVal= new ContentValues();
-            newVal.put(KEY_AVAILABLE,0);
+            newVal.put(KEY_AVAILABLE, 0);
 
             DB.update(TABLE_inventory, newVal, "serial = '" + serialNum + "'", null);
 
@@ -491,7 +491,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
     public double bikeProfit(String start, String end)
     {
-        Log.d("in here", "here");
+        //Log.d("in here", "here");
 
         double profitAmount=0;
 
@@ -501,7 +501,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         //To make sure that the serial does not already exist.
         //Make sure you put quotes around the string. In this case serial
         Cursor cursor = null;
-        String sql = "SELECT salePrice FROM sales";
+        String sql = "SELECT salePrice, saleDate FROM sales";
 
         cursor = DB.rawQuery(sql, null);
 
@@ -514,8 +514,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         }
         else
         {
-            Log.d("in here1", "here1");
-
 
             //Breaking the dates into the day, month, and year.
             int startDay = Integer.parseInt(start.substring(0,2));
@@ -526,66 +524,122 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             int endMonth = Integer.parseInt(end.substring(3,5));
             int endYear = Integer.parseInt(end.substring(6,10));
 
+
             //This moves the cursor to the first one, so get this one and then into the while loop.
-            cursor.moveToFirst();
-
-            //Check the date, if it falls between the previous 2 dates then we grab the sale price as well
-            String date = cursor.getString(cursor.getColumnIndex(SALE_PRICE));
-
-            profitAmount = Double.parseDouble(date);
-            /*int day= Integer.parseInt(date.substring(0,2));
-            int month = Integer.parseInt(date.substring(3,5));
-            int year = Integer.parseInt(date.substring(6,10));
-
-            //Decide if we need to add it to the profits
-            if(startYear<year && year<endYear)
+            if(cursor!=null)
             {
-                //add to profit
+                cursor.moveToFirst();
+
+                //Check the date, if it falls between the previous 2 dates then we grab the sale price as well
+                String date = cursor.getString(1);
+
+                Log.w("In here", date);
+
+
+                //profitAmount = Double.parseDouble(date);
+                int day = Integer.parseInt(date.substring(0, 2));
+                int month = Integer.parseInt(date.substring(3, 5));
+                int year = Integer.parseInt(date.substring(6, 10));
+
+                //Decide if we need to add it to the profits
+                if (startYear < year && year < endYear)
+                {
+                    //add to profit
+                    double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                    profitAmount += bikePrice * .2;
+                }
+                //if a date falls in the same year.
+                else if (startYear == year && endYear == year && startMonth < month && month < endMonth) {
+                    double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                    profitAmount += bikePrice * .2;
+                }
+
+                //if date falls only in the same year as the startyear
+                else if (startYear == year && startMonth < month)
+                {
+                    double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                    profitAmount += bikePrice * .2;
+                }
+                //same year and same month as startyear and startmonth
+                else if (startYear == year && endYear != year && startMonth == month && startDay <= day)
+                {
+                    double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                    profitAmount += bikePrice * .2;
+                }
+                else if (endYear == year && startYear != year && endMonth > month)
+                {
+                    double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                    profitAmount += bikePrice * .2;
+                }
+
+                else if (endYear == year && startYear != year && endMonth == month && day <= endDay)
+                {
+                    double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                    profitAmount += bikePrice * .2;
+
+                }
+                //if a date falls in the same year and month.
+                else if (startYear == year && endYear == year && startMonth == month && month == endMonth && startDay <= day && day <= endDay) {
+
+                    double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                    profitAmount += bikePrice * .2;
+                }
+
+                while (cursor.moveToNext())
+                {
+                    date = cursor.getString(1);
+                    day = Integer.parseInt(date.substring(0, 2));
+                    month = Integer.parseInt(date.substring(3, 5));
+                    year = Integer.parseInt(date.substring(6, 10));
+
+                    //Decide if we need to add it to the profits
+                    if (startYear < year && year < endYear)
+                    {
+                        //add to profit
+                        double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                        profitAmount += bikePrice * .2;
+                    }
+                    //if a date falls in the same year.
+                    else if (startYear == year && endYear == year && startMonth < month && month < endMonth) {
+                        double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                        profitAmount += bikePrice * .2;
+                    }
+
+                    //if date falls only in the same year as the startyear
+                    else if (startYear == year && startMonth < month)
+                    {
+                        double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                        profitAmount += bikePrice * .2;
+                    }
+                    //same year and same month as startyear and startmonth
+                    else if (startYear == year && endYear != year && startMonth == month && startDay <= day)
+                    {
+                        double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                        profitAmount += bikePrice * .2;
+                    }
+                    else if (endYear == year && startYear != year && endMonth > month)
+                    {
+                        double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                        profitAmount += bikePrice * .2;
+                    }
+
+                    else if (endYear == year && startYear != year && endMonth == month && day <= endDay)
+                    {
+                        double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                        profitAmount += bikePrice * .2;
+
+                    }
+                    //if a date falls in the same year and month.
+                    else if (startYear == year && endYear == year && startMonth == month && month == endMonth && startDay <= day && day <= endDay) {
+
+                        double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                        profitAmount += bikePrice * .2;
+                    }
+                }
+
+
+
             }
-            //if a date falls in the same year.
-            else if(startYear==year && endYear==year && startMonth < month && month < endMonth)
-            {
-                double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
-                profitAmount+=bikePrice*.2;
-            }
-
-            //if date falls only in the same year as the startyear
-            else if(startYear==year && startMonth < month)
-            {
-
-            }
-            //same year and same month as startyear and startmonth
-            else if (startYear==year && endYear!=year && startMonth== month && startDay<=day)
-            {
-
-            }
-            else if(endYear == year && startYear!=year && endMonth>month)
-            {
-
-            }
-
-            else if (endYear== year && startYear != year && endMonth== month && day<=endDay)
-            {
-
-
-            }
-            //if a date falls in the same year and month.
-            else if(startYear==year && endYear==year && startMonth== month && month== endMonth && startDay<=day && day<=endDay)
-            {
-                //day
-                double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
-                profitAmount+=bikePrice*.2;
-            }
-
-            while(cursor.moveToNext())
-            {
-                date = cursor.getString(cursor.getColumnIndex(SALE_DATE));
-                day= Integer.parseInt(date.substring(0,2));
-                month = Integer.parseInt(date.substring(3,5));
-                year = Integer.parseInt(date.substring(6,10));
-            }
-
-            */
 
             cursor.close();
             DB.close();

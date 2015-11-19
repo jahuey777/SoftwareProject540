@@ -75,7 +75,7 @@ public class addingBike extends ActionBarActivity
                 {
                     if(MAKE.isEmpty()|| COLOR.isEmpty() || SERIAL.isEmpty())
                     {
-                        Toast.makeText(getApplicationContext(), "Input values are missing. 1", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Input values are missing.", Toast.LENGTH_LONG).show();
                     }
                     else if(check==-1)
                     {

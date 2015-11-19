@@ -42,6 +42,7 @@ public class SalesManagement extends ActionBarActivity
             @Override
             public void onClick(View v)
             {
+                Log.d("here", "here");
                 Intent i = new Intent(SalesManagement.this, viewProfit.class);
 
                 startActivity(i);
