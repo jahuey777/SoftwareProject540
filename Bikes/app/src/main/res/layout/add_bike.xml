@@ -5,8 +5,7 @@
     android:orientation="vertical"
     android:baselineAligned="true"
     android:gravity="center_horizontal"
-    android:paddingBottom="150dp"
-    android:background="@color/background_floating_material_dark">
+    android:paddingBottom="150dp">
 
     <TextView
         android:layout_width="fill_parent"

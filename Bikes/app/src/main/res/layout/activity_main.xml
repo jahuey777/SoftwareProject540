@@ -5,8 +5,7 @@
     android:orientation="vertical"
     android:baselineAligned="false"
     android:paddingBottom="180dp"
-    android:gravity="center_horizontal"
-    android:background="@color/material_blue_grey_800">
+    android:gravity="center_horizontal">
 
     <TextView
         android:layout_width="match_parent"
