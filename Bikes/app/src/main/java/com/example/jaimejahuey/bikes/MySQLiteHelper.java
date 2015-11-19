@@ -540,8 +540,40 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
 
                     //add to profit
-                 double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
-                  profitAmount += bikePrice * .2;
+                if(startYear < year && endYear>year)
+                {
+                    double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                    profitAmount += bikePrice * .2;
+                }
+                else if(startYear < year && endYear >= year)
+                {
+                    if(endMonth>month && endDay >= day)
+                    {
+                        double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                        profitAmount += bikePrice * .2;
+                    }
+                }
+                else if(startYear==year && endYear >= year)
+                {
+                    if (endYear > year && month > startMonth)
+                    {
+                        double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                        profitAmount += bikePrice * .2;
+                    }
+                    else if(endYear > year && month==startMonth && startDay <= day)
+                    {
+                        double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                        profitAmount += bikePrice * .2;
+                    }
+                    else if(endYear == year)
+                    {
+                        if(startMonth <= month && month<= endMonth && startDay <= day && endDay >= day )
+                        {
+                            double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                            profitAmount += bikePrice * .2;
+                        }
+                    }
+                }
 
 
                 while (cursor.moveToNext())
@@ -551,6 +583,40 @@ public class MySQLiteHelper extends SQLiteOpenHelper
                     month = Integer.parseInt(date.substring(3, 5));
                     year = Integer.parseInt(date.substring(6, 10));
 
+                    if(startYear < year && endYear>year)
+                    {
+                        double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                        profitAmount += bikePrice * .2;
+                    }
+                    else if(startYear < year && endYear >= year)
+                    {
+                        if(endMonth>month && endDay >= day)
+                        {
+                            double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                            profitAmount += bikePrice * .2;
+                        }
+                    }
+                    else if(startYear==year && endYear >= year)
+                    {
+                        if (endYear > year && month > startMonth)
+                        {
+                            double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                            profitAmount += bikePrice * .2;
+                        }
+                        else if(endYear > year && month==startMonth && startDay <= day)
+                        {
+                            double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                            profitAmount += bikePrice * .2;
+                        }
+                        else if(endYear == year)
+                        {
+                            if(startMonth <= month && month<= endMonth && startDay <= day && endDay >= day )
+                            {
+                                double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                                profitAmount += bikePrice * .2;
+                            }
+                        }
+                    }
                 }
 
 
