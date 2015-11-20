@@ -100,7 +100,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         onCreate(db);
     }
 
-
     //To be able to add a bike to the database
     public boolean addBike(Bike bike)
     {
@@ -151,7 +150,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             return false;
         }
     }
-
 
     //Bike will not actually be deleted from the database, just modified to not be available.
     public boolean removeBike(String bikeSerial)
@@ -226,7 +224,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     //To list the bikes and models and the quantity of bikes.
 
     //Other functions for the remainder of the project
-
     //reading the inventory database
     public Cursor readInventoryEntry()
     {
@@ -265,6 +262,22 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         //has KEY_AVAILABLE first to make sure its available before adding it to table
 
         Cursor c = getWritableDatabase().query(MySQLiteHelper.TABLE_repairs, allColumns,null, null, null, null, null);
+
+        if(c!=null)
+        {
+            c.moveToFirst();
+        }
+
+        return c;
+    }
+
+    public Cursor readSoldBikesEntry()
+    {
+        String[] allColumns =
+                new String[]{ MySQLiteHelper.SALE_DATE, MySQLiteHelper.SALE_PRICE};
+        //has KEY_AVAILABLE first to make sure its available before adding it to table
+
+        Cursor c = getWritableDatabase().query(MySQLiteHelper.TABLE_sales, allColumns,null, null, null, null, null);
 
         if(c!=null)
         {

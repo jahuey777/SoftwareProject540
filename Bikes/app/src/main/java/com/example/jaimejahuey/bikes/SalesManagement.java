@@ -22,6 +22,7 @@ public class SalesManagement extends ActionBarActivity
 {
     private Button ViewProfitButton;
     private Button SoldBikeButton;
+    private Button ViewSoldBikes;
 
     Context context= this;
     EditText soldSerial;
@@ -36,6 +37,7 @@ public class SalesManagement extends ActionBarActivity
 
         SoldBikeButton = (Button) findViewById(R.id.SoldBike);
         ViewProfitButton = (Button) findViewById(R.id.ViewProfit);
+        ViewSoldBikes = (Button) findViewById(R.id.ViewSoldBikes);
 
         //Takes us to the sell a bike page.
         ViewProfitButton.setOnClickListener(new View.OnClickListener() {
@@ -49,7 +51,16 @@ public class SalesManagement extends ActionBarActivity
             }
         });
 
+        ViewSoldBikes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Log.d("here", "here");
+                Intent i = new Intent(SalesManagement.this, viewSoldBikes.class);
 
+                startActivity(i);
+            }
+        });
         //Check for the serial of the bike that is sold.
         //If it exists, we will allow the user to add it to the sold bikes database
         SoldBikeButton.setOnClickListener(new View.OnClickListener()

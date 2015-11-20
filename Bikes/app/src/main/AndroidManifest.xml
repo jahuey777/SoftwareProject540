@@ -55,6 +55,10 @@
          <activity android:name=".viewCompletedRepairs"
             android:label="View Completed Repairs">
         </activity>
+
+        <activity android:name=".viewSoldBikes"
+            android:label="View Sold Bikes">
+        </activity>
     </application>
 
 
