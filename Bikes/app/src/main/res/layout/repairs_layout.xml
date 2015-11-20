@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Repairs/Tasks"
+        android:text="@string/Repairs"
         android:id="@+id/textView_Title_Reps"
         android:layout_gravity="center_horizontal"
         android:textSize="30dp"
@@ -20,10 +20,9 @@
 
     <TextView
         android:layout_marginTop="10dp"
-        android:textSize="18dp"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="Please choose one of the following options."/>
+        android:text="@string/hint"/>
 
     <Button
         android:layout_marginTop="20dp"

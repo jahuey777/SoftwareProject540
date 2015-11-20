@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Bikes</string>
+    <string name="app_name">Espina\'s Bikes</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="manage_inventory">Manage Inventory</string>
+    <string name="sales">Sales</string>
+    <string name="Repairs">Repairs</string>
+    <string name="hint">Please choose one of the following options.</string>
 
 </resources>

@@ -274,7 +274,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     public Cursor readSoldBikesEntry()
     {
         String[] allColumns =
-                new String[]{ MySQLiteHelper.SALE_DATE, MySQLiteHelper.SALE_PRICE};
+                new String[]{ MySQLiteHelper.SALE_DATE, MySQLiteHelper.SALE_PRICE, MySQLiteHelper.KEY_SERIALCODE};
         //has KEY_AVAILABLE first to make sure its available before adding it to table
 
         Cursor c = getWritableDatabase().query(MySQLiteHelper.TABLE_sales, allColumns,null, null, null, null, null);

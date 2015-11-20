@@ -51,15 +51,19 @@ public class viewSoldBikes extends Activity {
                     TextView textV = new TextView(this); //creates a text view for each of the columns
 
                     if (i==0 && j==0)
-                    {   //formatEntry(textV,20);
+                    {   formatEntry(textV,20);
                         textV.setText("Sales Date");
                         row.addView(textV);
 
                         textV = new TextView(this);
-                        //formatEntry(textV,20);
+                        formatEntry(textV,20);
                         textV.setText("Sales Price");
                         row.addView(textV);
 
+                        textV = new TextView(this);
+                        formatEntry(textV,20);
+                        textV.setText("Serial #");
+                        row.addView(textV);
 
                         textV = new TextView(this);
                         textV.setText("");
@@ -69,6 +73,7 @@ public class viewSoldBikes extends Activity {
                         row = new TableRow(this);
                     }
                     // the following lines set the layout parameters for each text view
+                    textV = new TextView(this);
                     textV.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
                     textV.setGravity(Gravity.CENTER);
                     textV.setTextSize(18);
@@ -77,16 +82,16 @@ public class viewSoldBikes extends Activity {
                     //sets what the text view says
                     textV.setText(c.getString(j));
 
-                    if (!textV.getText().equals("")) {
+                    /*if (!textV.getText().equals("")) {
                         if (textV.getText().equals("0")) { //if its completed, skip the row in the database
                             textV.setText("");
                             j = columns + 1;
                         } else if (textV.getText().equals("1")) {//if its available, dont print out the "1"
                             textV.setText("");
-                        } else {
+                        } else {*/
                             row.addView(textV); //adds the text to the column space
-                        }
-                    }
+                        //}
+                   // }
                 }
                 //end inner FOR loop
 
@@ -133,6 +138,8 @@ public class viewSoldBikes extends Activity {
             textV.setTextSize(18);
             textV.setPadding(0, 5, 0, 5);
         }
+
+
 
     }//End display sold Bikes class
 
