@@ -90,7 +90,7 @@ public class viewProfit extends ActionBarActivity
             {
                 //first checking to make sure that none of them are null
                 if(dataBaseBeginningDayProfit == null || dataBaseBeginningMonthProfit ==null
-                    || dataBaseBeginningYearProfit==null || dataBaseEndDayProfit==null ||
+                        || dataBaseBeginningYearProfit==null || dataBaseEndDayProfit==null ||
                         dataBaseEndMonthProfit ==null || dataBaseEndYearProfit==null)
                 {
                     Toast.makeText(getApplicationContext(), "Please select 2 dates.", Toast.LENGTH_LONG).show();
@@ -127,7 +127,7 @@ public class viewProfit extends ActionBarActivity
                     }
                     if (Integer.parseInt(dataBaseEndDayProfit) < 10)
                     {
-                       dataBaseEndDayProfit = "0" + dataBaseEndDayProfit;
+                        dataBaseEndDayProfit = "0" + dataBaseEndDayProfit;
                     }
                     if(Integer.parseInt(dataBaseEndMonthProfit)<10)
                     {
@@ -146,11 +146,11 @@ public class viewProfit extends ActionBarActivity
                     String endDate = dataBaseEndMonthProfit + " " + dataBaseEndDayProfit +
                             " " + dataBaseEndYearProfit;
 
-                     Intent i = new Intent(viewProfit.this, profitSummary.class);
-                     i.putExtra("First Date",startDate );
-                     i.putExtra("End Date", endDate);
+                    Intent i = new Intent(viewProfit.this, profitSummary.class);
+                    i.putExtra("First Date",startDate );
+                    i.putExtra("End Date", endDate);
 
-                     startActivity(i);
+                    startActivity(i);
 
                 }
 
