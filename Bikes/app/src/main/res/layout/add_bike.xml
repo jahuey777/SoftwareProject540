@@ -4,8 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:baselineAligned="true"
-    android:gravity="center_horizontal"
-    android:paddingBottom="150dp">
+    android:gravity="center_horizontal">
 
     <TextView
         android:layout_width="fill_parent"
@@ -28,8 +27,7 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:text="Please enter the make of the bike."
-            android:layout_marginLeft="25dp" />
+            android:text="Please enter the make of the bike." />
 
         <EditText
             android:id="@+id/addBikeMakeInput"
@@ -37,19 +35,14 @@
             android:layout_height="fill_parent"
             android:background="#CCCCCC"
             android:ems="10"
-            android:inputType="text"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            />
+            android:inputType="text" />
 
         <TextView
             android:id="@+id/textView1"
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:text="Please input the serial number or code of the bike."
-            android:layout_marginLeft="25dp"
-            />
+            android:text="Please input the serial number or code of the bike." />
 
         <EditText
             android:id="@+id/addBikeSerialInput"
@@ -57,18 +50,14 @@
             android:layout_height="fill_parent"
             android:background="#CCCCCC"
             android:ems="10"
-            android:inputType="text"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            />
+            android:inputType="text" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:text="Please input the color of this bike."
-            android:layout_marginLeft="25dp"/>
+            android:text="Please input the color of this bike." />
 
         <EditText
             android:id="@+id/addBikeColor"
@@ -76,31 +65,25 @@
             android:layout_height="fill_parent"
             android:background="#CCCCCC"
             android:ems="10"
-            android:inputType="text"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            />
+            android:inputType="text" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:text="Please choose the condition of the bike."
-            android:layout_marginLeft="15dp"/>
+            android:text="Please choose the condition of the bike." />
 
         <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/addBikeCondition"
-            android:layout_marginLeft="20dp">
+            android:id="@+id/addBikeCondition">
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/addBikeNew"
-                android:text="New"
-                android:checked="false" />
+                android:text="New"/>
 
             <RadioButton
                 android:layout_width="wrap_content"
@@ -124,4 +107,3 @@
         android:text="Enter Information"/>
 
 </LinearLayout>
-

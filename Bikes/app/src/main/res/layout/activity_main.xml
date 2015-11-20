@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:baselineAligned="false"
-    android:paddingBottom="180dp"
+    android:paddingBottom="100dp"
     android:gravity="center_horizontal">
 
     <TextView

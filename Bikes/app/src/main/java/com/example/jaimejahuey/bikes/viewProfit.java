@@ -123,19 +123,19 @@ public class viewProfit extends ActionBarActivity
                 {
                     if (Integer.parseInt(dataBaseBeginningDayProfit) < 10 )
                     {
-                        dataBaseBeginningDayProfit += "0";
+                        dataBaseBeginningDayProfit = "0" + dataBaseBeginningDayProfit;
                     }
                     if (Integer.parseInt(dataBaseEndDayProfit) < 10)
                     {
-                       dataBaseEndMonthProfit += "0";
+                       dataBaseEndDayProfit = "0" + dataBaseEndDayProfit;
                     }
                     if(Integer.parseInt(dataBaseEndMonthProfit)<10)
                     {
-                        dataBaseEndMonthProfit += "0";
+                        dataBaseEndMonthProfit = "0" + dataBaseEndMonthProfit;
                     }
                     if(Integer.parseInt(dataBaseBeginningMonthProfit)<10)
                     {
-                        dataBaseBeginningMonthProfit += "0";
+                        dataBaseBeginningMonthProfit = "0" + dataBaseBeginningMonthProfit;
                     }
 
 

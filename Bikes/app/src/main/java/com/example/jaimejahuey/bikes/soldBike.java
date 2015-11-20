@@ -88,7 +88,7 @@ public class soldBike extends ActionBarActivity
                         //So if the day or month is year is less than 10, then append a 0 to the beginning
                         if (Integer.parseInt(dataBasedayOfSale) < 10)
                         {
-                            dataBasedayOfSale += "0";
+                            dataBasedayOfSale = "0" + dataBasedayOfSale;
                         }
                         if (Integer.parseInt(dataBasemonthOfSale) < 10)
                         {

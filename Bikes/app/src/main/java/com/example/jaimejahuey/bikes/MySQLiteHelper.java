@@ -501,12 +501,15 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         //To make sure that the serial does not already exist.
         //Make sure you put quotes around the string. In this case serial
         Cursor cursor = null;
+        Cursor cursor2 = null;
         String sql = "SELECT salePrice, saleDate FROM sales";
+        String slq2 = "SELECT costOfRepair, amountCharged, dateCompleted From repairs";
 
         cursor = DB.rawQuery(sql, null);
+        cursor2= DB.rawQuery(slq2,null);
 
         //If the cursor is less then 0 then its not in the table yet
-        if(cursor.getCount()<=0)
+        if(cursor.getCount()<=0 && cursor2.getCount()<=0)
         {
             profitAmount = 0;
             cursor.close();
@@ -619,10 +622,115 @@ public class MySQLiteHelper extends SQLiteOpenHelper
                     }
                 }
 
+            }
+
+            if(cursor2!=null)
+            {
+                cursor2.moveToFirst();
+
+                //Check the date, if it falls between the previous 2 dates then we grab the sale price as well
+                String date = cursor2.getString(2);
+
+                //profitAmount = Double.parseDouble(date);
+                int day = Integer.parseInt(date.substring(0, 2));
+                int month = Integer.parseInt(date.substring(3, 5));
+                int year = Integer.parseInt(date.substring(6, 10));
+
+
+                //add to profit
+                if(startYear < year && endYear>year)
+                {
+                    double amountCharged = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(AMOUNT_CHARGED)));
+                    double cost = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(COST_REPAIR)));
+                    profitAmount += (amountCharged-cost);
+                }
+                else if(startYear < year && endYear >= year)
+                {
+                    if(endMonth>month && endDay >= day)
+                    {
+                        double amountCharged = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(AMOUNT_CHARGED)));
+                        double cost = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(COST_REPAIR)));
+                        profitAmount += (amountCharged-cost);
+                    }
+                }
+                else if(startYear==year && endYear >= year)
+                {
+                    if (endYear > year && month > startMonth)
+                    {
+                        double amountCharged = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(AMOUNT_CHARGED)));
+                        double cost = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(COST_REPAIR)));
+                        profitAmount += (amountCharged-cost);
+                    }
+                    else if(endYear > year && month==startMonth && startDay <= day)
+                    {
+                        double amountCharged = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(AMOUNT_CHARGED)));
+                        double cost = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(COST_REPAIR)));
+                        profitAmount += (amountCharged-cost);
+                    }
+                    else if(endYear == year)
+                    {
+                        if(startMonth <= month && month<= endMonth && startDay <= day && endDay >= day )
+                        {
+                            double amountCharged = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(AMOUNT_CHARGED)));
+                            double cost = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(COST_REPAIR)));
+                            profitAmount += (amountCharged-cost);
+                        }
+                    }
+                }
+
+
+                while (cursor.moveToNext())
+                {
+                    date = cursor2.getString(2);
+                    day = Integer.parseInt(date.substring(0, 2));
+                    month = Integer.parseInt(date.substring(3, 5));
+                    year = Integer.parseInt(date.substring(6, 10));
+
+                    if(startYear < year && endYear>year)
+                    {
+                        double amountCharged = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(AMOUNT_CHARGED)));
+                        double cost = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(COST_REPAIR)));
+                        profitAmount += (amountCharged-cost);
+                    }
+                    else if(startYear < year && endYear >= year)
+                    {
+                        if(endMonth>month && endDay >= day)
+                        {
+                            double amountCharged = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(AMOUNT_CHARGED)));
+                            double cost = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(COST_REPAIR)));
+                            profitAmount += (amountCharged-cost);
+                        }
+                    }
+                    else if(startYear==year && endYear >= year)
+                    {
+                        if (endYear > year && month > startMonth)
+                        {
+                            double amountCharged = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(AMOUNT_CHARGED)));
+                            double cost = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(COST_REPAIR)));
+                            profitAmount += (amountCharged-cost);
+                        }
+                        else if(endYear > year && month==startMonth && startDay <= day)
+                        {
+                            double amountCharged = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(AMOUNT_CHARGED)));
+                            double cost = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(COST_REPAIR)));
+                            profitAmount += (amountCharged-cost);
+                        }
+                        else if(endYear == year)
+                        {
+                            if(startMonth <= month && month<= endMonth && startDay <= day && endDay >= day )
+                            {
+                                double amountCharged = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(AMOUNT_CHARGED)));
+                                double cost = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(COST_REPAIR)));
+                                profitAmount += (amountCharged-cost);
+                            }
+                        }
+                    }
+                }
 
 
             }
 
+            cursor2.close();
             cursor.close();
             DB.close();
         }

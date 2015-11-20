@@ -106,11 +106,11 @@ public class AddingRepair extends ActionBarActivity
                        //So if the day or month is year is less than 10, then append a 0 to the beginning
                        if(Integer.parseInt(dataBaseday)<10)
                        {
-                           dataBaseday += "0";
+                           dataBaseday = "0" + dataBaseday;
                        }
                        if(Integer.parseInt(dataBasemonth)<10)
                        {
-                            dataBasemonth+= "0" + dataBasemonth;
+                            dataBasemonth = "0" + dataBasemonth;
                        }
 
                         //Formatting the date for the database
