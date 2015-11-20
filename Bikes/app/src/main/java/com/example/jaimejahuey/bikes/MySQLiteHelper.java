@@ -489,11 +489,15 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         }
     }
 
-    public double bikeProfit(String start, String end)
+    public double []  bikeProfit(String start, String end)
     {
         //Log.d("in here", "here");
 
+        double [] info = new double [4];
         double profitAmount=0;
+        double amountChargedRepairs =0;
+        double costAmountRepairs =0;
+        double bikeSalesTotal=0;
 
         //To be able to write to database
         SQLiteDatabase DB = this.getWritableDatabase();
@@ -547,6 +551,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
                     if (startYear < year && endYear > year)
                     {
                         double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                        bikeSalesTotal += Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
                         profitAmount += bikePrice * .2;
                     }
                     else if (startYear < year && endYear >= year)
@@ -554,6 +559,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
                         if (endMonth > month && endDay >= day)
                         {
                             double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                            bikeSalesTotal += Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
                             profitAmount += bikePrice * .2;
                         }
                     } else if (startYear == year && endYear >= year)
@@ -561,11 +567,13 @@ public class MySQLiteHelper extends SQLiteOpenHelper
                         if (endYear > year && month > startMonth)
                         {
                             double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                            bikeSalesTotal += Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
                             profitAmount += bikePrice * .2;
                         }
                         else if (endYear > year && month == startMonth && startDay <= day)
                         {
                             double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                            bikeSalesTotal += Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
                             profitAmount += bikePrice * .2;
                         }
                         else if (endYear == year)
@@ -573,6 +581,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
                             if (startMonth <= month && month <= endMonth && startDay <= day && endDay >= day)
                             {
                                 double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                                bikeSalesTotal += Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
                                 profitAmount += bikePrice * .2;
                             }
                         }
@@ -588,6 +597,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
                         if (startYear < year && endYear > year)
                         {
                             double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                            bikeSalesTotal += Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
                             profitAmount += bikePrice * .2;
                         }
                         else if (startYear < year && endYear >= year)
@@ -595,6 +605,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
                             if (endMonth > month && endDay >= day)
                             {
                                 double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                                bikeSalesTotal += Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
                                 profitAmount += bikePrice * .2;
                             }
                         }
@@ -603,11 +614,13 @@ public class MySQLiteHelper extends SQLiteOpenHelper
                             if (endYear > year && month > startMonth)
                             {
                                 double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                                bikeSalesTotal += Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
                                 profitAmount += bikePrice * .2;
                             }
                             else if (endYear > year && month == startMonth && startDay <= day)
                             {
                                 double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                                bikeSalesTotal += Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
                                 profitAmount += bikePrice * .2;
                             }
                             else if (endYear == year)
@@ -615,6 +628,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
                                 if (startMonth <= month && month <= endMonth && startDay <= day && endDay >= day)
                                 {
                                     double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
+                                    bikeSalesTotal += Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
                                     profitAmount += bikePrice * .2;
                                 }
                             }
@@ -645,6 +659,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper
                     {
                         double amountCharged = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(AMOUNT_CHARGED)));
                         double cost = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(COST_REPAIR)));
+                        amountChargedRepairs = amountCharged;
+                        cost = costAmountRepairs;
                         profitAmount += (amountCharged - cost);
                     }
                     else if (startYear < year && endYear >= year)
@@ -653,6 +669,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper
                         {
                             double amountCharged = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(AMOUNT_CHARGED)));
                             double cost = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(COST_REPAIR)));
+                            amountChargedRepairs = amountCharged;
+                            cost = costAmountRepairs;
                             profitAmount += (amountCharged - cost);
                         }
                     }
@@ -663,12 +681,16 @@ public class MySQLiteHelper extends SQLiteOpenHelper
                         {
                             double amountCharged = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(AMOUNT_CHARGED)));
                             double cost = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(COST_REPAIR)));
+                            amountChargedRepairs = amountCharged;
+                            cost = costAmountRepairs;
                             profitAmount += (amountCharged - cost);
                         }
                         else if (endYear > year && month == startMonth && startDay <= day)
                         {
                             double amountCharged = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(AMOUNT_CHARGED)));
                             double cost = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(COST_REPAIR)));
+                            amountChargedRepairs = amountCharged;
+                            cost = costAmountRepairs;
                             profitAmount += (amountCharged - cost);
                         }
                         else if (endYear == year)
@@ -677,6 +699,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper
                             {
                                 double amountCharged = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(AMOUNT_CHARGED)));
                                 double cost = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(COST_REPAIR)));
+                                amountChargedRepairs = amountCharged;
+                                cost = costAmountRepairs;
                                 profitAmount += (amountCharged - cost);
                             }
                         }
@@ -694,6 +718,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper
                         {
                             double amountCharged = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(AMOUNT_CHARGED)));
                             double cost = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(COST_REPAIR)));
+                            amountChargedRepairs = amountCharged;
+                            cost = costAmountRepairs;
                             profitAmount += (amountCharged - cost);
                         }
 
@@ -703,6 +729,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper
                             {
                                 double amountCharged = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(AMOUNT_CHARGED)));
                                 double cost = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(COST_REPAIR)));
+                                amountChargedRepairs = amountCharged;
+                                cost = costAmountRepairs;
                                 profitAmount += (amountCharged - cost);
                             }
                         }
@@ -713,12 +741,16 @@ public class MySQLiteHelper extends SQLiteOpenHelper
                             {
                                 double amountCharged = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(AMOUNT_CHARGED)));
                                 double cost = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(COST_REPAIR)));
+                                amountChargedRepairs = amountCharged;
+                                cost = costAmountRepairs;
                                 profitAmount += (amountCharged - cost);
                             }
                             else if (endYear > year && month == startMonth && startDay <= day)
                             {
                                 double amountCharged = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(AMOUNT_CHARGED)));
                                 double cost = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(COST_REPAIR)));
+                                amountChargedRepairs = amountCharged;
+                                cost = costAmountRepairs;
                                 profitAmount += (amountCharged - cost);
                             }
                             else if (endYear == year)
@@ -727,6 +759,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper
                                 {
                                     double amountCharged = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(AMOUNT_CHARGED)));
                                     double cost = Double.parseDouble(cursor2.getString(cursor2.getColumnIndex(COST_REPAIR)));
+                                    amountChargedRepairs = amountCharged;
+                                    cost = costAmountRepairs;
                                     profitAmount += (amountCharged - cost);
                                 }
                             }
@@ -742,9 +776,12 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             DB.close();
         }
 
+        info[0]= profitAmount;
+        info[1]= bikeSalesTotal;
+        info[2]= costAmountRepairs;
+        info[3]= amountChargedRepairs;
 
-
-        return profitAmount;
+        return info;
     }
 
 }

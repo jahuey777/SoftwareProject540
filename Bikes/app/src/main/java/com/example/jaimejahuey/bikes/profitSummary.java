@@ -60,10 +60,14 @@ public class profitSummary extends ActionBarActivity
       //  Log.w("start", start);
         // Log.w("end", end);
 
-        double profit = MainActivity.DATABASE.bikeProfit(start, end);
+        double [] information= new double [4];
+        information = MainActivity.DATABASE.bikeProfit(start, end);
+
+        Log.w("profit amount", " " + information[0]);
+        Log.w("total bike sales amount", " " + information[1]);
 
 
-        String PROFIT = "" + profit;
+        String PROFIT = "";
 
 
         return PROFIT;
