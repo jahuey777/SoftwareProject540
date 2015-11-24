@@ -520,7 +520,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         Cursor cursor = null;
         Cursor cursor2 = null;
         String sql = "SELECT salePrice, saleDate FROM sales";
-        String slq2 = "SELECT costOfRepair, amountCharged, dateCompleted From repairs";
+        String slq2 = "SELECT costOfRepair, amountCharged, dateCompleted From repairs Where status = " + 0;
 
         cursor = DB.rawQuery(sql, null);
         cursor2= DB.rawQuery(slq2,null);
@@ -797,6 +797,54 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         return info;
     }
 
+    public String [] repairInfo(String serialNum, String [] info)
+    {
+        //To be able to write to database
+        SQLiteDatabase DB = this.getWritableDatabase();
+
+        //To make sure that the serial does not already exist.
+        //Make sure you put quotes around the string. In this case serial
+        Cursor cursor = null;
+        String sql = "SELECT customerName, customerPhone, dueDate, costOfRepair, amountCharged," +
+                " dateCompleted FROM repairs WHERE serial = '" + serialNum + "' and deleted = " + 0;
+
+        cursor = DB.rawQuery(sql, null);
+
+        String information[] = new String[6];
+
+        //If the cursor is less then 0 then its not in the table yet
+        if(cursor.getCount()<=0)
+        {
+            cursor.close();
+            DB.close();
+        }
+        else
+        {
+            if(cursor!=null)
+            {
+                cursor.moveToFirst();
+                information[0] = cursor.getString(0);
+                information[1] = cursor.getString(1);
+                information[2] = cursor.getString(2);
+                information[3] = cursor.getString(3);
+                information[4] = cursor.getString(4);
+                information[5] = cursor.getString(5);
+            }
+
+
+            cursor.close();
+            DB.close();
+        }
+
+
+        for(int i = 0; i<6; i++)
+        {
+            info [i] = information[i];
+        }
+
+        return info;
+
+    }
 }
 
 

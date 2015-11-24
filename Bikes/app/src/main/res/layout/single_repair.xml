@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="View Active Repairs"
+        android:singleLine="false"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/textvie"
+        android:gravity="center_vertical"
+        android:textColor="#ff2e7d13" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="6">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Customer Name:"
+            android:singleLine="false"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/textview"
+            android:gravity="center_vertical"
+            android:textColor="#ff2e7d13" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:singleLine="false"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/CUSTOMERNAME"
+            android:gravity="center_vertical"
+            android:textColor="#ff2e7d13" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Phone Number:"
+            android:singleLine="false"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/textview2"
+            android:gravity="center_vertical"
+            android:textColor="#ff2e7d13" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:singleLine="false"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/CUSTOMERPHONE"
+            android:gravity="center_vertical"
+            android:textColor="#ff2e7d13" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Due Date:"
+            android:singleLine="false"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/textview4"
+            android:gravity="center_vertical"
+            android:textColor="#ff2e7d13" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:singleLine="false"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/DUEDATE"
+            android:gravity="center_vertical"
+            android:textColor="#ff2e7d13" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Repair Cost:"
+            android:singleLine="false"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/textview6"
+            android:gravity="center_vertical"
+            android:textColor="#ff2e7d13" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:singleLine="false"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/COSTREPAIR"
+            android:gravity="center_vertical"
+            android:textColor="#ff2e7d13" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Amount Charged:"
+            android:singleLine="false"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/textview8"
+            android:gravity="center_vertical"
+            android:textColor="#ff2e7d13" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:singleLine="false"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/AMOUNTCHARGED"
+            android:gravity="center_vertical"
+            android:textColor="#ff2e7d13" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Date Completed:"
+            android:singleLine="false"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/textview10"
+            android:gravity="center_vertical"
+            android:textColor="#ff2e7d13" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:singleLine="false"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/DATECOMPLETED"
+            android:gravity="center_vertical"
+            android:textColor="#ff2e7d13" />
+
+        </GridLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/callButton"
+        android:text="Call customer"/>
+
+</LinearLayout>

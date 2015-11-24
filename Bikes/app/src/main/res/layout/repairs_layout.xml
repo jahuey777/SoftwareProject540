@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:columnCount="2"
-        android:rowCount="3">
+        android:rowCount="6">
 
 
         <ImageButton
@@ -48,7 +48,7 @@
             android:layout_width="69dp"
             android:layout_height="69dp"
             android:id="@+id/CompletedRepair"
-            android:layout_marginLeft="80dp"
+            android:layout_marginLeft="60dp"
             android:background="#00ffffff"
             android:src="@drawable/completed"
             android:scaleType="fitCenter" />
@@ -82,19 +82,19 @@
             android:layout_height="69dp"
             android:id="@+id/DeleteRepair"
             android:layout_marginLeft="70dp"
-            android:src="@drawable/deleterepair"
+            android:src="@drawable/repairdelete"
             android:background="#00ffffff"
             android:scaleType="fitCenter" />
 
         <ImageButton
-            android:layout_marginTop="20dp"
             android:layout_width="69dp"
             android:layout_height="69dp"
             android:id="@+id/ViewActiveRepairs"
-            android:layout_marginLeft="80dp"
+            android:layout_marginLeft="60dp"
             android:src="@drawable/clipboard"
             android:scaleType="fitCenter"
-            android:background="#00ffffff" />
+            android:background="#00ffffff"
+            android:layout_marginTop="20dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -106,7 +106,7 @@
             android:id="@+id/textview2"
             android:gravity="center_vertical"
             android:textColor="#ff2e7d13"
-            android:layout_marginLeft="60dp" />
+            android:layout_marginLeft="10dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -119,29 +119,52 @@
             android:gravity="center_vertical"
             android:textColor="#ff2e7d13" />
 
+        <ImageButton
+            android:layout_width="69dp"
+            android:layout_height="69dp"
+            android:id="@+id/ViewPendingRepairs"
+            android:background="#00ffffff"
+            android:scaleType="fitCenter"
+            android:src="@drawable/clipboard"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="20dp" />
+
+        <ImageButton
+            android:layout_width="69dp"
+            android:layout_height="69dp"
+            android:id="@+id/ViewARepair"
+            android:background="#00ffffff"
+            android:scaleType="fitCenter"
+            android:src="@drawable/clipboard"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="View Completed Repairs"
+            android:singleLine="false"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/textview4"
+            android:gravity="center_vertical"
+            android:textColor="#ff2e7d13"
+            android:layout_marginLeft="40dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="View a Repair"
+            android:singleLine="false"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/textview5"
+            android:gravity="center_vertical"
+            android:textColor="#ff2e7d13" />
+
 
     </GridLayout>
 
-
-    <ImageButton
-        android:layout_marginTop="20dp"
-        android:layout_width="69dp"
-        android:layout_height="69dp"
-        android:id="@+id/ViewPendingRepairs"
-        android:background="#00ffffff"
-        android:scaleType="fitCenter"
-        android:src="@drawable/completedrepairs"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:text="View Completed Repair"
-        android:singleLine="false"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/textview4"
-        android:gravity="center_vertical"
-        android:textColor="#ff2e7d13" />
 
 
 

@@ -3,12 +3,12 @@ package com.example.jaimejahuey.bikes;
 /**
  * Created by jaimejahuey on 9/18/15.
  */
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -23,13 +23,14 @@ import android.widget.Toast;
 /**
  * Created by jaimejahuey on 9/16/15.
  */
-public class Repairs extends Activity
+public class Repairs extends ActionBarActivity
 {
     private ImageButton addRepair;
     private ImageButton completedRepair;
     private ImageButton viewActiveRepairButton;
     private ImageButton viewCompletedRepairButton;
     private ImageButton deleteRepairButton;
+    private ImageButton viewSingleRepair;
 
     final Context context = this;
     private EditText completedSerialText;
@@ -56,6 +57,7 @@ public class Repairs extends Activity
         viewActiveRepairButton = (ImageButton) findViewById(R.id.ViewActiveRepairs);
         viewCompletedRepairButton = (ImageButton) findViewById(R.id.ViewPendingRepairs);
         deleteRepairButton = (ImageButton) findViewById(R.id.DeleteRepair);
+        viewSingleRepair = (ImageButton) findViewById(R.id.ViewARepair);
 
         //WHen the user clikcs on the button. Go to addingRepair class
         addRepair.setOnClickListener(new View.OnClickListener()
@@ -122,11 +124,11 @@ public class Repairs extends Activity
                                     }
                                 });
 
-                    //To actually create it
-                    AlertDialog alertDialog = alertDialogBuilder.create();
+                //To actually create it
+                AlertDialog alertDialog = alertDialogBuilder.create();
 
-                    //show it
-                     alertDialog.show();
+                //show it
+                alertDialog.show();
 
 
             }
@@ -150,8 +152,7 @@ public class Repairs extends Activity
                         .setPositiveButton("Remove",
                                 new DialogInterface.OnClickListener() {
                                     @Override
-                                    public void onClick(DialogInterface dialog, int id)
-                                    {
+                                    public void onClick(DialogInterface dialog, int id) {
 
                                         //Had to add this line, otherwise it will throw an error whenever
                                         //the user inputs anything to the pop dialog
@@ -164,7 +165,7 @@ public class Repairs extends Activity
                                         Boolean didWeDelete = MainActivity.DATABASE.removeRepair(repairSerial);
 
                                         //Will tell the user if it deleted or not
-                                        if(didWeDelete)
+                                        if (didWeDelete)
                                             Toast.makeText(getApplicationContext(), "The Bike has been removed from inventory.", Toast.LENGTH_LONG).show();
                                         else
                                             Toast.makeText(getApplicationContext(), "The bike can not be removed since it is not in the inventory or it has already been removed.", Toast.LENGTH_LONG).show();
@@ -172,11 +173,9 @@ public class Repairs extends Activity
                                     }
                                 })
                         .setNegativeButton("Cancel",
-                                new DialogInterface.OnClickListener()
-                                {
+                                new DialogInterface.OnClickListener() {
                                     @Override
-                                    public void onClick(DialogInterface dialog, int id)
-                                    {
+                                    public void onClick(DialogInterface dialog, int id) {
                                         dialog.cancel();
                                     }
                                 });
@@ -190,6 +189,65 @@ public class Repairs extends Activity
             }
         });
 
+        viewSingleRepair.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                LayoutInflater RemoveInflator = LayoutInflater.from(context);
+                View RemoveView  = RemoveInflator.inflate(R.layout.remove_bike_dialog, null);
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+                //sets remove_bike_dialog.xml to alertdialog builder
+                alertDialogBuilder.setView(RemoveView);
+
+                alertDialogBuilder
+                        .setCancelable(false)
+                        .setPositiveButton("Enter",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id) {
+
+                                        //Had to add this line, otherwise it will throw an error whenever
+                                        //the user inputs anything to the pop dialog
+                                        Dialog f = (Dialog) dialog;
+
+                                        //Its just the serial number
+                                        removeRepairSerialText = (EditText) f.findViewById(R.id.inputValueDialog);
+
+                                        //Getting the text from the dialog
+                                        repairSerial = removeRepairSerialText.getText().toString();
+                                        Boolean exists = MainActivity.DATABASE.existsOrNot(repairSerial);
+
+                                        //Will tell the user if it deleted or not
+                                        if (exists)
+                                        {
+                                            Intent i = new Intent(Repairs.this, singleRepair.class);
+                                            i.putExtra("Serial", repairSerial);
+
+                                            startActivity(i);
+
+                                        } else
+                                            Toast.makeText(getApplicationContext(), "Repair does not exist.", Toast.LENGTH_LONG).show();
+
+                                    }
+                                })
+                        .setNegativeButton("Cancel",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                //To actually create it
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                //show it
+                alertDialog.show();
+            }
+        });
 
         viewCompletedRepairButton.setOnClickListener(new View.OnClickListener()
         {
