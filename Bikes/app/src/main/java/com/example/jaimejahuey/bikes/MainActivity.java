@@ -1,6 +1,7 @@
 package com.example.jaimejahuey.bikes;
 
 import android.content.Intent;
+import android.media.Image;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -20,9 +22,9 @@ public class MainActivity extends ActionBarActivity
 {
 
     //Buttons on main menu of interface
-    private Button inventoryButton;
-    private Button salesButton;
-    private Button repairsButton;
+    private ImageButton inventoryButton;
+    private ImageButton salesButton;
+    private ImageButton repairsButton;
 
     //The database is public so we can access it in the other files.
     public static MySQLiteHelper DATABASE;
@@ -37,7 +39,7 @@ public class MainActivity extends ActionBarActivity
         DATABASE = new MySQLiteHelper(this);
         //inventoryButton is object created in this class and refers to the actual InventoryButton
         //in the interface.
-        inventoryButton = (Button) findViewById(R.id.InventoryButton);
+        inventoryButton = (ImageButton) findViewById(R.id.InventoryButton);
 
         inventoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +51,7 @@ public class MainActivity extends ActionBarActivity
             }
         });
 
-        salesButton = (Button) findViewById(R.id.SalesButton);
+        salesButton = (ImageButton) findViewById(R.id.SalesButton);
 
         salesButton.setOnClickListener(new View.OnClickListener()
         {
@@ -62,7 +64,7 @@ public class MainActivity extends ActionBarActivity
             }
         });
 
-        repairsButton = (Button) findViewById(R.id.RepairsButton);
+        repairsButton = (ImageButton) findViewById(R.id.RepairsButton);
 
         repairsButton.setOnClickListener(new View.OnClickListener() {
             @Override

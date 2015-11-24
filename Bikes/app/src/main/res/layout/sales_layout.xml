@@ -22,31 +22,65 @@
         android:layout_height="match_parent"
         android:text="@string/hint"/>
 
-   <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageButton
+        android:layout_width="69dp"
+        android:layout_height="69dp"
         android:id="@+id/SoldBike"
-        android:text="Sell a Bike"
-        android:layout_marginTop="100dp" />
+        android:layout_marginTop="100dp"
+        android:src="@drawable/saleicon"
+        android:scaleType="fitCenter"
+        android:background="#00000000" />
 
-     <!--<Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ReturnedBike"
-        android:text="Returned bike"
-        android:layout_marginTop="25dp" /> -->
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Sell Bike"
+        android:id="@+id/textView_addBicycle"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"
+        android:textColor="#ff2e7d13"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageButton
+        android:layout_width="69dp"
+        android:layout_height="69dp"
         android:id="@+id/ViewProfit"
-        android:text="View profit"
-        android:layout_marginTop="25dp" />
-    <Button
+        android:layout_marginTop="25dp"
+        android:background="#00000000"
+        android:src="@drawable/profiticon"
+        android:scaleType="fitCenter" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="View Profit"
+        android:id="@+id/textView_viewProfit"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"
+        android:textColor="#ff2e7d13"/>
+
+    <ImageButton
+        android:layout_width="69dp"
+        android:layout_height="69dp"
         android:id="@+id/ViewSoldBikes"
         android:layout_marginTop="25dp"
-        android:text="View Sold Bikes"/>
+        android:text="View Sold Bikes"
+        android:background="#00000000"
+        android:src="@drawable/bicycles"
+        android:scaleType="fitCenter" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="View Sold Bikes"
+        android:id="@+id/textView_viewSoldBikes"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"
+        android:textColor="#ff2e7d13"/>
 
 </LinearLayout>

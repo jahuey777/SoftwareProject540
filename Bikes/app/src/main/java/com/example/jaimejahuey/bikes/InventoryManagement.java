@@ -8,6 +8,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -16,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 /**
@@ -24,9 +26,9 @@ import android.widget.Toast;
 public class InventoryManagement extends ActionBarActivity
 {
     //Buttons of the inventory interface menu
-    private Button addBike;
-    private Button displayBikes;
-    private Button removeBike;
+    private ImageButton addBike;
+    private ImageButton displayBikes;
+    private ImageButton removeBike;
     //private Button updateBikes;
 
     private EditText removeSerialText;
@@ -47,9 +49,9 @@ public class InventoryManagement extends ActionBarActivity
         setContentView(R.layout.inventory_layout);
 
         //Linking to the XML file
-        addBike = (Button) findViewById(R.id.AddBike);
-        removeBike = (Button) findViewById(R.id.RemoveBike);
-        displayBikes = (Button) findViewById(R.id.ViewInventory);
+        addBike = (ImageButton) findViewById(R.id.AddBike);
+        removeBike = (ImageButton) findViewById(R.id.RemoveBike);
+        displayBikes = (ImageButton) findViewById(R.id.ViewInventory);
         //updateBikes = (Button) findViewById(R.id.UpdateBike);
 
         //removeSerialText = (EditText) findViewById(R.id.remove_bike_dialog_input);

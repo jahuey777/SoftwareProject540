@@ -1,60 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:baselineAligned="false"
-    android:paddingBottom="100dp"
-    android:gravity="center_horizontal">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
+        android:text="ProBikes"
         android:textStyle="bold|italic"
-        android:textColor="#ff2431ff"
+        android:textColor="#ff2e7d13"
         android:textSize="50sp"
         android:singleLine="true"
         android:typeface="normal"
         android:gravity="center_horizontal"
-        android:id="@+id/textView_Title_Main" />
+        android:id="@+id/textView_Title_Main"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hint"
         android:singleLine="false"
-        android:layout_weight="1"
         android:textStyle="bold"
         android:layout_gravity="center_horizontal"
         android:id="@+id/textview_hint"
-        android:gravity="center_vertical" />
+        android:gravity="center_vertical"
+        android:textColor="#ff2e7d13"
+        android:layout_marginTop="30dp"/>
 
-    <Button
-        android:layout_marginTop="0dp"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+    <ImageButton
+        android:layout_width="69dp"
+        android:layout_height="69dp"
         android:id="@+id/InventoryButton"
         android:text="@string/manage_inventory"
-        android:layout_weight="1"
-        android:layout_gravity="center_horizontal" />
-    <Button
-        android:layout_marginTop="25dp"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:id="@+id/SalesButton"
-        android:text="@string/sales"
-        android:layout_weight="1"
-        android:layout_gravity="center_horizontal" />
+        android:textColor="#ff2e7d13"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/bicycleinventory"
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
+        android:background="#00ffde2b"
+        android:layout_marginTop="40dp"
+        android:focusableInTouchMode="false" />
 
-    <Button
-        android:layout_marginTop="25dp"
+    <TextView
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="30dp"
+        android:text="Manage Inventory"
+        android:singleLine="false"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/textview"
+        android:gravity="center_vertical"
+        android:textColor="#ff2e7d13" />
+
+    <ImageButton
+        android:layout_width="69dp"
+        android:layout_height="69dp"
+        android:id="@+id/SalesButton"
+        android:src="@drawable/bicyclesales"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ff2e7d13"
+        android:scaleType="fitCenter"
+        android:background="#00ffde2b"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="Sales"
+        android:singleLine="false"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/textview1"
+        android:gravity="center_vertical"
+        android:textColor="#ff2e7d13" />
+
+    <ImageButton
+        android:layout_width="69dp"
+        android:layout_height="69dp"
         android:id="@+id/RepairsButton"
         android:text="@string/Repairs"
-        android:layout_weight="1"
-        android:layout_gravity="center_horizontal" />
+        android:src="@drawable/repairicongreen"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ff2e7d13"
+        android:scaleType="fitCenter"
+        android:background="#00ffde2b"
+        android:layout_marginTop="20dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="Repairs"
+        android:singleLine="false"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/textview2"
+        android:gravity="center_vertical"
+        android:textColor="#ff2e7d13" />
 
 </LinearLayout>

@@ -7,48 +7,86 @@
     android:gravity="center_horizontal">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Manage Inventory"
-        android:id="@+id/textView_Title_Inv"
-        android:layout_gravity="center_horizontal"
-        android:textColor="#ff2431ff"
-        android:textSize="30dp"
-        android:textStyle="bold" />
+        android:textStyle="bold|italic"
+        android:textColor="#ff2e7d13"
+        android:textSize="40sp"
+        android:singleLine="true"
+        android:typeface="normal"
+        android:gravity="center_horizontal"
+        android:id="@+id/textView_Title_Main"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:text="Please choose one of the following options.\n\n"/>
 
-    <Button
-        android:layout_marginTop="100dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageButton
+        android:layout_marginTop="40dp"
+        android:layout_width="69dp"
+        android:layout_height="69dp"
+        android:src ="@drawable/bikeadd"
         android:id="@+id/AddBike"
         android:text="Add Bike"
-        />
-    <Button
-        android:layout_marginTop="25dp"
+        android:scaleType="fitCenter"
+        android:background="#00ffffff" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Add Bicycle"
+        android:id="@+id/textView_addBicycle"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"
+        android:textColor="#ff2e7d13"/>
+
+
+    <ImageButton
+        android:layout_marginTop="30dp"
+        android:layout_width="69dp"
+        android:layout_height="69dp"
+        android:src ="@drawable/packagedelete"
         android:id="@+id/RemoveBike"
-        android:text="Remove Bike"/>
+        android:text="Remove Bike"
+        android:scaleType="fitCenter"
+        android:background="#00ffffff" />
 
-   <!-- <Button
-        android:layout_marginTop="25dp"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/UpdateBike"
-        android:text="Update Bike Inventory"/> -->
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Remove Bicycle"
+        android:id="@+id/textView_removeBicycle"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"
+        android:textColor="#ff2e7d13"/>
 
-    <Button
-        android:layout_marginTop="25dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageButton
+        android:layout_marginTop="30dp"
+        android:layout_width="69dp"
+        android:layout_height="69dp"
         android:id="@+id/ViewInventory"
-        android:text="Display all inventory."/>
+        android:src="@drawable/clipboard"
+        android:text="Display all inventory."
+        android:scaleType="fitCenter"
+        android:background="#00ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Display Inventory"
+        android:id="@+id/textView_DisplayInventory"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"
+        android:textColor="#ff2e7d13"/>
+
 
 
 

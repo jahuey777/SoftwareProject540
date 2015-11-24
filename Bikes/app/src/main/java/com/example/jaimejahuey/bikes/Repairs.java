@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 /**
@@ -23,11 +24,11 @@ import android.widget.Toast;
  */
 public class Repairs extends ActionBarActivity
 {
-    private Button addRepair;
-    private Button completedRepair;
-    private Button viewActiveRepairButton;
-    private Button viewCompletedRepairButton;
-    private Button deleteRepairButton;
+    private ImageButton addRepair;
+    private ImageButton completedRepair;
+    private ImageButton viewActiveRepairButton;
+    private ImageButton viewCompletedRepairButton;
+    private ImageButton deleteRepairButton;
 
     final Context context = this;
     private EditText completedSerialText;
@@ -49,11 +50,11 @@ public class Repairs extends ActionBarActivity
 
 
         //linking buttons to xml file buttons
-        addRepair = (Button) findViewById(R.id.AddRepair);
-        completedRepair = (Button) findViewById(R.id.CompletedRepair);
-        viewActiveRepairButton = (Button) findViewById(R.id.ViewActiveRepairs);
-        viewCompletedRepairButton = (Button) findViewById(R.id.ViewPendingRepairs);
-        deleteRepairButton = (Button) findViewById(R.id.DeleteRepair);
+        addRepair = (ImageButton) findViewById(R.id.AddRepair);
+        completedRepair = (ImageButton) findViewById(R.id.CompletedRepair);
+        viewActiveRepairButton = (ImageButton) findViewById(R.id.ViewActiveRepairs);
+        viewCompletedRepairButton = (ImageButton) findViewById(R.id.ViewPendingRepairs);
+        deleteRepairButton = (ImageButton) findViewById(R.id.DeleteRepair);
 
         //WHen the user clikcs on the button. Go to addingRepair class
         addRepair.setOnClickListener(new View.OnClickListener()

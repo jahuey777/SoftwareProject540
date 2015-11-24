@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:baselineAligned="true"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    android:weightSum="1">
 
     <TextView
         android:layout_marginTop="20dp"
@@ -24,40 +25,126 @@
         android:layout_height="match_parent"
         android:text="@string/hint"/>
 
-    <Button
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/AddRepair"
-        android:text="Add new repair"
-        />
-    <Button
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/CompletedRepair"
-        android:text="Completed a repair"/>
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="2"
+        android:rowCount="3">
 
-    <Button
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/DeleteRepair"
-        android:text="Delete repair"/>
 
-    <Button
-        android:layout_marginTop="25dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ViewActiveRepairs"
-        android:text="View Active Repairs"/>
+        <ImageButton
+            android:layout_marginTop="20dp"
+            android:layout_width="69dp"
+            android:layout_height="69dp"
+            android:id="@+id/AddRepair"
+            android:layout_marginLeft="70dp"
+            android:background="#00ffffff"
+            android:src="@drawable/plus"
+            android:scaleType="fitCenter" />
 
-    <Button
+
+        <ImageButton
+            android:layout_marginTop="20dp"
+            android:layout_width="69dp"
+            android:layout_height="69dp"
+            android:id="@+id/CompletedRepair"
+            android:layout_marginLeft="80dp"
+            android:background="#00ffffff"
+            android:src="@drawable/completed"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Add Repair"
+            android:singleLine="false"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/textview"
+            android:gravity="center_vertical"
+            android:textColor="#ff2e7d13"
+            android:layout_marginLeft="60dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Complete Repair"
+            android:singleLine="false"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/textview1"
+            android:gravity="center_vertical"
+            android:textColor="#ff2e7d13" />
+
+        <ImageButton
+            android:layout_marginTop="20dp"
+            android:layout_width="69dp"
+            android:layout_height="69dp"
+            android:id="@+id/DeleteRepair"
+            android:layout_marginLeft="70dp"
+            android:src="@drawable/deleteRepair"
+            android:background="#00ffffff"
+            android:scaleType="fitCenter" />
+
+        <ImageButton
+            android:layout_marginTop="20dp"
+            android:layout_width="69dp"
+            android:layout_height="69dp"
+            android:id="@+id/ViewActiveRepairs"
+            android:layout_marginLeft="80dp"
+            android:src="@drawable/clipboard"
+            android:scaleType="fitCenter"
+            android:background="#00ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Delete Repair"
+            android:singleLine="false"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/textview2"
+            android:gravity="center_vertical"
+            android:textColor="#ff2e7d13"
+            android:layout_marginLeft="60dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="View Active Repairs"
+            android:singleLine="false"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/textview3"
+            android:gravity="center_vertical"
+            android:textColor="#ff2e7d13" />
+
+
+    </GridLayout>
+
+
+    <ImageButton
         android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="69dp"
+        android:layout_height="69dp"
         android:id="@+id/ViewPendingRepairs"
-        android:text="View completed Repairs"/>
+        android:background="#00ffffff"
+        android:scaleType="fitCenter"
+        android:src="@drawable/clipboard"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="View Completed Repair"
+        android:singleLine="false"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/textview4"
+        android:gravity="center_vertical"
+        android:textColor="#ff2e7d13" />
+
+
+
 
 
 </LinearLayout>

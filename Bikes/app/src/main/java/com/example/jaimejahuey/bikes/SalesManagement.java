@@ -16,13 +16,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class SalesManagement extends ActionBarActivity
 {
-    private Button ViewProfitButton;
-    private Button SoldBikeButton;
-    private Button ViewSoldBikes;
+    private ImageButton ViewProfitButton;
+    private ImageButton SoldBikeButton;
+    private ImageButton ViewSoldBikes;
 
     Context context= this;
     EditText soldSerial;
@@ -35,9 +36,9 @@ public class SalesManagement extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sales_layout);
 
-        SoldBikeButton = (Button) findViewById(R.id.SoldBike);
-        ViewProfitButton = (Button) findViewById(R.id.ViewProfit);
-        ViewSoldBikes = (Button) findViewById(R.id.ViewSoldBikes);
+        SoldBikeButton = (ImageButton) findViewById(R.id.SoldBike);
+        ViewProfitButton = (ImageButton) findViewById(R.id.ViewProfit);
+        ViewSoldBikes = (ImageButton) findViewById(R.id.ViewSoldBikes);
 
         //Takes us to the sell a bike page.
         ViewProfitButton.setOnClickListener(new View.OnClickListener() {
