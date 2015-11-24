@@ -385,8 +385,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
     }
 
-
-
     public boolean repairExists (String serial)
     {
         //To be able to read from the database
@@ -450,12 +448,10 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             newVal.put(COST_REPAIR, costToOwner);
             DB.update(TABLE_repairs, newVal, "serial = '" + serialCompleted + "'", null);
 
-
             cursor.close();
             DB.close();
             return true;
         }
-
 
     }
 

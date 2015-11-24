@@ -102,9 +102,6 @@
         android:gravity="center_vertical"
         android:textColor="#ff2e7d13"/>
 
-
-
-
-
 </LinearLayout>
-    </ScrollView>
+
+</ScrollView>

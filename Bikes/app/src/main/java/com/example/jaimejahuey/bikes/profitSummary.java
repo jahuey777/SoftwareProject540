@@ -19,8 +19,11 @@ import android.widget.Toast;
 public class profitSummary extends Activity
 {
     TextView totalProfit;
-    TextView bikeProfit;
-
+    TextView totalBikeProfitJ;
+    TextView spentRepairsJ;
+    TextView chargedRepairsJ;
+    TextView totalBikeAmountJ;
+    TextView repairsProfitJ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,12 +37,25 @@ public class profitSummary extends Activity
 
         MainActivity.DATABASE.bikeProfit(startDate, endDate, information);
 
-        Log.w("Amount "," " +  information[0]);
+        Log.w("Amount ", " " + information[0]);
 
         totalProfit = (TextView)findViewById(R.id.ProfitAmount);
         totalProfit.setText("" + information[0]);
 
+        totalBikeProfitJ = (TextView)findViewById(R.id.TotalBikeProfit);
+        totalBikeProfitJ.setText("" + information[1]*.2);
 
+        spentRepairsJ = (TextView)findViewById(R.id.SPENTREPAIRS);
+        spentRepairsJ.setText("" + information[2]);
+
+        chargedRepairsJ = (TextView)findViewById(R.id.CHARGEDREPAIRS);
+        chargedRepairsJ.setText("" + information[3]);
+
+        totalBikeAmountJ = (TextView)findViewById(R.id.TOTALBIKEAMOUNT);
+        totalBikeAmountJ.setText("" + information[1]);
+
+        repairsProfitJ = (TextView)findViewById(R.id.RepairsProfit);
+        repairsProfitJ.setText("" + (information[3] - information[2]));
 
     }
 

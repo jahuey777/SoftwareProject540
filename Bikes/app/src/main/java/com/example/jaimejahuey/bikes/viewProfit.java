@@ -226,9 +226,6 @@ public class viewProfit extends Activity
                         + String.valueOf(year));
 
             }
-
         }
     }
-
-
 }
