@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -17,6 +18,10 @@ import android.widget.Toast;
  */
 public class profitSummary extends Activity
 {
+    TextView totalProfit;
+    TextView bikeProfit;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -25,10 +30,16 @@ public class profitSummary extends Activity
 
         String startDate = getIntent().getExtras().getString("First Date");
         String endDate = getIntent().getExtras().getString("End Date");
+        double [] information= new double [4];
 
-        String profit = calculateSummary(startDate,endDate);
+        MainActivity.DATABASE.bikeProfit(startDate, endDate, information);
 
-        Toast.makeText(getApplicationContext(), "Profit is " + profit, Toast.LENGTH_LONG).show();
+        Log.w("Amount "," " +  information[0]);
+
+        totalProfit = (TextView)findViewById(R.id.ProfitAmount);
+        totalProfit.setText("" + information[0]);
+
+
 
     }
 
@@ -55,24 +66,6 @@ public class profitSummary extends Activity
     }
 
     //Where we calculate the profit.
-    private String calculateSummary (String start, String end)
-    {
-        //calculate the bike profit from the sales table.
-      //  Log.w("start", start);
-        // Log.w("end", end);
-
-        double [] information= new double [4];
-        information = MainActivity.DATABASE.bikeProfit(start, end);
-
-        Log.w("profit amount", " " + information[0]);
-        Log.w("total bike sales amount", " " + information[1]);
-
-
-        String PROFIT = "";
-
-
-        return PROFIT;
-    }
 
 }
 

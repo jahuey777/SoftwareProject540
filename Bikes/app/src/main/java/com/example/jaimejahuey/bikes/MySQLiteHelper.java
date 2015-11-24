@@ -502,11 +502,11 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         }
     }
 
-    public double []  bikeProfit(String start, String end)
+    public void bikeProfit(String start, String end, double [] profitSum)
     {
         //Log.d("in here", "here");
 
-        double [] info = new double [4];
+        //double [] info = new double [4];
         double profitAmount=0;
         double amountChargedRepairs =0;
         double costAmountRepairs =0;
@@ -789,12 +789,11 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             DB.close();
         }
 
-        info[0]= profitAmount;
-        info[1]= bikeSalesTotal;
-        info[2]= costAmountRepairs;
-        info[3]= amountChargedRepairs;
+        profitSum[0]= profitAmount;
+        profitSum[1]= bikeSalesTotal;
+        profitSum[2]= costAmountRepairs;
+        profitSum[3]= amountChargedRepairs;
 
-        return info;
     }
 
     public String [] repairInfo(String serialNum, String [] info)

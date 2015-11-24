@@ -7,11 +7,144 @@
     android:baselineAligned="true"
     android:gravity="center_horizontal">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="View Active Repairs"
+            android:singleLine="false"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/textvie"
+            android:gravity="center_vertical"
+            android:textColor="#ff2e7d13" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="The summary of your profits is below.\n\n"/>
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="6">
 
 
-</LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="Total:"
+                android:singleLine="false"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/textview"
+                android:gravity="center_vertical"
+                android:textColor="#ff2e7d13" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:singleLine="false"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/ProfitAmount"
+                android:gravity="center_vertical"
+                android:textColor="#ff2e7d13" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="Bike Profit:"
+                android:singleLine="false"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/textview2"
+                android:gravity="center_vertical"
+                android:textColor="#ff2e7d13" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:singleLine="false"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/TotalBikeProfit"
+                android:gravity="center_vertical"
+                android:textColor="#ff2e7d13" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="Total spent repairs:"
+                android:singleLine="false"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/textview4"
+                android:gravity="center_vertical"
+                android:textColor="#ff2e7d13" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:singleLine="false"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/SPENTREPAIRS"
+                android:gravity="center_vertical"
+                android:textColor="#ff2e7d13" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="Total repairs charged:"
+                android:singleLine="false"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/textview6"
+                android:gravity="center_vertical"
+                android:textColor="#ff2e7d13" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:singleLine="false"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/CHARGEDREPAIRS"
+                android:gravity="center_vertical"
+                android:textColor="#ff2e7d13" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="Total Bike Sales:"
+                android:singleLine="false"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/textview7"
+                android:gravity="center_vertical"
+                android:textColor="#ff2e7d13" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:singleLine="false"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/TOTALBIKEAMOUNT"
+                android:gravity="center_vertical"
+                android:textColor="#ff2e7d13" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="Profit from repairs:"
+                android:singleLine="false"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/textview8"
+                android:gravity="center_vertical"
+                android:textColor="#ff2e7d13" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:singleLine="false"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/AMOUNCHARGEDREPAIRS"
+                android:gravity="center_vertical"
+                android:textColor="#ff2e7d13" />
+
+
+        </GridLayout>
+
+    </LinearLayout>
