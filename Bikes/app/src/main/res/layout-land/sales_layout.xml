@@ -1,0 +1,97 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:baselineAligned="true"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/sales"
+        android:id="@+id/textView_Title_Sales"
+        android:layout_gravity="center_horizontal"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:textColor="#ff2431ff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="@string/hint"/>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="2"
+        android:layout_marginTop="40dp">
+
+        <ImageButton
+            android:layout_width="69dp"
+            android:layout_height="69dp"
+            android:id="@+id/SoldBike"
+            android:src="@drawable/saleicon"
+            android:scaleType="fitCenter"
+            android:background="#00000000"
+            android:layout_marginLeft="150dp" />
+
+        <ImageButton
+            android:layout_width="69dp"
+            android:layout_height="69dp"
+            android:id="@+id/ViewProfit"
+            android:background="#00000000"
+            android:src="@drawable/profiticon"
+            android:scaleType="fitCenter"
+            android:layout_marginLeft="160dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Sell Bike"
+            android:id="@+id/textView_addBicycle"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical"
+            android:textColor="#ff2e7d13"
+            android:layout_marginLeft="150dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="View Profit"
+            android:id="@+id/textView_viewProfit"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical"
+            android:textColor="#ff2e7d13"/>
+
+    </GridLayout>
+
+
+    <ImageButton
+        android:layout_width="69dp"
+        android:layout_height="69dp"
+        android:id="@+id/ViewSoldBikes"
+        android:layout_marginTop="25dp"
+        android:text="View Sold Bikes"
+        android:background="#00000000"
+        android:src="@drawable/bicycles"
+        android:scaleType="fitCenter" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="View Sold Bikes"
+        android:id="@+id/textView_viewSoldBikes"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"
+        android:textColor="#ff2e7d13"/>
+
+</LinearLayout>
