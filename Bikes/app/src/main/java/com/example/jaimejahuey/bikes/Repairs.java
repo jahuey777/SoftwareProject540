@@ -3,6 +3,7 @@ package com.example.jaimejahuey.bikes;
 /**
  * Created by jaimejahuey on 9/18/15.
  */
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -22,7 +23,7 @@ import android.widget.Toast;
 /**
  * Created by jaimejahuey on 9/16/15.
  */
-public class Repairs extends ActionBarActivity
+public class Repairs extends Activity
 {
     private ImageButton addRepair;
     private ImageButton completedRepair;

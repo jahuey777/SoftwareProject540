@@ -1,5 +1,6 @@
 package com.example.jaimejahuey.bikes;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -21,7 +22,7 @@ import java.util.Calendar;
 /**
  * Created by David on 10/27/2015.
  */
-public class AddingRepair extends ActionBarActivity
+public class AddingRepair extends Activity
 {
 
 

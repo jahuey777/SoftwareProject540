@@ -1,5 +1,6 @@
 package com.example.jaimejahuey.bikes;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -19,7 +20,7 @@ import java.util.Calendar;
 /**
  * Created by DanielEspina on 10/21/15.
  */
-public class viewProfit extends ActionBarActivity
+public class viewProfit extends Activity
 {
     //for getting the beggining date of the profit
     private ImageButton profitBegImageCalendarButton;

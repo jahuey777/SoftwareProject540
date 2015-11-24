@@ -1,5 +1,6 @@
 package com.example.jaimejahuey.bikes;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.media.Image;
 import android.provider.MediaStore;
@@ -18,7 +19,7 @@ import android.widget.Toast;
 
 
 
-public class MainActivity extends ActionBarActivity
+public class MainActivity extends Activity
 {
 
     //Buttons on main menu of interface

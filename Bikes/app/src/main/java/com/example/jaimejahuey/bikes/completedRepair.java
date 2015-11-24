@@ -19,7 +19,7 @@ import java.util.Calendar;
 /**
  * Created by jaimejahuey on 11/3/15.
  */
-public class completedRepair extends ActionBarActivity
+public class completedRepair extends Activity
 {
     //Getting phone number input
     private EditText amountChargedInput;

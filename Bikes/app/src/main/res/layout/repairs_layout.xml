@@ -82,7 +82,7 @@
             android:layout_height="69dp"
             android:id="@+id/DeleteRepair"
             android:layout_marginLeft="70dp"
-            android:src="@drawable/deleteRepair"
+            android:src="@drawable/deleterepair"
             android:background="#00ffffff"
             android:scaleType="fitCenter" />
 

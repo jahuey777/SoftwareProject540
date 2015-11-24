@@ -1,5 +1,6 @@
 package com.example.jaimejahuey.bikes;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -14,7 +15,7 @@ import android.widget.Toast;
 /**
  * Created by jaimejahuey on 10/3/15.
  */
-public class addingBike extends ActionBarActivity
+public class addingBike extends Activity
 {
     private Button addbikeEnter;
     EditText bikeMake;

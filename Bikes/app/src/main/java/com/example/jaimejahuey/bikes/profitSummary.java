@@ -1,5 +1,6 @@
 package com.example.jaimejahuey.bikes;
 
+import android.app.Activity;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -14,7 +15,7 @@ import android.widget.Toast;
 /**
  * Created by jaimejahuey on 11/16/15.
  */
-public class profitSummary extends ActionBarActivity
+public class profitSummary extends Activity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)

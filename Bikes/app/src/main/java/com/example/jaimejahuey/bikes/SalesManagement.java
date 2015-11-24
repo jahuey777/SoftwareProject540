@@ -3,6 +3,7 @@ package com.example.jaimejahuey.bikes;
 /**
  * Created by jaimejahuey on 9/18/15.
  */
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -19,7 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-public class SalesManagement extends ActionBarActivity
+public class SalesManagement extends Activity
 {
     private ImageButton ViewProfitButton;
     private ImageButton SoldBikeButton;
