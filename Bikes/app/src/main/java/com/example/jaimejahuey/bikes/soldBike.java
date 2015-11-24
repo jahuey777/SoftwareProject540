@@ -98,7 +98,7 @@ public class soldBike extends ActionBarActivity
                         //Formatting the date for the database
                         String databaseSaleDate = dataBasemonthOfSale + "/" + dataBasedayOfSale + "/" + dataBaseyearOfSale;
 
-                        Toast.makeText(getApplicationContext(), "checking date for format " + databaseSaleDate , Toast.LENGTH_LONG).show();
+                      //  Toast.makeText(getApplicationContext(), "checking date for format " + databaseSaleDate , Toast.LENGTH_LONG).show();
 
                         //inserting a new sale into the database.
                         Boolean didWeAddSale = MainActivity.DATABASE.addingSale(SERIALNUM, databaseSaleDate, SALEPRICE);

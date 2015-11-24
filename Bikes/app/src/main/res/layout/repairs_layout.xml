@@ -130,7 +130,7 @@
         android:id="@+id/ViewPendingRepairs"
         android:background="#00ffffff"
         android:scaleType="fitCenter"
-        android:src="@drawable/clipboard"/>
+        android:src="@drawable/completedrepairs"/>
 
     <TextView
         android:layout_width="wrap_content"
