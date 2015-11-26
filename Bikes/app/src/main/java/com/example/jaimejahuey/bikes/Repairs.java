@@ -167,9 +167,9 @@ public class Repairs extends ActionBarActivity
 
                                         //Will tell the user if it deleted or not
                                         if (didWeDelete)
-                                            Toast.makeText(getApplicationContext(), "The Bike has been removed from inventory.", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(getApplicationContext(), "The repair has been removed from inventory.", Toast.LENGTH_LONG).show();
                                         else
-                                            Toast.makeText(getApplicationContext(), "The bike can not be removed since it is not in the inventory or it has already been removed.", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(getApplicationContext(), "The repair since it does not exist or it has already been removed.", Toast.LENGTH_LONG).show();
 
                                     }
                                 })

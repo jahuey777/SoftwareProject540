@@ -247,7 +247,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     {
 
         String[] allColumns =
-                new String[]{ MySQLiteHelper.STATUS_BIT, MySQLiteHelper.CUST_PHONE, MySQLiteHelper.REPAIR_DUE_DATE, MySQLiteHelper.REPAIR_SERIAL};
+                new String[]{ MySQLiteHelper.STATUS_BIT, MySQLiteHelper.DELETEDREPAIR_BIT, MySQLiteHelper.CUST_PHONE, MySQLiteHelper.REPAIR_DUE_DATE, MySQLiteHelper.REPAIR_SERIAL};
         //has KEY_AVAILABLE first to make sure its available before adding it to table
         Cursor c = getWritableDatabase().query(MySQLiteHelper.TABLE_repairs, allColumns,null, null, null, null, null);
 
@@ -257,11 +257,40 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         }
         return c;
     }
+
+    //CHecking to see if there are any active repairs. So any with a deleted bit of 0 and
+    //a status bit of 1
+    public boolean checkActiveRepairs ()
+    {
+        //To be able to read from the database
+        SQLiteDatabase DB = this.getWritableDatabase();
+
+        Cursor cursor= null;
+        String sql = "SELECT * FROM repairs WHERE deleted = " + 0 + " and status =" + 1;
+        cursor = DB.rawQuery(sql,null);
+
+        //If the bike exits, we return true, otherwise return false
+        if(cursor.getCount()<=0)
+        {
+            cursor.close();
+            DB.close();
+            return false;
+        }
+        else
+        {
+            cursor.close();
+            DB.close();
+            return true;
+        }
+
+    }
+
+
     public Cursor readCompletedRepairEntry()
     {
 
         String[] allColumns =
-                new String[]{ MySQLiteHelper.STATUS_BIT, MySQLiteHelper.DATE_COMPLETED, MySQLiteHelper.COST_REPAIR, MySQLiteHelper.REPAIR_SERIAL};
+                new String[]{ MySQLiteHelper.STATUS_BIT,MySQLiteHelper.DELETEDREPAIR_BIT, MySQLiteHelper.DATE_COMPLETED, MySQLiteHelper.COST_REPAIR, MySQLiteHelper.REPAIR_SERIAL};
         //has KEY_AVAILABLE first to make sure its available before adding it to table
 
         Cursor c = getWritableDatabase().query(MySQLiteHelper.TABLE_repairs, allColumns,null, null, null, null, null);
@@ -273,6 +302,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
         return c;
     }
+
+
 
     public Cursor readSoldBikesEntry()
     {
@@ -288,17 +319,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         }
 
         return c;
-    }
-
-    //method for updating a bike.
-    //The integer will tell us what attribute the user is wanting to update
-    //1 means color, 2 means make, and 3 means condition
-    public void updateBike(int choice, String serial, String updateValue)
-    {
-
-
-
-
     }
 
     public boolean addRepair(String serial, String phoneNum, String custName, String dueDate)

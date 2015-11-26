@@ -28,6 +28,11 @@ public class viewActiveRepairs extends Activity {
         setContentView(R.layout.view_active_repairs); //sets which xml to set
         mySQL = MainActivity.DATABASE; //sets the database to the one already created
         table_layout = (TableLayout)findViewById(R.id.displayActiveRepairsTable);
+
+        boolean buildTable = MainActivity.DATABASE.checkActiveRepairs();
+
+        //If there are repairs to show, then build the table.
+        if(buildTable)
         BuildTable();   //builds the dynamic table
     }
     private void BuildTable(){
@@ -40,13 +45,15 @@ public class viewActiveRepairs extends Activity {
         c.moveToFirst();    //move the pointer to the first in the table
 
         //outer FOR loop
-        for(int i = 0 ; i<rows; i++){
+        for(int i = 0 ; i<rows; i++)
+        {
             TableRow row = new TableRow(this); //creates new table row
             row.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
             //sets the layout parameters for the new row
 
             //inner FOR loop
-            for(int j = 0; j<columns;j++) {
+            for(int j = 0; j<columns;j++)
+            {
                 TextView textV = new TextView(this); //creates a text view for each of the columns
 
                 if (i==0 && j==0)
@@ -68,28 +75,63 @@ public class viewActiveRepairs extends Activity {
                     textV.setText("");
                     row.addView(textV);
 
+                    textV = new TextView(this); //THis is a workaround to make the table show all needed headers, it shouldn't show up as the table doesnt like showing the last of the headers.
+                    textV.setText("");
+                    row.addView(textV);
+
                     table_layout.addView(row);
                     row = new TableRow(this);
                 }
-                // the following lines set the layout parameters for each text view
-                textV.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-                textV.setGravity(Gravity.CENTER);
-                textV.setTextSize(18);
-                textV.setPadding(0, 5, 0, 5);
 
-                //sets what the text view says
-                textV.setText(c.getString(j));
+                else
+                {
+                    // the following lines set the layout parameters for each text view
+                    textV.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+                    textV.setGravity(Gravity.CENTER);
+                    textV.setTextSize(18);
+                    textV.setPadding(0, 5, 0, 5);
 
-                if (!textV.getText().equals("")) {
-                    if (textV.getText().equals("0")) { //if its completed, skip the row in the database
-                        textV.setText("");
-                        j = columns + 1;
-                    } else if (textV.getText().equals("1")) {//if its available, dont print out the "1"
-                        textV.setText("");
-                    } else {
-                        row.addView(textV); //adds the text to the column space
+                    //sets what the text view says
+                    textV.setText(c.getString(j));
+
+                    if (!textV.getText().equals(""))
+                    {
+
+                        if(j==0)
+                        {
+                            if (textV.getText().equals("0"))
+                            { //if its completed, skip the row in the database
+                                textV.setText("");
+                                j = columns + 1;
+                            }
+
+                            else if (textV.getText().equals("1"))
+                            {//if its available, dont print out the "1"
+                                textV.setText("");
+                            }
+                        }
+                        else if(j==1)
+                        {
+                            if (textV.getText().equals("1"))
+                            { //if its completed, skip the row in the database
+                                textV.setText("");
+                                j = columns + 1;
+                            }
+
+                            else if (textV.getText().equals("0"))
+                            {//if its available, dont print out the "1"
+                                textV.setText("");
+                            }
+                        }
+                        else
+                        {
+                            row.addView(textV); //adds the text to the column space
+
+                        }
+
                     }
                 }
+
             }
             //end inner FOR loop
 
@@ -97,6 +139,7 @@ public class viewActiveRepairs extends Activity {
             table_layout.addView(row);  //adds the row to the dynamic table
         }
         //end outer FOR loop
+        c.close();
         mySQL.close();
     }
 

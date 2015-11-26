@@ -46,11 +46,13 @@ public class viewCompletedRepairs extends Activity {
             //sets the layout parameters for the new row
 
             //inner FOR loop
-            for(int j = 0; j<columns;j++){
+            for(int j = 0; j<columns;j++)
+            {
                 TextView textV = new TextView(this); //creates a text view for each of the columns
 
                 if (i==0 && j==0)
-                { textV.setText("Date Added");
+                {
+                    textV.setText("Date Added");
                     formatEntry(textV, 20,10);
                     row.addView(textV);
 
@@ -73,22 +75,53 @@ public class viewCompletedRepairs extends Activity {
                     row = new TableRow(this);
                 }
 
-                // the following lines set the layout parameters for each text view
-                formatEntry(textV,18,5);
+                else
+                {
+                    // the following lines set the layout parameters for each text view
+                    formatEntry(textV,18,5);
 
-                //sets what the text view says
-                textV.setText(c.getString(j));
+                    //sets what the text view says
+                    textV.setText(c.getString(j));
 
-                if(textV.getText().equals("1")) { //if its active, skip the row in the database
-                    textV.setText("");
-                    j = columns + 1;
+                    if (!textV.getText().equals(""))
+                    {
+
+                        if(j==0)
+                        {
+                            if (textV.getText().equals("1"))
+                            { //if its active, skip the row in the database
+                                textV.setText("");
+                                j = columns + 1;
+                            }
+
+                            else if (textV.getText().equals("0"))
+                            {//if its available, dont print out the "1"
+                                textV.setText("");
+                            }
+                        }
+                        else if(j==1)
+                        {
+                            if (textV.getText().equals("1"))
+                            { //if its a deleted repair, skip the row in the database
+                                textV.setText("");
+                                j = columns + 1;
+                            }
+
+                            else if (textV.getText().equals("0"))
+                            {//if its not deleted, dont print out the "1"
+                                textV.setText("");
+                            }
+                        }
+                        else
+                        {
+                            row.addView(textV); //adds the text to the column space
+
+                        }
+
+                    }
                 }
-                else if(textV.getText().equals("0")){//if its available, dont print out the "0"
-                    textV.setText("");
-                }
-                else {
-                    row.addView(textV); //adds the text to the column space
-                }
+
+
             }
             //end inner FOR loop
 
@@ -96,6 +129,7 @@ public class viewCompletedRepairs extends Activity {
             table_layout.addView(row);  //adds the row to the dynamic table
         }
         //end outer FOR loop
+        c.close();
         mySQL.close();
     }
 
