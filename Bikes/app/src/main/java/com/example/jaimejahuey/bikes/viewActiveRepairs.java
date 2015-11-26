@@ -23,7 +23,8 @@ public class viewActiveRepairs extends Activity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_active_repairs); //sets which xml to set
         mySQL = MainActivity.DATABASE; //sets the database to the one already created
@@ -35,9 +36,8 @@ public class viewActiveRepairs extends Activity {
         if(buildTable)
         BuildTable();   //builds the dynamic table
     }
-    private void BuildTable(){
-
-
+    private void BuildTable()
+    {
         Cursor c = mySQL.readActiveRepairEntry();   //a pointer for the database table
         int rows = c.getCount();        //gets the number of rows in the table
         int columns = c.getColumnCount();   //gets the number of columns in the table

@@ -15,25 +15,24 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-public class viewSoldBikes extends Activity {
-
-        //creates variables
+public class viewSoldBikes extends Activity
+{
+       //creates variables
         private TableLayout table_layout;
         MySQLiteHelper mySQL;
         ProgressDialog progressDialog;
 
-
         @Override
-        protected void onCreate(Bundle savedInstanceState) {
+        protected void onCreate(Bundle savedInstanceState)
+        {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.view_sold_bikes); //sets which xml to set
             mySQL = MainActivity.DATABASE; //sets the database to the one already created
             table_layout = (TableLayout)findViewById(R.id.displaySoldBikes);
             BuildTable();   //builds the dynamic table
         }
-        private void BuildTable(){
-
-
+        private void BuildTable()
+        {
             Cursor c = mySQL.readSoldBikesEntry();   //a pointer for the database table
             int rows = c.getCount();        //gets the number of rows in the table
             int columns = c.getColumnCount();   //gets the number of columns in the table
@@ -41,13 +40,15 @@ public class viewSoldBikes extends Activity {
             c.moveToFirst();    //move the pointer to the first in the table
 
             //outer FOR loop
-            for(int i = 0 ; i<rows; i++){
+            for(int i = 0 ; i<rows; i++)
+            {
                 TableRow row = new TableRow(this); //creates new table row
                 row.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
                 //sets the layout parameters for the new row
 
                 //inner FOR loop
-                for(int j = 0; j<columns;j++) {
+                for(int j = 0; j<columns;j++)
+                {
                     TextView textV = new TextView(this); //creates a text view for each of the columns
 
                     if (i==0 && j==0)
@@ -99,6 +100,7 @@ public class viewSoldBikes extends Activity {
                 table_layout.addView(row);  //adds the row to the dynamic table
             }
             //end outer FOR loop
+            c.close();
             mySQL.close();
         }
 

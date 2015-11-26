@@ -285,7 +285,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
     }
 
-
+    //Grabs the info for the completed repairs, and sends the cursor through.
     public Cursor readCompletedRepairEntry()
     {
 
@@ -408,6 +408,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
     }
 
+    //To check if a repair exists or not.
     public boolean repairExists (String serial)
     {
         //To be able to read from the database
@@ -436,6 +437,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
     }
 
+    //Method for when the user has an active repair that is now completed.
+    //Updates the values for that repair in the database
     public boolean completedRepair(String serialCompleted, String costToOwner , String chargedCustomer, String completedDate)
     {
         //To be able to read from the database
@@ -523,9 +526,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
     public void bikeProfit(String start, String end, double [] profitSum)
     {
-        //Log.d("in here", "here");
-
-        //double [] info = new double [4];
         double profitAmount=0;
         double amountChargedRepairs =0;
         double costAmountRepairs =0;
@@ -555,6 +555,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         {
 
             //Breaking the dates into the day, month, and year.
+            //So parsing the start date and end date that the user chose.
             int startDay = Integer.parseInt(start.substring(0,2));
             int startMonth = Integer.parseInt(start.substring(3,5));
             int startYear = Integer.parseInt(start.substring(6,10));
@@ -567,19 +568,23 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             //This moves the cursor to the first one, so get this one and then into the while loop.
             if(cursor.getCount()>0)
             {
-                if (cursor != null) {
+                //Doesn't make sense to check for null since we are in the if statement
+                //but the program crashes for some reason if we do not check
+                if (cursor != null)
+                {
                     cursor.moveToFirst();
 
                     //Check the date, if it falls between the previous 2 dates then we grab the sale price as well
                     String date = cursor.getString(1);
 
-                    //profitAmount = Double.parseDouble(date);
+                    //Parse through the actual date that is grabbed from the database
                     int day = Integer.parseInt(date.substring(0, 2));
                     int month = Integer.parseInt(date.substring(3, 5));
                     int year = Integer.parseInt(date.substring(6, 10));
 
 
-                    //add to profit
+                    //add to profit if the date from the database falls between the other 2 dates
+                    //So rest of the code is just logic to make sure it falls in those 2 dates
                     if (startYear < year && endYear > year)
                     {
                         double bikePrice = Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
@@ -594,7 +599,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper
                             bikeSalesTotal += Double.parseDouble(cursor.getString(cursor.getColumnIndex(SALE_PRICE)));
                             profitAmount += bikePrice * .2;
                         }
-                    } else if (startYear == year && endYear >= year)
+                    }
+                    else if (startYear == year && endYear >= year)
                     {
                         if (endYear > year && month > startMonth)
                         {
@@ -619,8 +625,10 @@ public class MySQLiteHelper extends SQLiteOpenHelper
                         }
                     }
 
-
-                    while (cursor.moveToNext()) {
+                    //If theres more then one sold bike then we move through those.
+                    //If theres only one sold bike then this is skipped.
+                    while (cursor.moveToNext())
+                    {
                         date = cursor.getString(1);
                         day = Integer.parseInt(date.substring(0, 2));
                         month = Integer.parseInt(date.substring(3, 5));
@@ -815,6 +823,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
     }
 
+    //For when the user wants the profit, we return the information
     public String [] repairInfo(String serialNum, String [] info)
     {
         //To be able to write to database
@@ -853,7 +862,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             cursor.close();
             DB.close();
         }
-
 
         for(int i = 0; i<6; i++)
         {

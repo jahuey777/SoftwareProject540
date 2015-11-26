@@ -38,7 +38,6 @@ public class completedRepair extends Activity
     //inputted the serail number for a compelted repair.
     String completeSerial;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -111,14 +110,10 @@ public class completedRepair extends Activity
                             //Finish the activity, otherwise the user can update as many times as he wants
                             finish();
                         }
-
                     }
-
                 }
-
             }
         });
-
     }
 
     @Override
@@ -128,7 +123,8 @@ public class completedRepair extends Activity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -149,9 +145,10 @@ public class completedRepair extends Activity
     //resused this code from stack overflow http://stackoverflow.com/questions/16990151/how-to-make-simple-datepicker-dialog-with-buttons-and
     //made minor changes for our project
     public static class DatePickerFragment extends DialogFragment
-            implements DatePickerDialog.OnDateSetListener {
-
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            implements DatePickerDialog.OnDateSetListener
+    {
+        public Dialog onCreateDialog(Bundle savedInstanceState)
+        {
             // Use the current date as the default date in the picker
             //Will also save ints so that we can save to database
             //Decided to create separate ones so that it doesn't get confusing in the code

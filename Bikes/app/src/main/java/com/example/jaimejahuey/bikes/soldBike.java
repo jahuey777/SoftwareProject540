@@ -98,13 +98,8 @@ public class soldBike extends ActionBarActivity
                         //Formatting the date for the database
                         String databaseSaleDate = dataBasemonthOfSale + "/" + dataBasedayOfSale + "/" + dataBaseyearOfSale;
 
-                      //  Toast.makeText(getApplicationContext(), "checking date for format " + databaseSaleDate , Toast.LENGTH_LONG).show();
-
                         //inserting a new sale into the database.
                         Boolean didWeAddSale = MainActivity.DATABASE.addingSale(SERIALNUM, databaseSaleDate, SALEPRICE);
-
-                        //Updating the inventory table by removing bike
-                        //Boolean wasBikeRemoved = MainActivity.DATABASE.removeBike(SERIALNUM);
 
                         //Display a message if it was added or not to the database
                         if (didWeAddSale)
@@ -120,7 +115,6 @@ public class soldBike extends ActionBarActivity
                 }
             }
         });
-
     }
 
     @Override
@@ -130,7 +124,8 @@ public class soldBike extends ActionBarActivity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -148,7 +143,6 @@ public class soldBike extends ActionBarActivity
     public static class DatePickerFragment extends DialogFragment
             implements DatePickerDialog.OnDateSetListener
     {
-
         public Dialog onCreateDialog(Bundle savedInstanceState)
         {
             // Use the current date as the default date in the picker
@@ -174,6 +168,4 @@ public class soldBike extends ActionBarActivity
                     + String.valueOf(year));
         }
     }
-
-
 }

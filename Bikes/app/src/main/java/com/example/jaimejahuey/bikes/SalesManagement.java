@@ -30,7 +30,6 @@ public class SalesManagement extends Activity
     EditText soldSerial;
     private static String soldSerialString;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -73,69 +72,8 @@ public class SalesManagement extends Activity
                 Intent i = new Intent(SalesManagement.this , soldBike.class);
 
                 startActivity(i);
-
-                //Code Below we don't need above code is correct
-                /*
-                LayoutInflater RemoveInflator = LayoutInflater.from(context);
-                View RemoveView  = RemoveInflator.inflate(R.layout.remove_bike_dialog, null);
-
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-
-                //sets remove_bike_dialog.xml to alertdialog builder
-                alertDialogBuilder.setView(RemoveView);
-
-                alertDialogBuilder
-                        .setCancelable(false)
-                        .setPositiveButton("Enter",
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int id) {
-
-                                        //Had to add this line, otherwise it will throw an error whenever
-                                        //the user inputs anything to the pop dialog
-                                        Dialog f = (Dialog) dialog;
-
-                                        soldSerial = (EditText) f.findViewById(R.id.inputValueDialog);
-
-                                        //Getting the text from the dialog
-                                        soldSerialString = soldSerial.getText().toString();
-                                        Boolean saleOrNot = MainActivity.DATABASE.existsOrNot(soldSerialString);
-
-                                        //Will tell the user if it deleted or not
-                                        if (saleOrNot)
-                                        {
-                                            //Toast.makeText(getApplicationContext(), "The Bike has been removed from inventory.", Toast.LENGTH_LONG).show();
-                                            Intent i = new Intent(SalesManagement.this, soldBike.class);
-
-                                            startActivity(i);
-
-                                        }
-                                        else
-                                        {
-                                            Toast.makeText(getApplicationContext(), "The bike can not be sold since it does not exist in the inventory.", Toast.LENGTH_LONG).show();
-                                        }
-
-                                    }
-                                })
-                        .setNegativeButton("Cancel",
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        dialog.cancel();
-                                    }
-                                });
-
-                //To actually create it
-                AlertDialog alertDialog = alertDialogBuilder.create();
-
-                //show it
-                alertDialog.show();
-                */
-
             }
         });
-
-
     }
 
     @Override
@@ -145,7 +83,8 @@ public class SalesManagement extends Activity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -159,7 +98,4 @@ public class SalesManagement extends Activity
 
         return super.onOptionsItemSelected(item);
     }
-
-
-
 }

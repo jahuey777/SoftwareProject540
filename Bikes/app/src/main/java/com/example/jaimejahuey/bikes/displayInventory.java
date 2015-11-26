@@ -88,14 +88,17 @@ public class displayInventory extends Activity {
                 //sets what the text view says
                 textV.setText(c.getString(j));
 
-                if(textV.getText().equals("0")) { //if its unavailable, skip the row in the database
+                if(textV.getText().equals("0"))
+                { //if its unavailable, skip the row in the database
                     textV.setText("");
                     j = columns + 1;
                 }
-                else if(textV.getText().equals("1")){//if its available, dont print out the "1"
+                else if(textV.getText().equals("1"))
+                {//if its available, dont print out the "1"
                     textV.setText("");
                 }
-                else {
+                else
+                {
                 row.addView(textV); //adds the text to the column space
                 }
             }
@@ -105,6 +108,7 @@ public class displayInventory extends Activity {
             table_layout.addView(row);  //adds the row to the dynamic table
         }
         //end outer FOR loop
+        c.close();
         mySQL.close();
     }
 

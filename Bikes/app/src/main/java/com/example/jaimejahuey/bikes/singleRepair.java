@@ -26,7 +26,6 @@ public class singleRepair extends Activity
 
     Button CALL;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -83,8 +82,6 @@ public class singleRepair extends Activity
             }
         });
 
-
-
     }
 
 
@@ -127,4 +124,3 @@ public class singleRepair extends Activity
 
     }
 }
-

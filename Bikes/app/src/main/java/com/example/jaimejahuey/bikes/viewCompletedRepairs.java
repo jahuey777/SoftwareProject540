@@ -23,16 +23,16 @@ public class viewCompletedRepairs extends Activity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_completed_repairs); //sets which xml to set
         mySQL = MainActivity.DATABASE; //sets the database to the one already created
         table_layout = (TableLayout)findViewById(R.id.displayCompletedRepairsTable);
         BuildTable();   //builds the dynamic table
     }
-    private void BuildTable(){
-
-
+    private void BuildTable()
+    {
         Cursor c = mySQL.readCompletedRepairEntry();   //a pointer for the database table
         int rows = c.getCount();        //gets the number of rows in the table
         int columns = c.getColumnCount();   //gets the number of columns in the table
@@ -40,7 +40,8 @@ public class viewCompletedRepairs extends Activity {
         c.moveToFirst();    //move the pointer to the first in the table
 
         //outer FOR loop
-        for(int i = 0 ; i<rows; i++){
+        for(int i = 0 ; i<rows; i++)
+        {
             TableRow row = new TableRow(this); //creates new table row
             row.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
             //sets the layout parameters for the new row

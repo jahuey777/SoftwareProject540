@@ -41,8 +41,6 @@ public class InventoryManagement extends Activity
     //for the updatebutton, to see if we need to launch the new intent or not.
     public boolean check;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -221,11 +219,6 @@ public class InventoryManagement extends Activity
             }
 
         }); */
-
-
-        
-
-
     }
 
 
@@ -236,7 +229,8 @@ public class InventoryManagement extends Activity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -250,7 +244,5 @@ public class InventoryManagement extends Activity
 
         return super.onOptionsItemSelected(item);
     }
-
-
 
 }

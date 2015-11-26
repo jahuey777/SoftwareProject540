@@ -95,14 +95,12 @@ public class viewProfit extends Activity
                         dataBaseEndMonthProfit ==null || dataBaseEndYearProfit==null)
                 {
                     Toast.makeText(getApplicationContext(), "Please select 2 dates.", Toast.LENGTH_LONG).show();
-
                 }
 
                 //if the beginning date is bigger then the ending date,then display toast for new input
                 else if(Integer.parseInt(dataBaseBeginningYearProfit)>Integer.parseInt(dataBaseEndYearProfit))
                 {
                     Toast.makeText(getApplicationContext(), "Please select proper dates.", Toast.LENGTH_LONG).show();
-
                 }
 
                 //If same year and month but the beginning day is bigger than the end day then display toast
@@ -111,14 +109,12 @@ public class viewProfit extends Activity
                         Integer.parseInt(dataBaseBeginningDayProfit)>Integer.parseInt(dataBaseEndDayProfit))
                 {
                     Toast.makeText(getApplicationContext(), "Please select proper dates.", Toast.LENGTH_LONG).show();
-
                 }
 
                 else if (Integer.parseInt(dataBaseBeginningYearProfit)==Integer.parseInt(dataBaseEndYearProfit) &&
                         Integer.parseInt(dataBaseBeginningMonthProfit)>Integer.parseInt(dataBaseEndMonthProfit))
                 {
                     Toast.makeText(getApplicationContext(), "Please select proper dates.", Toast.LENGTH_LONG).show();
-
                 }
                 else
                 {
@@ -139,7 +135,6 @@ public class viewProfit extends Activity
                         dataBaseBeginningMonthProfit = "0" + dataBaseBeginningMonthProfit;
                     }
 
-
                     String startDate = dataBaseBeginningMonthProfit + " " + dataBaseBeginningDayProfit
                             + " " + dataBaseBeginningYearProfit;
 
@@ -152,13 +147,9 @@ public class viewProfit extends Activity
                     i.putExtra("End Date", endDate);
 
                     startActivity(i);
-
                 }
-
             }
         });
-
-
     }
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState)
@@ -167,7 +158,8 @@ public class viewProfit extends Activity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.

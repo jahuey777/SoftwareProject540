@@ -21,9 +21,6 @@ public class Bike
         inventory_serial= SERIAL;
         inventory_color = COLOR;
         inventory_condition = CONDITION;
-
-
-
     }
 
     public String getInventory_make()

@@ -99,14 +99,11 @@ public class addingBike extends Activity
                             {
                                 Toast.makeText(getApplicationContext(), "The Bike was not added since it already exists", Toast.LENGTH_LONG).show();
                             }
-
                     }
                 }
-
             }
 
         });
-
     }
 
     @Override
@@ -116,7 +113,8 @@ public class addingBike extends Activity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -130,5 +128,4 @@ public class addingBike extends Activity
 
         return super.onOptionsItemSelected(item);
     }
-
 }

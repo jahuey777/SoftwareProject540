@@ -24,8 +24,6 @@ import java.util.Calendar;
  */
 public class AddingRepair extends Activity
 {
-
-
     //Getting phone number input
     private EditText phoneNumInput;
     private EditText custNameInput;
@@ -39,7 +37,6 @@ public class AddingRepair extends Activity
     private static EditText repairCalendar;
 
     private Button enterRepair;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -98,7 +95,6 @@ public class AddingRepair extends Activity
                    else if(dataBaseday== null || dataBasemonth== null|| dataBaseyear== null)
                    {
                        Toast.makeText(getApplicationContext(), "Please select a date.", Toast.LENGTH_LONG).show();
-
                    }
 
                    else
@@ -130,12 +126,7 @@ public class AddingRepair extends Activity
                            Toast.makeText(getApplicationContext(), "The repair was not added since it already exists.", Toast.LENGTH_LONG).show();
 
                    }
-
                }
-
-
-
-
             }
         });
 
@@ -148,7 +139,8 @@ public class AddingRepair extends Activity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -162,14 +154,12 @@ public class AddingRepair extends Activity
 
         return super.onOptionsItemSelected(item);
     }
-
-    //copy this
-
     //To create a new datePicker
     //resused this code from stack overflow http://stackoverflow.com/questions/16990151/how-to-make-simple-datepicker-dialog-with-buttons-and
     //made minor changes for our project
     public static class DatePickerFragment extends DialogFragment
-            implements DatePickerDialog.OnDateSetListener {
+            implements DatePickerDialog.OnDateSetListener
+    {
 
         public Dialog onCreateDialog(Bundle savedInstanceState)
         {
@@ -196,6 +186,4 @@ public class AddingRepair extends Activity
                       + String.valueOf(year));
         }
     }
-
-   //copy
    }
