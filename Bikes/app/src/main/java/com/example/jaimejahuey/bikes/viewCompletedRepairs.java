@@ -14,8 +14,8 @@ import android.widget.TextView;
 /**
  * Created by Alfonso on 11/3/2015.
  */
-public class viewCompletedRepairs extends Activity {
-
+public class viewCompletedRepairs extends Activity
+{
     //creates variables
     private TableLayout table_layout;
     MySQLiteHelper mySQL;
@@ -29,6 +29,9 @@ public class viewCompletedRepairs extends Activity {
         setContentView(R.layout.view_completed_repairs); //sets which xml to set
         mySQL = MainActivity.DATABASE; //sets the database to the one already created
         table_layout = (TableLayout)findViewById(R.id.displayCompletedRepairsTable);
+        boolean buildOrNot = MainActivity.DATABASE.checkCompletedRepairs();
+
+        if(buildOrNot)
         BuildTable();   //builds the dynamic table
     }
     private void BuildTable()
@@ -116,13 +119,9 @@ public class viewCompletedRepairs extends Activity {
                         else
                         {
                             row.addView(textV); //adds the text to the column space
-
                         }
-
                     }
                 }
-
-
             }
             //end inner FOR loop
 

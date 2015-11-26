@@ -18,6 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by David on 10/27/2015.
@@ -28,6 +30,7 @@ public class AddingRepair extends Activity
     private EditText phoneNumInput;
     private EditText custNameInput;
     private EditText SerialRepairInput;
+    private EditText emailInput;
 
     //for getting the date
     private ImageButton ButtonCal;
@@ -70,6 +73,7 @@ public class AddingRepair extends Activity
         //link to xml editext for customer name input
         custNameInput= (EditText) findViewById(R.id.addRepairCustomerName);
         SerialRepairInput = (EditText) findViewById(R.id.addRepairSerial);
+        emailInput = (EditText)findViewById(R.id.addRepairEmail);
 
         //link to xml enter in addingrepair
         enterRepair= (Button) findViewById(R.id.addRepairEnterButton);
@@ -84,6 +88,7 @@ public class AddingRepair extends Activity
                 String PHONUM= phoneNumInput.getText().toString();
                 String CUSTNAME = custNameInput.getText().toString();
                 String REPAIRSERIAL = SerialRepairInput.getText().toString();
+                String EMAIL = emailInput.getText().toString();
 
                if(PHONUM!= null || CUSTNAME!=null || REPAIRSERIAL !=null)
                {
@@ -113,18 +118,50 @@ public class AddingRepair extends Activity
                         //Formatting the date for the database
                        String databaseDate = dataBasemonth + "/" + dataBaseday + "/" + dataBaseyear;
 
-                       //inserting the new repair into the database.
-                        Boolean didWeAddRepair = MainActivity.DATABASE.addRepair(REPAIRSERIAL, PHONUM, CUSTNAME, databaseDate);
-
-                       //Display a message if it was added or not to the database
-                       if(didWeAddRepair)
+                       //Last part is getting the email. It can be blank, so if it is we will add an empty string.
+                       if(EMAIL.isEmpty())
                        {
-                           Toast.makeText(getApplicationContext(), "The repair has been added.", Toast.LENGTH_LONG).show();
-                           finish();
-                       }
-                       else
-                           Toast.makeText(getApplicationContext(), "The repair was not added since it already exists.", Toast.LENGTH_LONG).show();
+                           EMAIL = "";
 
+                           //To add the repair to the database. Will return true if it succeeds.
+                           Boolean didWeAddRepair = MainActivity.DATABASE.addRepair(REPAIRSERIAL, PHONUM, CUSTNAME, databaseDate, EMAIL);
+
+                           //Display a message if it was added or not to the database
+                           if(didWeAddRepair)
+                           {
+                               Toast.makeText(getApplicationContext(), "The repair has been added.", Toast.LENGTH_LONG).show();
+                               //finish();
+                           }
+                           else
+                           {
+                               Toast.makeText(getApplicationContext(), "The repair was not added since it already exists.", Toast.LENGTH_LONG).show();
+                           }
+
+                       }
+                       //Email is not blank. So we will verify the email now.
+                       else
+                       {
+                           if(isEmailValid(EMAIL))
+                           {
+                               //To add the repair to the database. Will return true if it succeeds.
+                               Boolean didWeAddRepair = MainActivity.DATABASE.addRepair(REPAIRSERIAL, PHONUM, CUSTNAME, databaseDate, EMAIL);
+
+                               //Display a message if it was added or not to the database
+                               if(didWeAddRepair)
+                               {
+                                   Toast.makeText(getApplicationContext(), "The repair has been added.", Toast.LENGTH_LONG).show();
+                                   finish();
+                               }
+                               else
+                               {
+                                   Toast.makeText(getApplicationContext(), "The repair was not added since it already exists.", Toast.LENGTH_LONG).show();
+                               }
+                           }
+                           else
+                           {
+                               Toast.makeText(getApplicationContext(), "The email is invalid. Please try again.", Toast.LENGTH_LONG).show();
+                           }
+                       }
                    }
                }
             }
@@ -154,6 +191,30 @@ public class AddingRepair extends Activity
 
         return super.onOptionsItemSelected(item);
     }
+
+    /**
+     * method is used for checking valid email id format.
+     * Got the method from a stackoverflow user.
+     * http://stackoverflow.com/questions/6119722/how-to-check-edittexts-text-is-email-address-or-not
+     */
+    public static boolean isEmailValid(String email)
+    {
+        boolean isValid = false;
+
+        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        CharSequence inputStr = email;
+
+        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(inputStr);
+        if (matcher.matches())
+        {
+            isValid = true;
+        }
+        return isValid;
+    }
+
+
+
     //To create a new datePicker
     //resused this code from stack overflow http://stackoverflow.com/questions/16990151/how-to-make-simple-datepicker-dialog-with-buttons-and
     //made minor changes for our project

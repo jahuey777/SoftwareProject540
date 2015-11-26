@@ -47,6 +47,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     public static final String DATE_COMPLETED= "dateCompleted";
     public static final String REPAIR_SERIAL = "serial";
     public static final String DELETEDREPAIR_BIT= "deleted";
+    public static final String REPAIREMAIL = "email";
 
     //Columns for the sales table
     //public static final String SERIAL_NUM = "serial";
@@ -74,7 +75,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         String CREATE_REPAIRS_TABLE = "CREATE TABLE " + TABLE_repairs + "( " + COLUMN_ID_REPAIRS
                 + " integer primary key, " + REPAIR_SERIAL + " TEXT, "+ CUST_NAME + " TEXT, " + CUST_PHONE + " TEXT," + REPAIR_DUE_DATE +
                 " TEXT," + COST_REPAIR+ " TEXT," + AMOUNT_CHARGED + " TEXT," + DATE_COMPLETED
-                + " TEXT,"+ STATUS_BIT + " INTEGER," + DELETEDREPAIR_BIT +" INTEGER)";
+                + " TEXT,"+ STATUS_BIT + " INTEGER," + DELETEDREPAIR_BIT +" INTEGER, " + REPAIREMAIL + " TEXT)";
 
         String CREATE_SALES_TABLE = "CREATE TABLE " + TABLE_sales + "( " + COLUMN_ID_SALES + " integer primary key,"
                  + SALE_DATE + " TEXT," + SALE_PRICE + " TEXT," + SALES_FKEY
@@ -303,6 +304,32 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         return c;
     }
 
+    //CHecking to see if there are any active repairs. So any with a deleted bit of 0 and
+    //a status bit of 1
+    public boolean checkCompletedRepairs ()
+    {
+        //To be able to read from the database
+        SQLiteDatabase DB = this.getWritableDatabase();
+
+        Cursor cursor= null;
+        String sql = "SELECT * FROM repairs WHERE deleted = " + 0 + " and status =" + 0;
+        cursor = DB.rawQuery(sql,null);
+
+        //If the bike exits, we return true, otherwise return false
+        if(cursor.getCount()<=0)
+        {
+            cursor.close();
+            DB.close();
+            return false;
+        }
+        else
+        {
+            cursor.close();
+            DB.close();
+            return true;
+        }
+
+    }
 
 
     public Cursor readSoldBikesEntry()
@@ -321,7 +348,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         return c;
     }
 
-    public boolean addRepair(String serial, String phoneNum, String custName, String dueDate)
+    public boolean addRepair(String serial, String phoneNum, String custName, String dueDate, String email)
     {
 
         //To be able to write to database
@@ -349,6 +376,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             values.put(MySQLiteHelper.REPAIR_DUE_DATE,"" + dueDate);
             values.put(MySQLiteHelper.STATUS_BIT, 1);
             values.put(MySQLiteHelper.DELETEDREPAIR_BIT, 0);
+            values.put(MySQLiteHelper.REPAIREMAIL, ""+ email);
 
 
             DB.insert(MySQLiteHelper.TABLE_repairs, null, values);
@@ -418,7 +446,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         //If it does, then getCount will atleast be 1. In our case, it should be exactly 1
         //also put single quotes around the string you are searching for. In this case bikeSerial
         Cursor cursor= null;
-        String sql = "SELECT * FROM repairs WHERE serial = '" + serial + "' and status = " + 1 ;
+        String sql = "SELECT * FROM repairs WHERE serial = '" + serial + "' and deleted = " + 0 ;
         cursor = DB.rawQuery(sql,null);
 
         //If the bike exits, we return true, otherwise return false
@@ -478,7 +506,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             DB.close();
             return true;
         }
-
     }
 
     public boolean addingSale(String serialNum, String saleDate, String salePrice)
@@ -833,11 +860,11 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         //Make sure you put quotes around the string. In this case serial
         Cursor cursor = null;
         String sql = "SELECT customerName, customerPhone, dueDate, costOfRepair, amountCharged," +
-                " dateCompleted FROM repairs WHERE serial = '" + serialNum + "' and deleted = " + 0;
+                " dateCompleted, email FROM repairs WHERE serial = '" + serialNum + "' and deleted = " + 0;
 
         cursor = DB.rawQuery(sql, null);
 
-        String information[] = new String[6];
+        String information[] = new String[7];
 
         //If the cursor is less then 0 then its not in the table yet
         if(cursor.getCount()<=0)
@@ -850,20 +877,22 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             if(cursor!=null)
             {
                 cursor.moveToFirst();
+
+                //The order of these are the order of in which we selected in the query
+                //So customer name is first, then phone etc.
                 information[0] = cursor.getString(0);
                 information[1] = cursor.getString(1);
                 information[2] = cursor.getString(2);
                 information[3] = cursor.getString(3);
                 information[4] = cursor.getString(4);
                 information[5] = cursor.getString(5);
+                information[6] = cursor.getString(6);
             }
-
-
             cursor.close();
             DB.close();
         }
 
-        for(int i = 0; i<6; i++)
+        for(int i = 0; i<7; i++)
         {
             info [i] = information[i];
         }

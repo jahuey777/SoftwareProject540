@@ -68,7 +68,8 @@
             android:layout_gravity="center_horizontal"
             android:id="@+id/CUSTOMERPHONE"
             android:gravity="center_vertical"
-            android:textColor="#ff2e7d13" />
+            android:textColor="#ff2e7d13"
+            android:autoLink="phone"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="30dp"
@@ -145,8 +146,29 @@
             android:id="@+id/DATECOMPLETED"
             android:gravity="center_vertical"
             android:textColor="#ff2e7d13" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Email address:"
+            android:singleLine="false"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/textview11"
+            android:gravity="center_vertical"
+            android:textColor="#ff2e7d13" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:singleLine="false"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/REPAIREMAILADRESS"
+            android:gravity="center_vertical"
+            android:textColor="#ff2e7d13"
+            android:autoLink="email"/>
 
-        </GridLayout>
+
+    </GridLayout>
 
     <Button
         android:layout_width="wrap_content"

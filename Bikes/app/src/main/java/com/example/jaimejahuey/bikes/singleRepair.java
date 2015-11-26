@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.http.client.utils.CloneUtils;
+
 /**
  * Created by jaimejahuey on 11/24/15.
  */
@@ -23,6 +25,7 @@ public class singleRepair extends Activity
     TextView costRepair;
     TextView costAmount;
     TextView dateCompleted;
+    TextView email;
 
     Button CALL;
 
@@ -34,7 +37,7 @@ public class singleRepair extends Activity
 
         String serial = getIntent().getExtras().getString("Serial");
 
-        final String [] CustInfo = new String [6];
+        final String [] CustInfo = new String [7];
 
         MainActivity.DATABASE.repairInfo(serial, CustInfo);
 
@@ -44,6 +47,7 @@ public class singleRepair extends Activity
         costRepair = (TextView) findViewById(R.id.COSTREPAIR);
         costAmount = (TextView) findViewById(R.id.AMOUNTCHARGED);
         dateCompleted = (TextView) findViewById(R.id.DATECOMPLETED);
+        email = (TextView) findViewById(R.id.REPAIREMAILADRESS);
 
         CALL = (Button) findViewById(R.id.callButton);
 
@@ -71,6 +75,15 @@ public class singleRepair extends Activity
         }
         else
             dateCompleted.setText("" + CustInfo[5]);
+
+        if(CustInfo[6]== "")
+        {
+            email.setText("Wasn't added.");
+        }
+        else
+        {
+            email.setText("" + CustInfo[6]);
+        }
 
         CALL.setOnClickListener(new View.OnClickListener() {
             @Override
