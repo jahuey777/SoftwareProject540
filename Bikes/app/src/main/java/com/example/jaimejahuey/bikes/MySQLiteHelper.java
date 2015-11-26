@@ -77,8 +77,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper
                 + " TEXT,"+ STATUS_BIT + " INTEGER," + DELETEDREPAIR_BIT +" INTEGER)";
 
         String CREATE_SALES_TABLE = "CREATE TABLE " + TABLE_sales + "( " + COLUMN_ID_SALES + " integer primary key,"
-                + KEY_SERIALCODE + " TEXT, " + SALE_DATE + " TEXT," + SALE_PRICE + " TEXT," + SALES_FKEY
-                + " INTEGER, "+ " FOREIGN KEY (" + SALES_FKEY +") REFERENCES " + TABLE_inventory + "(" + COLUMN_ID_INVENTORY + "))";
+                 + SALE_DATE + " TEXT," + SALE_PRICE + " TEXT," + SALES_FKEY
+                + " TEXT, "+ " FOREIGN KEY (" + SALES_FKEY +") REFERENCES " + TABLE_inventory + "(" + COLUMN_ID_INVENTORY + "))";
 
         db.execSQL(CREATE_INVENTORY_TABLE);
         db.execSQL(CREATE_REPAIRS_TABLE);
@@ -113,6 +113,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         Cursor cursor = null;
         Cursor cursor2 = null;
         //Use first query to see if that serial even exists.
+        //deleted, a 0 means its not (off) and 1 means it is (on)
         String sql = "SELECT * FROM inventory WHERE serial = '" + bike.getInventory_serial() + "' and deleted = " + 0 ;
         //Second query, if the serial exists, but if the deleted bit is 1, then we can still add it.
         String sql2 = "SELECT * FROM inventory WHERE serial = '" + bike.getInventory_serial() + "' and deleted = " + 1
@@ -221,6 +222,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             return true;
         }
     }
+
+
     //To list the bikes and models and the quantity of bikes.
 
     //Other functions for the remainder of the project
@@ -274,7 +277,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     public Cursor readSoldBikesEntry()
     {
         String[] allColumns =
-                new String[]{ MySQLiteHelper.SALE_DATE, MySQLiteHelper.SALE_PRICE, MySQLiteHelper.KEY_SERIALCODE};
+                new String[]{ MySQLiteHelper.SALE_DATE, MySQLiteHelper.SALE_PRICE, MySQLiteHelper.SALES_FKEY};
         //has KEY_AVAILABLE first to make sure its available before adding it to table
 
         Cursor c = getWritableDatabase().query(MySQLiteHelper.TABLE_sales, allColumns,null, null, null, null, null);
@@ -353,7 +356,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
         //Using a cursor to see if the bikeSerial exists
         Cursor cursor= null;
-        String sql = "SELECT * FROM repairs WHERE serial = '" + bikeSerial +"'";
+        String sql = "SELECT * FROM repairs WHERE serial = '" + bikeSerial +"' and deleted = " + 0;
         cursor = DB.rawQuery(sql,null);
 
         if(cursor.getCount()<=0)

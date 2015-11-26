@@ -112,7 +112,8 @@ public class Repairs extends ActionBarActivity
 
                                         }
                                         else
-                                            Toast.makeText(getApplicationContext(), "The bike can't be set to complete since it doesn't exist.", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(getApplicationContext(), "The repair can't be set to complete since it doesn't exist or " +
+                                                    "it may already be completed.", Toast.LENGTH_LONG).show();
 
                                     }
                                 })
@@ -218,7 +219,7 @@ public class Repairs extends ActionBarActivity
 
                                         //Getting the text from the dialog
                                         repairSerial = removeRepairSerialText.getText().toString();
-                                        Boolean exists = MainActivity.DATABASE.existsOrNot(repairSerial);
+                                        Boolean exists = MainActivity.DATABASE.repairExists(repairSerial);
 
                                         //Will tell the user if it deleted or not
                                         if (exists)
