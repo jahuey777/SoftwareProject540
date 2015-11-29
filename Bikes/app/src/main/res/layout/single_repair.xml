@@ -174,7 +174,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/callButton"
-        android:text="Call customer"/>
+        android:text="Call customer"
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>
 
