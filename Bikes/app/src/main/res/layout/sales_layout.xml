@@ -21,7 +21,7 @@
         android:layout_gravity="center_horizontal"
         android:textStyle="bold"
         android:textSize="30dp"
-        android:textColor="#ff2431ff" />
+        android:textColor="#ff2e7d13" />
 
     <TextView
         android:layout_width="wrap_content"

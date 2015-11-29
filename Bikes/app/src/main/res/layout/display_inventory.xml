@@ -19,7 +19,7 @@
         android:text="Display Inventory"
         android:id="@+id/textView4"
         android:layout_gravity="center_horizontal"
-        android:textColor="#ff2431ff" />
+        android:textColor="#ff2e7d13" />
 
 
         <ScrollView

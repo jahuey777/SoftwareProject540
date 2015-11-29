@@ -20,7 +20,7 @@
         android:layout_marginRight="46dp"
         android:layout_marginEnd="46dp"
         android:textStyle="bold"
-        android:textColor="#ff2431ff"
+        android:textColor="#ff2e7d13"
         android:layout_gravity="top" />
 
     <LinearLayout
@@ -40,14 +40,12 @@
 
         <EditText
             android:id="@+id/soldBikeSerialInput"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="#CCCCCC"
             android:ems="10"
             android:inputType="text"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            />
+            android:layout_marginLeft="3dp" />
 
         <TextView
             android:layout_marginTop="20dp"
@@ -60,14 +58,12 @@
 
         <EditText
             android:id="@+id/soldBikePriceInput"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:background="#CCCCCC"
             android:ems="10"
             android:inputType="numberDecimal"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            />
+            android:layout_marginLeft="3dp" />
 
 
         <TextView

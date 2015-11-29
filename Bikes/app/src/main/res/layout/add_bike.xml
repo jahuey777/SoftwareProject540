@@ -37,11 +37,12 @@
 
         <EditText
             android:id="@+id/addBikeMakeInput"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:background="#CCCCCC"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="text"
+            android:layout_marginLeft="3dp" />
 
         <TextView
             android:id="@+id/textView1"
@@ -52,11 +53,12 @@
 
         <EditText
             android:id="@+id/addBikeSerialInput"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:background="#CCCCCC"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="text"
+            android:layout_marginLeft="3dp" />
 
         <TextView
             android:id="@+id/textView2"
@@ -67,11 +69,12 @@
 
         <EditText
             android:id="@+id/addBikeColor"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:background="#CCCCCC"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="text"
+            android:layout_marginLeft="3dp" />
 
         <TextView
             android:id="@+id/textView3"

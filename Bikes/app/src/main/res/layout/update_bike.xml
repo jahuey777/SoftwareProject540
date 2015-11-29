@@ -15,7 +15,7 @@
         android:id="@+id/textView_Title_updateBike"
         android:layout_gravity="center_horizontal"
         android:textSize="30dp"
-        android:textColor="#ff2431ff"
+        android:textColor="#ff2e7d13"
         android:textStyle="bold" />
 
     <TextView
