@@ -67,7 +67,7 @@ public class displayInventory extends Activity {
 
                     textV = new TextView(this);
                     formatEntry(textV,15);
-                    textV.setText("Colour");
+                    textV.setText("Color");
                     row.addView(textV);
 
                     textV = new TextView(this);

@@ -97,7 +97,8 @@ public class addingBike extends Activity
                             }
                             else
                             {
-                                Toast.makeText(getApplicationContext(), "The Bike was not added since it already exists", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "The Bike was not added since it already exists or it" +
+                                        " may have already been sold.", Toast.LENGTH_LONG).show();
                             }
                     }
                 }
