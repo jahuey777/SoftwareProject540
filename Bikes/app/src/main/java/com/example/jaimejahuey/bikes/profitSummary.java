@@ -59,7 +59,7 @@ public class profitSummary extends Activity
         totalBikeAmountJ.setText("" + numFormat.format(information[1]));
 
         repairsProfitJ = (TextView)findViewById(R.id.RepairsProfit);
-        repairsProfitJ.setText("" + numFormat.format(information[3] - information[2]));
+        repairsProfitJ.setText("" + numFormat.format(information[3] - information[2] ));
 
     }
 

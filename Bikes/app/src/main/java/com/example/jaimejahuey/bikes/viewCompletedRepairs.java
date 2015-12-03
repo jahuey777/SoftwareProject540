@@ -56,7 +56,7 @@ public class viewCompletedRepairs extends Activity
 
                 if (i==0 && j==0)
                 {
-                    textV.setText("Date Added");
+                    textV.setText("Date Completed");
                     formatEntry(textV, 20,10);
                     row.addView(textV);
 

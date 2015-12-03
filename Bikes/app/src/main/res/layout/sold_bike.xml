@@ -34,9 +34,7 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:text="Please enter the serial number of bike."
-            android:layout_marginLeft="25dp"
-            />
+            android:text="Please enter the serial number of bike." />
 
         <EditText
             android:id="@+id/soldBikeSerialInput"
@@ -52,9 +50,7 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:text="Please enter the sale price of bike."
-            android:layout_marginLeft="25dp"
-            />
+            android:text="Please enter the sale price of bike." />
 
         <EditText
             android:id="@+id/soldBikePriceInput"
