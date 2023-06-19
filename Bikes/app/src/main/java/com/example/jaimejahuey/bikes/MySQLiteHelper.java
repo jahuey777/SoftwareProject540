@@ -9,6 +9,7 @@ import android.util.Log;
 
 /**
  * Created by jaimejahuey on 9/30/15.
+ * I edited this file, this sucks
  */
 public class MySQLiteHelper extends SQLiteOpenHelper
 {
